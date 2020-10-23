@@ -1,6 +1,6 @@
 <template>
 	<view>
-		专注计时首页
+		个人中心
 	</view>
 </template>
 
@@ -8,13 +8,11 @@
 	export default {
 		data() {
 			return {
+				
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
-
+			
 		}
 	}
 </script>

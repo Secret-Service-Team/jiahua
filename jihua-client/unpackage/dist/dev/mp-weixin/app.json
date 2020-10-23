@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/note/note",
+    "pages/bookkeeping/bookkeeping",
+    "pages/personal/personal"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "navigationBarTitleText": "记划"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#333333",
+    "list": [
+      {
+        "text": "专注计时",
+        "pagePath": "pages/index/index",
+        "iconPath": "static/icon/temp.png",
+        "selectedIconPath": "static/icon/temp-active.png"
+      },
+      {
+        "text": "备忘",
+        "pagePath": "pages/note/note",
+        "iconPath": "static/icon/temp.png",
+        "selectedIconPath": "static/icon/temp-active.png"
+      },
+      {
+        "text": "记账",
+        "pagePath": "pages/bookkeeping/bookkeeping",
+        "iconPath": "static/icon/temp.png",
+        "selectedIconPath": "static/icon/temp-active.png"
+      },
+      {
+        "text": "个人中心",
+        "pagePath": "pages/personal/personal",
+        "iconPath": "static/icon/temp.png",
+        "selectedIconPath": "static/icon/temp-active.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

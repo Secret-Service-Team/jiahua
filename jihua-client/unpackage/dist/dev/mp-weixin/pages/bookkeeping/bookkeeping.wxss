@@ -1,0 +1,84 @@
+
+.top-container{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	margin-top: 15rpx;
+	/* flex:1 1 0; */
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+.topleft{
+	/* flex-flow: space-between; */
+	margin-left: 15rpx;
+	font-size: 22px;
+}
+.topright{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	/* font-size: 18px; */
+}
+.topright view{
+	margin-left: 8rpx;
+}
+.intotal{
+	margin-top: 30rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	font-size: 22px;
+	margin-bottom: 20rpx;
+}
+.pay{
+	margin-left: 45rpx;
+}
+.income{
+	margin-right: 45rpx;
+}
+.detail{
+	width: 700rpx;
+	margin: 0 auto;
+	border: black 2rpx solid;
+	-webkit-border-radius: 15rpx;
+	        border-radius: 15rpx;
+	margin-bottom: 30rpx;
+	font-size: 22px;
+	padding-bottom: 30rpx;
+}
+.info{
+	margin-top: 15rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	margin-bottom: 30rpx;
+}
+.info .date{
+	margin-left: 20rpx;
+}
+.info .io{
+	margin-right: 20rpx;
+}
+.list{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	margin-bottom: 20rpx;
+}
+.list .listleft{
+	margin-left: 60rpx;
+}
+.list .listright{
+	margin-right: 60rpx;
+}
+
