@@ -150,17 +150,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var detail = function detail() {__webpack_require__.e(/*! require.ensure | compoments/detail */ "compoments/detail").then((function () {return resolve(__webpack_require__(/*! ../../compoments/detail.vue */ 40));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var detail = function detail() {__webpack_require__.e(/*! require.ensure | compoments/detail */ "compoments/detail").then((function () {return resolve(__webpack_require__(/*! ../../compoments/detail.vue */ 40));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -210,6 +200,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   components: {
     detail: detail },
 
+  mounted: function mounted() {
+    uni.request({
+      url: 'http://localhost:3000/',
+      method: 'GET',
+      success: function success(res) {
+        console.log(res);
+        console.log('前后端跑通');
+      } });
+
+  },
   data: function data() {
     return {
       addDetailClass: ['add-detail'],
@@ -263,6 +263,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         this.addDetailClass.push('slide-bottom');
       }
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
