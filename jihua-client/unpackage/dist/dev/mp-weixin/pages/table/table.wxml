@@ -1,0 +1,1 @@
+<view><view class="top"><view class="left"><view>{{'本周支出 : '+$root.g0+''}}</view><view>{{'本月支出 : '+$root.g1+''}}</view></view><view class="right"><view>{{'本周平均每天支出 : '+$root.g2+''}}</view><view>{{'本月平均每天支出 : '+$root.g3+''}}</view></view></view><view class="table">图表</view><view class="rank">消费支出排行榜</view></view>

@@ -4,13 +4,13 @@
       <view class="top-container">
         <view class="topleft"> 收支明细 </view>
         <view class="topright">
-          <view class="pre-set">
+          <view class="pre-set" @click="jumptopresell">
             <img src="../../static/icon/calender.png" alt="" />
           </view>
-          <view class="table">
+          <view class="table" @click="jumptotable">
             <img src="../../static/icon/table.png" alt="" />
           </view>
-          <view class="calendar">
+          <view class="calendar" @click="jumptocalender">
             <img src="../../static/icon/presell.png" alt="" />
           </view>
         </view>
@@ -111,6 +111,21 @@ export default {
         this.addDetailClass.push('slide-bottom');
       }
     },
+	jumptocalender(){
+			uni.navigateTo({
+				url:"../calendar/calendar"
+			})
+	},
+	jumptopresell(){
+		uni.navigateTo({
+			url:"../presell/presell"
+		})
+	},
+	jumptotable(){
+		uni.navigateTo({
+			url:"../table/table"
+		})
+	}
   }
 };
 </script>

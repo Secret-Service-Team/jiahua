@@ -3,7 +3,10 @@
     "pages/index/index",
     "pages/note/note",
     "pages/bookkeeping/bookkeeping",
-    "pages/personal/personal"
+    "pages/personal/personal",
+    "pages/table/table",
+    "pages/presell/presell",
+    "pages/calendar/calendar"
   ],
   "subPackages": [],
   "window": {
@@ -43,5 +46,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap74.json"
+  "sitemapLocation": "sitemap34.json"
 }
