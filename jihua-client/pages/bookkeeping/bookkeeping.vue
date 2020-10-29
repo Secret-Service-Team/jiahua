@@ -50,7 +50,7 @@ export default {
   },
   mounted() {
     uni.request({
-      url: 'http://localhost:3000/',
+      url: 'https://www.fastmock.site/mock/c693fd7757e7ecfc8c9332f433ff33cf/api/bookkeeping/turnover',
 	  method: 'GET',
 	  success: (res) => {
 		  console.log(res);
