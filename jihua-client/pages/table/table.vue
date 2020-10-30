@@ -24,7 +24,20 @@
 		</view>
 		
 		<view class="rank">
-			消费支出排行榜
+			<view class="describe">
+				本月消费支出排行榜
+			</view>
+			<view class="no" v-for="(item,index) in rankno" :key='index' :style="{'width':(item.percent)*7+200+'rpx'}">
+				<view class="no-index">{{index+1}}</view>
+				
+				<view class="rankinit">
+				{{item.type}} {{item.num}}笔
+				</view>
+				
+				<view class="per" :style="{'left':(item.percent)*7+250+'rpx'}">
+				{{item.percent}}%
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -37,6 +50,11 @@
 				week:150.00,
 				monthavg:55.55,
 				weekavg:66.66,
+				rankno:[
+					{"type":"餐饮","num":18,"percent":42.2},
+					{"type":"生活用品","num":6,"percent":22.99},
+					{"type":"网购","num":3,"percent":18.11}
+				]
 			}
 		},
 		methods: {
@@ -45,7 +63,8 @@
 	}
 </script>
 
-<style>
+<style scoped>
+	
 	.top{
 		display: flex;
 		justify-content: space-around;
@@ -85,5 +104,42 @@
 		margin-top: 30rpx;
 		
 	}
+	.rank{
+		margin-top: 30rpx;
+	}
+	.no{
+		display: flex;
+		justify-content: flex-start;
+		width:700rpx ;
+		margin-left: 25rpx;
+		margin-bottom: 30rpx;
+		background-color: rgba(128,128,128,0.6);
+		height: 50rpx;
+		line-height: 50rpx;
+		/* box-sizing: border-box; */
+	}
+	.per{
+		position: absolute;	
+	}
 	
+	.no-index{
+		height: 35rpx;
+		width: 35rpx;
+		font-size: 30rpx;
+		background-color: white;
+		position: relative;
+		left: 10rpx;
+		top: 8rpx;
+		text-align: center;
+		line-height: 35rpx;
+	}
+	.rankinit{
+		margin-left: 25rpx;
+	}
+	.describe{
+		width: 700rpx;
+		margin: 0 auto;
+		font-size: 50rpx;
+		margin-bottom: 35rpx;
+	}
 </style>
