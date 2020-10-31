@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2686,13 +2686,11 @@ Dep.SharedObject.targetStack = [];
 function pushTarget (target) {
   Dep.SharedObject.targetStack.push(target);
   Dep.SharedObject.target = target;
-  Dep.target = target;
 }
 
 function popTarget () {
   Dep.SharedObject.targetStack.pop();
   Dep.SharedObject.target = Dep.SharedObject.targetStack[Dep.SharedObject.targetStack.length - 1];
-  Dep.target = Dep.SharedObject.target;
 }
 
 /*  */
@@ -7461,7 +7459,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7482,14 +7480,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7533,14 +7531,13 @@ function cloneWithData(vm) {
   }, ret);
 
   // vue-composition-api
-  var compositionApiState = vm.__composition_api_state__ || vm.__secret_vfa_state__;
-  var rawBindings = compositionApiState && compositionApiState.rawBindings;
+  var rawBindings = vm.__secret_vfa_state__ && vm.__secret_vfa_state__.rawBindings;
   if (rawBindings) {
     Object.keys(rawBindings).forEach(function (key) {
       ret[key] = vm[key];
     });
   }
-
+  
   //TODO 需要把无用数据处理掉，比如 list=>l0 则 list 需要移除，否则多传输一份数据
   Object.assign(ret, vm.$mp.data || {});
   if (
@@ -7575,7 +7572,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7983,9 +7980,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 27:
-/*!**************************************************************!*\
-  !*** D:/uni-app/jihua/jihua-client/static/icon/calender.png ***!
-  \**************************************************************/
+/*!*********************************************************************!*\
+  !*** E:/study/大三上/软工实践/jihua/jihua-client/static/icon/calender.png ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7994,9 +7991,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 28:
-/*!***********************************************************!*\
-  !*** D:/uni-app/jihua/jihua-client/static/icon/table.png ***!
-  \***********************************************************/
+/*!******************************************************************!*\
+  !*** E:/study/大三上/软工实践/jihua/jihua-client/static/icon/table.png ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8005,9 +8002,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 29:
-/*!*************************************************************!*\
-  !*** D:/uni-app/jihua/jihua-client/static/icon/presell.png ***!
-  \*************************************************************/
+/*!********************************************************************!*\
+  !*** E:/study/大三上/软工实践/jihua/jihua-client/static/icon/presell.png ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8047,9 +8044,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!************************************************!*\
-  !*** D:/uni-app/jihua/jihua-client/pages.json ***!
-  \************************************************/
+/*!*******************************************************!*\
+  !*** E:/study/大三上/软工实践/jihua/jihua-client/pages.json ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8058,9 +8055,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 76:
-/*!*********************************************************************!*\
-  !*** D:/uni-app/jihua/jihua-client/compoments/uni-calendar/util.js ***!
-  \*********************************************************************/
+/*!****************************************************************************!*\
+  !*** E:/study/大三上/软工实践/jihua/jihua-client/compoments/uni-calendar/util.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8421,9 +8418,9 @@ Calendar;exports.default = _default;
 /***/ }),
 
 /***/ 77:
-/*!*************************************************************************!*\
-  !*** D:/uni-app/jihua/jihua-client/compoments/uni-calendar/calendar.js ***!
-  \*************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/study/大三上/软工实践/jihua/jihua-client/compoments/uni-calendar/calendar.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -105,7 +105,7 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"compoments/detail":1,"compoments/uni-calendar/uni-calendar":1,"compoments/uni-calendar/uni-calendar-item":1};
+/******/ 		var cssChunks = {"compoments/detail":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {

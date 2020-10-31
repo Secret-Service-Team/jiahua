@@ -5,10 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const mongo = require('mongoose')
+const mongo = require('./config/db')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const turnoverRouter = require('./routes/turnover');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/bookkeeping/turnover', turnoverRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

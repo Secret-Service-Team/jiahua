@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const mongooseURL = 'mongodb://localhost:27017/login'
+const mongooseURL = 'mongodb://localhost:27017/check'
 
 module.exports = app => {
     mongoose.connect(mongooseURL, {

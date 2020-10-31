@@ -74,7 +74,8 @@
 }
 .add-detail-button.data-v-5a3791f0 {
   background-color: rgb(16, 16, 16);
-  border-radius: 30px;
+  -webkit-border-radius: 30px;
+          border-radius: 30px;
   width: 100rpx;
   height: 100rpx;
   margin: 20rpx auto;
@@ -118,8 +119,10 @@
   height: 60%;
   width: 100%;
   background-color: #fff;
-  border-top-left-radius: 45rpx;
-  border-top-right-radius: 45rpx;
+  -webkit-border-top-left-radius: 45rpx;
+          border-top-left-radius: 45rpx;
+  -webkit-border-top-right-radius: 45rpx;
+          border-top-right-radius: 45rpx;
   border-top: 2rpx solid black;
 }
 /* animate------------------------------------- */
