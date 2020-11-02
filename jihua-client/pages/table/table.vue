@@ -20,7 +20,14 @@
 		</view>
 		
 		<view class="table">
-			图表
+			<view class="qiun-columns">
+					<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
+						<view class="qiun-title-dot-light">基本柱状图</view>
+					</view>
+					<view class="qiun-charts" >
+						<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+					</view>
+				</view>
 		</view>
 		
 		<view class="rank">
@@ -43,6 +50,9 @@
 </template>
 
 <script>
+	import uCharts from 'js_sdk/u-charts/u-charts/u-charts.js';
+	var _self;
+		var canvaColumn=null;
 	export default {
 		data() {
 			return {
@@ -53,12 +63,73 @@
 				rankno:[
 					{"type":"餐饮","num":18,"percent":42.2},
 					{"type":"生活用品","num":6,"percent":22.99},
-					{"type":"网购","num":3,"percent":18.11}
-				]
+					{"type":"网购","num":3,"percent":18.11},
+					
+				],
+				cWidth:'',
+								cHeight:'',
+								pixelRatio:1,
+								serverData:'',
 			}
-		},
-		methods: {
 			
+		},
+		onLoad() {
+					_self = this;
+					this.cWidth=uni.upx2px(700);
+					this.cHeight=uni.upx2px(425);
+					this.getServerData();
+				},
+methods: {
+			getServerData(){
+				uni.request({
+					url: 'https://www.ucharts.cn/data.json',
+					data:{
+					},
+					success: function(res) {
+						console.log(res.data.data)
+						//下面这个根据需要保存后台数据，我是为了模拟更新柱状图，所以存下来了
+						_self.serverData=res.data.data;
+						let Column={categories:[],series:[]};
+						//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
+						Column.categories=res.data.data.Column.categories;
+						Column.series=res.data.data.Column.series;
+						_self.showColumn("canvasColumn",Column);
+					},
+					fail: () => {
+						_self.tips="网络错误，小程序端请检查合法域名";
+					},
+				});
+			},
+			showColumn(canvasId,chartData){
+				canvaColumn=new uCharts({
+					$this:_self,
+					canvasId: canvasId,
+					type: 'column',
+					legend:{show:true},
+					fontSize:11,
+					background:'#FFFFFF',
+					pixelRatio:_self.pixelRatio,
+					animation: true,
+					categories: chartData.categories,
+					series: chartData.series,
+					xAxis: {
+						disableGrid:true,
+					},
+					yAxis: {
+						//disabled:true
+					},
+					dataLabel: true,
+					width: _self.cWidth*_self.pixelRatio,
+					height: _self.cHeight*_self.pixelRatio,
+					extra: {
+						column: {
+							type:'group',
+							width: _self.cWidth*_self.pixelRatio*0.45/chartData.categories.length
+						}
+					  }
+				});
+				
+			}
 		}
 	}
 </script>
@@ -97,7 +168,7 @@
 	
 	.table{
 		width: 700rpx;
-		height: 400rpx;
+		height: 500rpx;
 		border: solid rgba(128,128,128,0.8) 5rpx;
 		border-radius: 15rpx;
 		margin: 0 auto;
@@ -142,4 +213,17 @@
 		font-size: 50rpx;
 		margin-bottom: 35rpx;
 	}
+	
+	
+	page{background:#F2F2F2;width: 750upx;overflow-x: hidden;}
+	.qiun-padding{padding:2%; width:96%;}
+	.qiun-wrap{display:flex; flex-wrap:wrap;}
+	.qiun-rows{display:flex; flex-direction:row !important;}
+	.qiun-columns{display:flex; flex-direction:column !important;}
+	.qiun-common-mt{margin-top:10upx;}
+	.qiun-bg-white{background:#FFFFFF;}
+	.qiun-title-bar{width:96%; padding:10upx 2%; flex-wrap:nowrap;}
+	.qiun-title-dot-light{border-left: 10upx solid #0ea391; padding-left: 10upx; font-size: 32upx;color: #000000}
+	.qiun-charts{width: 700upx; height:425upx;background-color: #FFFFFF;}
+	.charts{width: 700upx; height:425upx;background-color: #FFFFFF;}
 </style>

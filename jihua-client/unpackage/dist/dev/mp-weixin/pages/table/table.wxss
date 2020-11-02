@@ -10,12 +10,10 @@
 }
 .top .left.data-v-3e0dbbe4{
 	border: solid rgba(128,128,128,0.6) 5rpx;
-	-webkit-border-radius: 15rpx;
-	        border-radius: 15rpx;
+	border-radius: 15rpx;
 	margin-left: 20rpx;
 	width: 275rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	padding-left: 5rpx;
 	padding-top: 28rpx;
 	/* padding: 0 auto; */
@@ -24,21 +22,18 @@
 }
 .top .right.data-v-3e0dbbe4{
 	border: solid rgba(128,128,128,0.6) 5rpx;
-	-webkit-border-radius: 15rpx;
-	        border-radius: 15rpx;
+	border-radius: 15rpx;
 	margin-right: 20rpx;
 	width: 415rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	padding-left: 20rpx;
 	padding-top: 28rpx;
 }
 .table.data-v-3e0dbbe4{
 	width: 700rpx;
-	height: 400rpx;
+	height: 500rpx;
 	border: solid rgba(128,128,128,0.8) 5rpx;
-	-webkit-border-radius: 15rpx;
-	        border-radius: 15rpx;
+	border-radius: 15rpx;
 	margin: 0 auto;
 	margin-top: 30rpx;
 }
@@ -83,4 +78,15 @@
 	font-size: 50rpx;
 	margin-bottom: 35rpx;
 }
+page.data-v-3e0dbbe4{background:#F2F2F2;width: 750rpx;overflow-x: hidden;}
+.qiun-padding.data-v-3e0dbbe4{padding:2%; width:96%;}
+.qiun-wrap.data-v-3e0dbbe4{display:-webkit-box;display:-webkit-flex;display:flex; -webkit-flex-wrap:wrap; flex-wrap:wrap;}
+.qiun-rows.data-v-3e0dbbe4{display:-webkit-box;display:-webkit-flex;display:flex; -webkit-box-orient:horizontal !important; -webkit-box-direction:normal !important; -webkit-flex-direction:row !important; flex-direction:row !important;}
+.qiun-columns.data-v-3e0dbbe4{display:-webkit-box;display:-webkit-flex;display:flex; -webkit-box-orient:vertical !important; -webkit-box-direction:normal !important; -webkit-flex-direction:column !important; flex-direction:column !important;}
+.qiun-common-mt.data-v-3e0dbbe4{margin-top:10rpx;}
+.qiun-bg-white.data-v-3e0dbbe4{background:#FFFFFF;}
+.qiun-title-bar.data-v-3e0dbbe4{width:96%; padding:10rpx 2%; -webkit-flex-wrap:nowrap; flex-wrap:nowrap;}
+.qiun-title-dot-light.data-v-3e0dbbe4{border-left: 10rpx solid #0ea391; padding-left: 10rpx; font-size: 32rpx;color: #000000}
+.qiun-charts.data-v-3e0dbbe4{width: 700rpx; height:425rpx;background-color: #FFFFFF;}
+.charts.data-v-3e0dbbe4{width: 700rpx; height:425rpx;background-color: #FFFFFF;}
 
