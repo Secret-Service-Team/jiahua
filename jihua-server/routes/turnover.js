@@ -136,7 +136,6 @@ router.delete('/', async (req, res, next) => {
     const record = await Turnover.findOne({
         _id: req.query.fid
     })
-    console.log(record)
     if (record) {
         // 存在记录 删除记录
         const deleteRecord = await Turnover.deleteOne({
