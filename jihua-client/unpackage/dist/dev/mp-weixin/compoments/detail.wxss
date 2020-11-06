@@ -1,7 +1,8 @@
 
 .detail-item.data-v-0e94aaed {
 	border: black 2rpx solid;
-	border-radius: 15rpx;
+	-webkit-border-radius: 15rpx;
+	        border-radius: 15rpx;
 	margin-bottom: 30rpx;
 	padding-bottom: 30rpx;
 }
