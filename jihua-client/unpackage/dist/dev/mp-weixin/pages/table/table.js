@@ -92,7 +92,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  easySelect: function() {
+    return __webpack_require__.e(/*! import() | components/easy-select/easy-select */ "components/easy-select/easy-select").then(__webpack_require__.bind(null, /*! @/components/easy-select/easy-select.vue */ 79))
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -197,6 +201,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 var _uCharts = _interopRequireDefault(__webpack_require__(/*! js_sdk/u-charts/u-charts/u-charts.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -248,11 +264,50 @@ var _uCharts = _interopRequireDefault(__webpack_require__(/*! js_sdk/u-charts/u-
 //
 //
 //
-var _self;var canvaColumn = null;var _default = { data: function data() {return { month: 500.00, week: 150.00, monthavg: 55.55, weekavg: 66.66, rankno: [{ "type": "餐饮", "num": 18, "percent": 42.2 }, { "type": "生活用品", "num": 6, "percent": 22.99 }, { "type": "网购", "num": 3, "percent": 18.11 }], cWidth: '', cHeight: '', pixelRatio: 1, serverData: '' };}, onLoad: function onLoad() {_self = this;this.cWidth = uni.upx2px(700);this.cHeight = uni.upx2px(425);this.getServerData();}, methods: { getServerData: function getServerData() {uni.request({ url: 'https://www.ucharts.cn/data.json', data: {}, success: function success(res) {console.log(res.data.data); //下面这个根据需要保存后台数据，我是为了模拟更新柱状图，所以存下来了
-          _self.serverData = res.data.data;var Column = { categories: [], series: [] }; //这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
-          Column.categories = res.data.data.Column.categories;Column.series = res.data.data.Column.series;_self.showColumn("canvasColumn", Column);}, fail: function fail() {_self.tips = "网络错误，小程序端请检查合法域名";} });}, showColumn: function showColumn(canvasId, chartData) {canvaColumn = new _uCharts.default({ $this: _self, canvasId: canvasId,
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _self;var canvaColumn = null;var _default = { data: function data() {return { zhuzhuangtu: 'block', bingtu: 'none', selecValue: '柱状图', month: 500.00, week: 150.00, monthavg: 55.55, weekavg: 66.66, rankno: [{ "type": "餐饮", "num": 18, "percent": 42.2 }, { "type": "生活用品", "num": 6, "percent": 22.99 }, { "type": "网购", "num": 3, "percent": 18.11 }], cWidth: '', cHeight: '', pixelRatio: 1, serverData: '' };}, onLoad: function onLoad() {_self = this;this.cWidth = uni.upx2px(700);this.cHeight = uni.upx2px(425);this.getServerData();}, methods: { selectOne: function selectOne(options) {this.selecValue = options.label; // console.log(this.selecValue)
+      if (this.selecValue == '柱状图') {// console.log(this.selecValue)
+        this.zhuzhuangtu = 'block';this.bingtu = 'none'; // console.log(this.zhuzhuangtu)
+      } else if (this.selecValue == '饼图') {// console.log(this.selecValue)
+        this.zhuzhuangtu = 'none';this.bingtu = 'block'; // console.log(this.zhuzhuangtu)
+      }}, useOutClickSide: function useOutClickSide() {this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions();}, getServerData: function getServerData() {uni.request({ url: 'https://www.ucharts.cn/data.json', data: {},
+        success: function success(res) {
+          console.log(res.data.data);
+          //下面这个根据需要保存后台数据，我是为了模拟更新柱状图，所以存下来了
+          _self.serverData = res.data.data;
+          var Column = {
+            categories: [],
+            series: [] };
+
+          //这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
+          Column.categories = res.data.data.Column.categories;
+          Column.series = res.data.data.Column.series;
+          _self.showColumn("canvasColumn", Column);
+        },
+        fail: function fail() {
+          _self.tips = "网络错误，小程序端请检查合法域名";
+        } });
+
+    },
+    showColumn: function showColumn(canvasId, chartData) {
+      canvaColumn = new _uCharts.default({
+        $this: _self,
+        canvasId: canvasId,
         type: 'column',
-        legend: { show: true },
+        legend: {
+          show: true },
+
         fontSize: 11,
         background: '#FFFFFF',
         pixelRatio: _self.pixelRatio,

@@ -153,7 +153,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCalendar = function uniCalendar() {Promise.all(/*! require.ensure | compoments/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("compoments/uni-calendar/uni-calendar")]).then((function () {return resolve(__webpack_require__(/*! @/compoments/uni-calendar/uni-calendar.vue */ 72));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCalendar = function uniCalendar() {Promise.all(/*! require.ensure | compoments/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("compoments/uni-calendar/uni-calendar")]).then((function () {return resolve(__webpack_require__(/*! @/compoments/uni-calendar/uni-calendar.vue */ 86));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

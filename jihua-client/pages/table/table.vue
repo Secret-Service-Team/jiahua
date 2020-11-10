@@ -18,31 +18,43 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="table">
-			<view class="qiun-columns">
-					<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
-						<view class="qiun-title-dot-light">基本柱状图</view>
-					</view>
-					<view class="qiun-charts" >
-						<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+			<view class="choose">
+				<view class="slecet">
+					<view class="content" @click="useOutClickSide">
+						<easy-select ref="easySelect" size="mini" :value="selecValue" @selectOne="selectOne"></easy-select>
 					</view>
 				</view>
+
+				<view class="version-type">
+
+				</view>
+			</view>
+
+			<view class="qiun-columns" :style="{display:zhuzhuangtu}">
+				<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
+					<view class="qiun-title-dot-light">基本柱状图</view>
+				</view>
+				<view class="qiun-charts">
+					<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+				</view>
+			</view>
 		</view>
-		
+
 		<view class="rank">
 			<view class="describe">
 				本月消费支出排行榜
 			</view>
 			<view class="no" v-for="(item,index) in rankno" :key='index' :style="{'width':(item.percent)*7+200+'rpx'}">
 				<view class="no-index">{{index+1}}</view>
-				
+
 				<view class="rankinit">
-				{{item.type}} {{item.num}}笔
+					{{item.type}} {{item.num}}笔
 				</view>
-				
+
 				<view class="per" :style="{'left':(item.percent)*7+250+'rpx'}">
-				{{item.percent}}%
+					{{item.percent}}%
 				</view>
 			</view>
 		</view>
@@ -52,98 +64,137 @@
 <script>
 	import uCharts from 'js_sdk/u-charts/u-charts/u-charts.js';
 	var _self;
-		var canvaColumn=null;
+	var canvaColumn = null;
 	export default {
 		data() {
 			return {
-				month:500.00,
-				week:150.00,
-				monthavg:55.55,
-				weekavg:66.66,
-				rankno:[
-					{"type":"餐饮","num":18,"percent":42.2},
-					{"type":"生活用品","num":6,"percent":22.99},
-					{"type":"网购","num":3,"percent":18.11},
-					
+				zhuzhuangtu:'block',
+				bingtu:'none',
+				selecValue: '柱状图',
+				month: 500.00,
+				week: 150.00,
+				monthavg: 55.55,
+				weekavg: 66.66,
+				rankno: [{
+						"type": "餐饮",
+						"num": 18,
+						"percent": 42.2
+					},
+					{
+						"type": "生活用品",
+						"num": 6,
+						"percent": 22.99
+					},
+					{
+						"type": "网购",
+						"num": 3,
+						"percent": 18.11
+					},
+
 				],
-				cWidth:'',
-								cHeight:'',
-								pixelRatio:1,
-								serverData:'',
+				cWidth: '',
+				cHeight: '',
+				pixelRatio: 1,
+				serverData: '',
 			}
-			
+
 		},
 		onLoad() {
-					_self = this;
-					this.cWidth=uni.upx2px(700);
-					this.cHeight=uni.upx2px(425);
-					this.getServerData();
-				},
-methods: {
-			getServerData(){
+			_self = this;
+			this.cWidth = uni.upx2px(700);
+			this.cHeight = uni.upx2px(425);
+			this.getServerData();
+		},
+		methods: {
+			selectOne(options) {
+				this.selecValue = options.label
+				// console.log(this.selecValue)
+				if(this.selecValue=='柱状图')
+				{
+					// console.log(this.selecValue)
+					this.zhuzhuangtu='block'
+					this.bingtu='none'
+					// console.log(this.zhuzhuangtu)
+				}
+				else if(this.selecValue=='饼图')
+				{
+					// console.log(this.selecValue)
+					this.zhuzhuangtu='none'
+					this.bingtu='block'
+					// console.log(this.zhuzhuangtu)
+				}
+			},
+			useOutClickSide() {
+				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions()
+			},
+			getServerData() {
 				uni.request({
 					url: 'https://www.ucharts.cn/data.json',
-					data:{
-					},
+					data: {},
 					success: function(res) {
 						console.log(res.data.data)
 						//下面这个根据需要保存后台数据，我是为了模拟更新柱状图，所以存下来了
-						_self.serverData=res.data.data;
-						let Column={categories:[],series:[]};
+						_self.serverData = res.data.data;
+						let Column = {
+							categories: [],
+							series: []
+						};
 						//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
-						Column.categories=res.data.data.Column.categories;
-						Column.series=res.data.data.Column.series;
-						_self.showColumn("canvasColumn",Column);
+						Column.categories = res.data.data.Column.categories;
+						Column.series = res.data.data.Column.series;
+						_self.showColumn("canvasColumn", Column);
 					},
 					fail: () => {
-						_self.tips="网络错误，小程序端请检查合法域名";
+						_self.tips = "网络错误，小程序端请检查合法域名";
 					},
 				});
 			},
-			showColumn(canvasId,chartData){
-				canvaColumn=new uCharts({
-					$this:_self,
+			showColumn(canvasId, chartData) {
+				canvaColumn = new uCharts({
+					$this: _self,
 					canvasId: canvasId,
 					type: 'column',
-					legend:{show:true},
-					fontSize:11,
-					background:'#FFFFFF',
-					pixelRatio:_self.pixelRatio,
+					legend: {
+						show: true
+					},
+					fontSize: 11,
+					background: '#FFFFFF',
+					pixelRatio: _self.pixelRatio,
 					animation: true,
 					categories: chartData.categories,
 					series: chartData.series,
 					xAxis: {
-						disableGrid:true,
+						disableGrid: true,
 					},
 					yAxis: {
 						//disabled:true
 					},
 					dataLabel: true,
-					width: _self.cWidth*_self.pixelRatio,
-					height: _self.cHeight*_self.pixelRatio,
+					width: _self.cWidth * _self.pixelRatio,
+					height: _self.cHeight * _self.pixelRatio,
 					extra: {
 						column: {
-							type:'group',
-							width: _self.cWidth*_self.pixelRatio*0.45/chartData.categories.length
+							type: 'group',
+							width: _self.cWidth * _self.pixelRatio * 0.45 / chartData.categories.length
 						}
-					  }
+					}
 				});
-				
+
 			}
 		}
 	}
 </script>
 
 <style scoped>
-	
-	.top{
+	.top {
 		display: flex;
 		justify-content: space-around;
 		height: 150rpx;
 		/* padding-top: 30rpx; */
 	}
-	.top .left{
-		border: solid rgba(128,128,128,0.6) 5rpx;
+
+	.top .left {
+		border: solid rgba(128, 128, 128, 0.6) 5rpx;
 		border-radius: 15rpx;
 		margin-left: 20rpx;
 		width: 275rpx;
@@ -151,49 +202,58 @@ methods: {
 		padding-left: 5rpx;
 		padding-top: 28rpx;
 		/* padding: 0 auto; */
-		
+
 		/* flex:column; */
 	}
 
-	.top .right{
-		border: solid rgba(128,128,128,0.6) 5rpx;
+	.top .right {
+		border: solid rgba(128, 128, 128, 0.6) 5rpx;
 		border-radius: 15rpx;
 		margin-right: 20rpx;
 		width: 415rpx;
 		box-sizing: border-box;
 		padding-left: 20rpx;
 		padding-top: 28rpx;
-	
+
 	}
-	
-	.table{
+
+	.table {
 		width: 700rpx;
-		height: 500rpx;
-		border: solid rgba(128,128,128,0.8) 5rpx;
+		height: 600rpx;
+		border: solid rgba(128, 128, 128, 0.8) 5rpx;
 		border-radius: 15rpx;
 		margin: 0 auto;
 		margin-top: 30rpx;
-		
+
 	}
-	.rank{
+	.choose{
+		padding-top: 20rpx;
+		padding-bottom: 10rpx;
+	}
+	.slecet{
+		padding-left: 5rpx;
+	}
+	.rank {
 		margin-top: 30rpx;
 	}
-	.no{
+
+	.no {
 		display: flex;
 		justify-content: flex-start;
-		width:700rpx ;
+		width: 700rpx;
 		margin-left: 25rpx;
 		margin-bottom: 30rpx;
-		background-color: rgba(128,128,128,0.6);
+		background-color: rgba(128, 128, 128, 0.6);
 		height: 50rpx;
 		line-height: 50rpx;
 		/* box-sizing: border-box; */
 	}
-	.per{
-		position: absolute;	
+
+	.per {
+		position: absolute;
 	}
-	
-	.no-index{
+
+	.no-index {
 		height: 35rpx;
 		width: 35rpx;
 		font-size: 30rpx;
@@ -204,26 +264,75 @@ methods: {
 		text-align: center;
 		line-height: 35rpx;
 	}
-	.rankinit{
+
+	.rankinit {
 		margin-left: 25rpx;
 	}
-	.describe{
+
+	.describe {
 		width: 700rpx;
 		margin: 0 auto;
 		font-size: 50rpx;
 		margin-bottom: 35rpx;
 	}
-	
-	
-	page{background:#F2F2F2;width: 750upx;overflow-x: hidden;}
-	.qiun-padding{padding:2%; width:96%;}
-	.qiun-wrap{display:flex; flex-wrap:wrap;}
-	.qiun-rows{display:flex; flex-direction:row !important;}
-	.qiun-columns{display:flex; flex-direction:column !important;}
-	.qiun-common-mt{margin-top:10upx;}
-	.qiun-bg-white{background:#FFFFFF;}
-	.qiun-title-bar{width:96%; padding:10upx 2%; flex-wrap:nowrap;}
-	.qiun-title-dot-light{border-left: 10upx solid #0ea391; padding-left: 10upx; font-size: 32upx;color: #000000}
-	.qiun-charts{width: 700upx; height:425upx;background-color: #FFFFFF;}
-	.charts{width: 700upx; height:425upx;background-color: #FFFFFF;}
+
+
+	page {
+		background: #F2F2F2;
+		width: 750upx;
+		overflow-x: hidden;
+	}
+
+	.qiun-padding {
+		padding: 2%;
+		width: 96%;
+	}
+
+	.qiun-wrap {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.qiun-rows {
+		display: flex;
+		flex-direction: row !important;
+	}
+
+	.qiun-columns {
+		display: flex;
+		flex-direction: column !important;
+	}
+
+	.qiun-common-mt {
+		margin-top: 10upx;
+	}
+
+	.qiun-bg-white {
+		background: #FFFFFF;
+	}
+
+	.qiun-title-bar {
+		width: 96%;
+		padding: 10upx 2%;
+		flex-wrap: nowrap;
+	}
+
+	.qiun-title-dot-light {
+		border-left: 10upx solid #0ea391;
+		padding-left: 10upx;
+		font-size: 32upx;
+		color: #000000
+	}
+
+	.qiun-charts {
+		width: 700upx;
+		height: 425upx;
+		background-color: #FFFFFF;
+	}
+
+	.charts {
+		width: 700upx;
+		height: 425upx;
+		background-color: #FFFFFF;
+	}
 </style>

@@ -150,7 +150,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var detail = function detail() {__webpack_require__.e(/*! require.ensure | compoments/detail */ "compoments/detail").then((function () {return resolve(__webpack_require__(/*! ../../compoments/detail.vue */ 65));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var detail = function detail() {__webpack_require__.e(/*! require.ensure | compoments/detail */ "compoments/detail").then((function () {return resolve(__webpack_require__(/*! ../../compoments/detail.vue */ 65));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var addDetail = function addDetail() {__webpack_require__.e(/*! require.ensure | compoments/addDetail */ "compoments/addDetail").then((function () {return resolve(__webpack_require__(/*! ../../compoments/addDetail.vue */ 72));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 
@@ -198,7 +199,8 @@ __webpack_require__.r(__webpack_exports__);
 
 {
   components: {
-    detail: detail },
+    detail: detail,
+    addDetail: addDetail },
 
   mounted: function mounted() {
     uni.request({
@@ -218,30 +220,88 @@ __webpack_require__.r(__webpack_exports__);
       showAddDetail: false,
       list: [{
         date: "10月11日",
-        detail: [{ type: "吃饭", thing: '沙茶面', money: -30 },
-        { type: "购物", thing: '生活用品', money: -60 }] },
+        detail: [{
+          type: "吃饭",
+          thing: '沙茶面',
+          money: -30 },
+
+        {
+          type: "购物",
+          thing: '生活用品',
+          money: -60 }] },
+
+
 
       {
         date: "10月10日",
-        detail: [{ type: "吃饭", thing: '沙茶面', money: -30 },
-        { type: "购物", thing: '生活用品', money: -60 }] },
+        detail: [{
+          type: "吃饭",
+          thing: '沙茶面',
+          money: -30 },
+
+        {
+          type: "购物",
+          thing: '生活用品',
+          money: -60 }] },
+
+
       {
         date: "10月10日",
-        detail: [{ type: "吃饭", thing: '沙茶面', money: -30 },
-        { type: "购物", thing: '生活用品', money: -60 }] },
+        detail: [{
+          type: "吃饭",
+          thing: '沙茶面',
+          money: -30 },
+
+        {
+          type: "购物",
+          thing: '生活用品',
+          money: -60 }] },
+
+
       {
         date: "10月10日",
-        detail: [{ type: "吃饭", thing: '沙茶面', money: -30 },
-        { type: "购物", thing: '生活用品', money: -60 }] },
+        detail: [{
+          type: "吃饭",
+          thing: '沙茶面',
+          money: -30 },
+
+        {
+          type: "购物",
+          thing: '生活用品',
+          money: -60 }] },
+
+
       {
         date: "10月10日",
-        detail: [{ type: "吃饭", thing: '沙茶面', money: -30 },
-        { type: "购物", thing: '生活用品', money: -60 }] }] };
+        detail: [{
+          type: "吃饭",
+          thing: '沙茶面',
+          money: -30 },
+
+        {
+          type: "购物",
+          thing: '生活用品',
+          money: -60 }] }] };
+
+
 
 
 
   },
+  onLoad: function onLoad() {
+    this.huoquliushui();
+  },
   methods: {
+    huoquliushui: function huoquliushui() {
+      uni.request({
+        url: 'https://azoux.xyz/api/bookkeeping/turnover/', //仅为示例，并非真实接口地址。
+        data: {},
+
+        success: function success(res) {
+          console.log(res.data.flows);
+        } });
+
+    },
     addDetail: function addDetail() {
 
       this.showAddDetail = true;
