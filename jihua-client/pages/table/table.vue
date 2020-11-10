@@ -31,13 +31,23 @@
 
 				</view>
 			</view>
-
-			<view class="qiun-columns" :style="{display:zhuzhuangtu}">
-				<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
-					<view class="qiun-title-dot-light">基本柱状图</view>
+			<view class="charts-wrapper">
+				<view class="qiun-columns" :style="{display:bingtu}">
+					<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
+						<view class="qiun-title-dot-light">周饼图</view>
+					</view>
+					<view class="qiun-charts">
+						<canvas canvas-id="canvasPie" id="canvasPie" class="charts"></canvas>
+					</view>
 				</view>
-				<view class="qiun-charts">
-					<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+
+				<view class="qiun-columns" :style="{display:zhuzhuangtu}">
+					<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
+						<view class="qiun-title-dot-light">周柱状图</view>
+					</view>
+					<view class="qiun-charts">
+						<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -65,11 +75,12 @@
 	import uCharts from 'js_sdk/u-charts/u-charts/u-charts.js';
 	var _self;
 	var canvaColumn = null;
+	var canvaPie = null;
 	export default {
 		data() {
 			return {
-				zhuzhuangtu:'block',
-				bingtu:'none',
+				zhuzhuangtu: 'block',
+				bingtu: 'none',
 				selecValue: '柱状图',
 				month: 500.00,
 				week: 150.00,
@@ -103,46 +114,85 @@
 			_self = this;
 			this.cWidth = uni.upx2px(700);
 			this.cHeight = uni.upx2px(425);
-			this.getServerData();
+			this.getServerData1();
+			this.getServerData2();
 		},
 		methods: {
-// toJSON(){},
 			selectOne(options) {
 				this.selecValue = options.label
 				// console.log(this.selecValue)
-				if(this.selecValue=='柱状图')
-				{
+				if (this.selecValue == '柱状图') {
 					// console.log(this.selecValue)
-					this.zhuzhuangtu='block'
-					this.bingtu='none'
+					this.zhuzhuangtu = 'block'
+					this.bingtu = 'none'
 					// console.log(this.zhuzhuangtu)
-				}
-				else if(this.selecValue=='饼图')
-				{
+				} else if (this.selecValue == '饼图') {
 					// console.log(this.selecValue)
-					this.zhuzhuangtu='none'
-					this.bingtu='block'
+					this.zhuzhuangtu = 'none'
+					this.bingtu = 'block'
 					// console.log(this.zhuzhuangtu)
 				}
 			},
 			useOutClickSide() {
 				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions()
 			},
-			getServerData() {
+			getServerData2() {
 				uni.request({
 					url: 'https://www.ucharts.cn/data.json',
 					data: {},
 					success: function(res) {
 						console.log(res.data.data)
-						//下面这个根据需要保存后台数据，我是为了模拟更新柱状图，所以存下来了
-						_self.serverData = res.data.data;
+						let Pie = {
+							series: []
+						};
+						//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
+						Pie.series = [{
+							"name": "餐饮",
+							"data": 50,
+							"color":"rgba(0,0,0,0.8)"
+						}, {
+							"name": "娱乐",
+							"data": 30,
+							"color":"rgba(0,0,0,0.6)"
+						}, {
+							"name": "交通",
+							"data": 20,
+							"color":"rgba(0,0,0,0.3)"
+						}, {
+							"name": "购物",
+							"data": 18,
+							"color":"rgba(0,0,0,0.1)"
+						}];
+						_self.showPie("canvasPie", Pie);
+					},
+					fail: () => {
+						_self.tips = "网络错误，小程序端请检查合法域名";
+					},
+				});
+			},
+			getServerData1() {
+				uni.request({
+					// 不使用这个请求
+					url: 'https://www.ucharts.cn/data.json',
+					data: {},
+					success: function(res) {
+						console.log(res.data.data)
 						let Column = {
 							categories: [],
 							series: []
 						};
 						//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
-						Column.categories = res.data.data.Column.categories;
-						Column.series = res.data.data.Column.series;
+						Column.categories = ["11.1", "11.2", "11.3", "11.4", "11.5", "11.6"];
+						Column.series = [{
+							"name": "支出",
+							'color': 'black',
+							"data": [15, 20, 45, 37, 43, 34]
+						}, {
+							"name": "收入",
+							color: 'grey',
+							"data": [30, 40, 25, 14, 34, 18]
+						}];
+
 						_self.showColumn("canvasColumn", Column);
 					},
 					fail: () => {
@@ -180,8 +230,32 @@
 						}
 					}
 				});
+			},
+			showPie(canvasId, chartData) {
+				canvaPie = new uCharts({
+					$this: _self,
+					canvasId: canvasId,
+					type: 'pie',
+					fontSize: 11,
+					legend: {
+						show: true
+					},
+					background: '#FFFFFF',
+					pixelRatio: _self.pixelRatio,
+					series: chartData.series,
+					animation: true,
+					width: _self.cWidth * _self.pixelRatio,
+					height: _self.cHeight * _self.pixelRatio,
+					dataLabel: true,
+					extra: {
+						pie: {
+							lableWidth: 15
+						}
+					},
+				});
+			},
 
-			}
+
 		}
 	}
 </script>
@@ -227,13 +301,16 @@
 		margin-top: 30rpx;
 
 	}
-	.choose{
+
+	.choose {
 		padding-top: 20rpx;
 		padding-bottom: 10rpx;
 	}
-	.slecet{
+
+	.slecet {
 		padding-left: 5rpx;
 	}
+
 	.rank {
 		margin-top: 30rpx;
 	}
@@ -319,7 +396,7 @@
 	}
 
 	.qiun-title-dot-light {
-		border-left: 10upx solid #0ea391;
+		border-left: 10upx solid grey;
 		padding-left: 10upx;
 		font-size: 32upx;
 		color: #000000

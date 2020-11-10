@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "detail": "/compoments/detail",
-    "add-detail": "/compoments/addDetail"
+    "detail": "/components/detail",
+    "add-detail": "/components/addDetail"
   }
 }

@@ -92,7 +92,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  uniCalendar: function() {
+    return Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 88))
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -153,7 +157,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCalendar = function uniCalendar() {Promise.all(/*! require.ensure | compoments/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("compoments/uni-calendar/uni-calendar")]).then((function () {return resolve(__webpack_require__(/*! @/compoments/uni-calendar/uni-calendar.vue */ 86));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCalendar = function uniCalendar() {Promise.all(/*! require.ensure | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-calendar/uni-calendar.vue */ 88));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

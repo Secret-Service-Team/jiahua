@@ -43,8 +43,8 @@
 </template>
 
 <script>
-	import detail from '../../compoments/detail.vue';
-	import addDetail from '../../compoments/addDetail.vue';
+	import detail from '../../components/detail.vue';
+	import addDetail from '../../components/addDetail.vue';
 	export default {
 		components: {
 			detail,

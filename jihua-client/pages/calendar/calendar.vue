@@ -41,7 +41,7 @@
 </template>
 
 <script>
-	import uniCalendar from '@/compoments/uni-calendar/uni-calendar.vue'
+	import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
 	export default {
 		components: {
 			uniCalendar
