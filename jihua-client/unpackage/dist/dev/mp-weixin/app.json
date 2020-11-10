@@ -22,29 +22,28 @@
       {
         "text": "专注计时",
         "pagePath": "pages/index/index",
-        "iconPath": "static/icon/temp.png",
-        "selectedIconPath": "static/icon/temp-active.png"
+        "iconPath": "static/icon/12.png",
+        "selectedIconPath": "static/icon/11.png"
       },
       {
         "text": "备忘",
         "pagePath": "pages/note/note",
-        "iconPath": "static/icon/temp.png",
-        "selectedIconPath": "static/icon/temp-active.png"
+        "iconPath": "static/icon/22.png",
+        "selectedIconPath": "static/icon/21.png"
       },
       {
         "text": "记账",
         "pagePath": "pages/bookkeeping/bookkeeping",
-        "iconPath": "static/icon/temp.png",
-        "selectedIconPath": "static/icon/temp-active.png"
+        "iconPath": "static/icon/32.png",
+        "selectedIconPath": "static/icon/31.png"
       },
       {
         "text": "个人中心",
         "pagePath": "pages/personal/personal",
-        "iconPath": "static/icon/temp.png",
-        "selectedIconPath": "static/icon/temp-active.png"
+        "iconPath": "static/icon/42.png",
+        "selectedIconPath": "static/icon/41.png"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap82.json"
+  "usingComponents": {}
 }

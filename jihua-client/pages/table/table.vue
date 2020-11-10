@@ -106,6 +106,7 @@
 			this.getServerData();
 		},
 		methods: {
+// toJSON(){},
 			selectOne(options) {
 				this.selecValue = options.label
 				// console.log(this.selecValue)
