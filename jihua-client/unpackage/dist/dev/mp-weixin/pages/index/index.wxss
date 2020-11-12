@@ -1,11 +1,134 @@
 
 #myCanvas {
+<<<<<<< HEAD
 	position: absolute;
 	top: 100rpx;
 	left: 23%;
 	height: 220rpx;
 	width: 500rpx;
 	pointer-events: none;
+=======
+		position: absolute;
+		top: 100rpx;
+		left: 23%;
+		height: 220rpx;
+		width: 500rpx;
+		pointer-events: none;
+}
+.history {
+		height: 100%;
+		background-color: white;
+}
+.back {
+		margin-top: 20rpx;
+		margin-left: 18rpx;
+		width: 55rpx;
+		height: 55rpx;
+		margin-right: 20rpx;
+}
+.go_to_history ._img {
+		width: 40rpx;
+		height: 40rpx;
+		margin-right: 20rpx;
+		margin-left: 20rpx;
+}
+.go_to_history {
+		margin: 35rpx auto;
+		height: 60rpx;
+		width: 93%;
+		line-height: 60rpx;
+		padding-top: 15rpx;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		        justify-content: space-between;
+}
+.tel {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		        justify-content: space-between;
+}
+.tel view {
+		height: 60rpx;
+		line-height: 40rpx;
+}
+.history_message {
+		height: 100%;
+		background-color: white;
+}
+.choice_d_w_m {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		width: 180rpx;
+		margin-left: 50rpx;
+		margin-top: 40rpx;
+		-webkit-justify-content: space-around;
+		        justify-content: space-around;
+}
+.choice_d_w_m view {
+		border: 1rpx solid black;
+		width: 60rpx;
+		height: 60rpx;
+		line-height: 60rpx;
+		text-align: center;
+		font-weight: bold;
+}
+.choice_d_w_m view:first-child {
+		-webkit-border-top-left-radius: 30rpx;
+		        border-top-left-radius: 30rpx;
+		-webkit-border-bottom-left-radius: 30rpx;
+		        border-bottom-left-radius: 30rpx;
+		padding-left: 10rpx;
+		border-right: 0rpx;
+}
+.choice_d_w_m view:nth-child(3) {
+		-webkit-border-top-right-radius: 30rpx;
+		        border-top-right-radius: 30rpx;
+		-webkit-border-bottom-right-radius: 30rpx;
+		        border-bottom-right-radius: 30rpx;
+		padding-right: 10rpx;
+		border-left: 0rpx;
+}
+.total_record {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		width: 500rpx;
+		margin:40rpx auto;
+		-webkit-justify-content: space-around;
+		        justify-content: space-around;
+}
+.total_record .record_son {
+		border: 1rpx solid black;
+		width: 150rpx;
+		height: 100rpx;
+		line-height: 50rpx;
+		text-align: center;
+		font-weight: bold;
+}
+.total_record .record_son:nth-child(2){
+		width: 200rpx;
+}
+.total_record .record_son:first-child {
+		-webkit-border-top-left-radius: 30rpx;
+		        border-top-left-radius: 30rpx;
+		-webkit-border-bottom-left-radius: 30rpx;
+		        border-bottom-left-radius: 30rpx;
+		border-right: 0rpx;
+}
+.total_record .record_son:nth-child(3) {
+		-webkit-border-top-right-radius: 30rpx;
+		        border-top-right-radius: 30rpx;
+		-webkit-border-bottom-right-radius: 30rpx;
+		        border-bottom-right-radius: 30rpx;
+		border-left: 0rpx;
+>>>>>>> c07366d127fedc83171d967d53db16c00fcb096d
 }
 .right {
 	width: 55rpx;
@@ -54,6 +177,7 @@
 	text-align: center;
 }
 .zheng {
+<<<<<<< HEAD
 	border: 1rpx solid white;
 	-webkit-border-top-left-radius: 22.5rpx;
 	        border-top-left-radius: 22.5rpx;
@@ -67,6 +191,21 @@
 	-webkit-border-bottom-right-radius: 22.5rpx;
 	        border-bottom-right-radius: 22.5rpx;
 	color: rgb(98, 39, 37);
+=======
+		border: 1rpx solid white;
+		-webkit-border-top-left-radius: 22.5rpx;
+		        border-top-left-radius: 22.5rpx;
+		-webkit-border-bottom-left-radius: 22.5rpx;
+		        border-bottom-left-radius: 22.5rpx;
+}
+.dao {
+		border: 1rpx solid white;
+		-webkit-border-top-right-radius: 22.5rpx;
+		        border-top-right-radius: 22.5rpx;
+		-webkit-border-bottom-right-radius: 22.5rpx;
+		        border-bottom-right-radius: 22.5rpx;
+		color: rgb(98, 39, 37);
+>>>>>>> c07366d127fedc83171d967d53db16c00fcb096d
 }
 .jitang {
 	margin: 0 auto;
@@ -80,6 +219,7 @@
 	margin-bottom: 40rpx;
 }
 .total-time {
+<<<<<<< HEAD
 	margin: 0 auto;
 	text-align: center;
 	width: 520rpx;
@@ -88,6 +228,16 @@
 	line-height: 55rpx;
 	-webkit-border-radius: 22.5rpx;
 	        border-radius: 22.5rpx;
+=======
+		margin: 0 auto;
+		text-align: center;
+		width: 520rpx;
+		border: 1rpx solid #FFFFFF;
+		height: 55rpx;
+		line-height: 55rpx;
+		-webkit-border-radius: 22.5rpx;
+		        border-radius: 22.5rpx;
+>>>>>>> c07366d127fedc83171d967d53db16c00fcb096d
 }
 .time-bottom {
 	height: 720rpx;
@@ -159,6 +309,7 @@
 	position: fixed;
 }
 .content {
+<<<<<<< HEAD
 	position: fixed;
 	bottom: 0rpx;
 	background-color: white;
@@ -170,6 +321,19 @@
 	        border-top-left-radius: 70rpx;
 	text-align: center;
 	z-index: 8;
+=======
+		position: fixed;
+		bottom: 0rpx;
+		background-color: white;
+		width: 100%;
+		color: #000000;
+		-webkit-border-top-right-radius: 70rpx;
+		        border-top-right-radius: 70rpx;
+		-webkit-border-top-left-radius: 70rpx;
+		        border-top-left-radius: 70rpx;
+		text-align: center;
+		z-index: 8;
+>>>>>>> c07366d127fedc83171d967d53db16c00fcb096d
 }
 .henggan {
 	background-color: rgb(221, 221, 221);
@@ -198,6 +362,7 @@
 	        justify-content: space-around;
 }
 .write {
+<<<<<<< HEAD
 	background-color: rgb(240, 240, 240);
 	height: 100rpx;
 	line-height: 100rpx;
@@ -205,6 +370,15 @@
 	        border-radius: 22.5rpx;
 	font-size: 20rpx;
 	width: 350rpx;
+=======
+		background-color: rgb(240, 240, 240);
+		height: 100rpx;
+		line-height: 100rpx;
+		-webkit-border-radius: 22.5rpx;
+		        border-radius: 22.5rpx;
+		font-size: 20rpx;
+		width: 350rpx;
+>>>>>>> c07366d127fedc83171d967d53db16c00fcb096d
 }
 .white {
 	color: rgb(193, 191, 191);
@@ -216,6 +390,7 @@
 	margin-right: 100rpx;
 }
 .begin-to-time {
+<<<<<<< HEAD
 	height: 55rpx;
 	line-height: 55rpx;
 	-webkit-border-radius: 22.5rpx;
@@ -224,5 +399,15 @@
 	color: white;
 	width: 60%;
 	margin: 20rpx auto;
+=======
+		height: 55rpx;
+		line-height: 55rpx;
+		-webkit-border-radius: 22.5rpx;
+		        border-radius: 22.5rpx;
+		background-color: #000000;
+		color: white;
+		width: 60%;
+		margin: 20rpx auto;
+>>>>>>> c07366d127fedc83171d967d53db16c00fcb096d
 }
 
