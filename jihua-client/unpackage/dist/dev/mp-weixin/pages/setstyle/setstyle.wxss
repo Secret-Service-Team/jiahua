@@ -1,0 +1,7 @@
+
+.topBar view {
+	margin-top: 15rpx;
+	margin-left: 15rpx;
+	font-size: 22px;
+}
+

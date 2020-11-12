@@ -60,7 +60,48 @@
 				"enablePullDownRefresh": false
 		    }
 		    
-		}
+		},
+		{
+				    "path" : "pages/bcalendar/bcalendar",
+				    "style" :                                                                                    
+				    {
+				        "navigationBarTitleText": "",
+				        "enablePullDownRefresh": false
+				    }
+				    
+				},
+				{
+							"path" : "pages/setstyle/setstyle",
+							"style" :
+							{
+								"navigationBarTitleText": "",
+								"enablePullDownRefresh": false
+							}
+						},
+						{
+							"path" : "pages/aboutus/aboutus",
+							"style" :
+							{
+								"navigationBarTitleText": "",
+								"enablePullDownRefresh": false
+							}
+						},
+						{
+							"path" : "pages/help/help",
+							"style" :
+							{
+								"navigationBarTitleText": "",
+								"enablePullDownRefresh": false
+							}
+						},
+						{
+							"path" : "pages/privacypolicy/privacypolicy",
+							"style" :
+							{
+								"navigationBarTitleText": "",
+								"enablePullDownRefresh": false
+							}
+						}
 		
     ],
 	"globalStyle": {

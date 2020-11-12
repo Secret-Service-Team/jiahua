@@ -29,6 +29,14 @@
 				<img class="right-icon" src="~@/static/personcenter_icon/right.png" alt="" />
 			</view>
 			
+			<view class="style" @click="jumptoHelp">
+				<view class="style-son">
+					<img class="key-icon" src="~@/static/personcenter_icon/help.png" alt="" />
+					<view class="title">使用帮助</view>
+				</view>
+				<img class="right-icon" src="~@/static/personcenter_icon/right.png" alt="" />
+			</view>
+			
 			<view class="style" @click="jumptoPrivacyPolicy">
 				<view class="style-son">
 					<img class="key-icon" src="~@/static/personcenter_icon/privacypolicy.png" alt="" />
@@ -56,27 +64,48 @@
 		},
 		methods: {
 			jumptoSetStyle(){
-				uni.navigateto({
-					ur1: "../setstyle/setstyle"
+				uni.navigateTo({
+					url:"../setstyle/setstyle"
+				});
+			},
+			jumptoAboutUs(){
+				uni.navigateTo({
+					url:"../aboutus/aboutus"
+				});
+			},
+			/*jumptoreCommendUs(){
+				uni.navigateTo({
+					url:"../"
+				})；
+			}，*/
+			jumptoHelp(){
+				uni.navigateTo({
+					url:"../help/help"
+				});
+			},
+			jumptoPrivacyPolicy(){
+				uni.navigateTo({
+					url:"../privacypolicy/privacypolicy"
 				});
 			}
+			
 		}
 	}
 </script>
 
 <style>
 	.topBar view {	
-		margin-top: 15rpx;
-		margin-left: 15rpx;
+		margin-top: 20rpx;
+		margin-left: 20rpx;
 		font-size: 22px;
 	}
 
 	.lines {
 		display: flex;
 		flex-direction: column;
-		height: 500rpx;
+		height: 600rpx;
 		justify-content: space-around;
-		margin-top: 50rpx;
+		margin-top: 40rpx;
 		/*border: 1rpx solid black;*/
 	}
 	.style {
@@ -99,7 +128,7 @@
 	}
 	.title {
 		margin-left: 15rpx;
-		font-size: 15px;
+		font-size: 16px;
 	}	
 	.right-icon{
 		width: 55rpx;

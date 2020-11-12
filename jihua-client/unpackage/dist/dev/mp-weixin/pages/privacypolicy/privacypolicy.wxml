@@ -1,0 +1,1 @@
+<view><view class="topBar"><view>隐 私 政 策<view class="_br"></view></view></view><view class="log-father"><image class="loge _img" src="{{$root.m0}}" alt></image></view><view class="body">{{''+content+''}}</view></view>

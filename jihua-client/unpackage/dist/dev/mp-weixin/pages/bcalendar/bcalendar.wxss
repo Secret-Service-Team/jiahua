@@ -1,0 +1,68 @@
+
+.calendar {
+	width: 700rpx;
+	margin: 0 auto;
+	border: rgba(128, 128, 128, 0.8) solid 5rpx;
+	-webkit-border-radius: 15rpx;
+	        border-radius: 15rpx;
+	overflow: hidden;
+}
+.daylist{
+	border: rgba(128, 128, 128, 0.8) solid 5rpx;
+	width: 700rpx;
+	margin: 0 auto;
+	-webkit-border-radius: 15rpx;
+	        border-radius: 15rpx;
+	margin-top: 20rpx;
+	/* margin-bottom: 20rpx; */
+	padding-bottom: 20rpx;
+}
+.calendar uni-calendar {
+	height: 100%;
+	width: 100%;
+}
+.top {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	/* margin-top: 20rpx; */
+	width: 700rpx;
+	margin: 0 auto;
+	margin-top: 10rpx;
+	/* border: rgba(128, 128, 128, 0.8) solid 5rpx; */
+	/* border-radius: 15rpx; */
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	font-size: 35rpx;
+	padding-left: 30rpx;
+	padding-right: 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	/* height: 80rpx; */
+	margin-bottom: 10rpx;
+}
+.top .left {
+	margin-top: 20rpx;
+}
+.add ._img{
+	width: 70rpx;
+	height: 70rpx;
+	margin-left: 320rpx;
+}
+.record {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	padding-left: 100rpx;
+	padding-right: 100rpx;
+	font-size: 40rpx;
+	margin-bottom: 5rpx;
+}
+/* .record */
+

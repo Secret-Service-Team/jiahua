@@ -1,107 +1,105 @@
-<template>	
-		<view class="total" :style="{height:total_height}">
-			<view class="time-top">
-				<!--头部分 -->
-				<view class="liebiao">
-					<!--左上角的那个图标-->
-					<img src="~@/static/icon/lie.png" alt="" @click="change_to_history">
-				</view>
-
-				<view class="method-of-timer" v-show="show_or_not_show">
-					<!--正计时/倒计时-->
-					<view class="zheng" @click="setting_zheng_time">
-						正计时
-					</view>
-					<view class="dao" @click="setting_dao_time">
-						倒计时
-					</view>
-				</view>
-				<view style="width: 300rpx;hight: 55rpx;" v-show="!show_or_not_show"></view>
+<template>
+	<view class="total" :style="{height:total_height}">
+		<view class="time-top">
+			<!--头部分 -->
+			<view class="liebiao">
+				<!--左上角的那个图标-->
+				<img src="~@/static/icon/lie.png" @click="change_to_history">
 			</view>
-			<!--======================================================= -->
-			<view class="time-middle">
-				<!--中间部分 -->
-				<view class="jitang">这里是没有毒的鸡汤</view>
-				<view class="total-time" v-show="show_or_not_show">今日已专注时长:{{total_time>=3600?
+
+			<view class="method-of-timer" v-show="show_or_not_show">
+				<!--正计时/倒计时-->
+				<view class="zheng" @click="setting_zheng_time">
+					正计时
+				</view>
+				<view class="dao" @click="setting_dao_time">
+					倒计时
+				</view>
+			</view>
+			<view style="width: 300rpx;hight: 55rpx;" v-show="!show_or_not_show"></view>
+		</view>
+		<!--======================================================= -->
+		<view class="time-middle">
+			<!--中间部分 -->
+			<view class="jitang">这里是没有毒的鸡汤</view>
+			<view class="total-time" v-show="show_or_not_show">今日已专注时长:{{total_time>=3600?
 				' '+(Math.floor(total_time/3600)+' h '+(Math.floor(total_time/60-Math.floor(total_time/3600)*60))+' min')
 				:
 				('  '+Math.floor(total_time/60)+' min')}}
-				</view>
-				<view style="height: 60rpx;" v-show="!show_or_not_show">
-				</view>
 			</view>
-
-			<!--======================================================= -->
-			<view class="time-bottom">
-				<!--尾部分 -->
-				<view style="position: relative;"><canvas id="myCanvas" canvas-id="myCanvas"></canvas></view>
-				<view class="min-second" v-show="show_timer">
-					<!--MIN和SEC-->
-					<view class="min">MIN</view>
-					<view class="second">SEC</view>
-				</view>
-
-				<view class="dao_timer" v-show="!show_timer">
-					<!--倒计时的界面，一开始的时候默认为正计时界面，该界面隐藏-->
-					<view v-for="(item,i) in setting_time" :key="i" class="dao_timer_father">
-						<view class="dao_timer_son">
-							<view>{{min>=10?min:'0'+min}}&nbsp;&nbsp;MIN</view>
-							<view>{{item>=10?item:'0'+item}}&nbsp;&nbsp;SEC</view>
-						</view>
-					</view>
-				</view>
-
-				<view class="timer" v-show="show_timer" @click="change_time_in_dao">{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</view>
-				<!--时钟界面，用于正/倒计时 -->
-
-				<view class="botton-begin-timer" v-show="timer_flag"><img @click="begin_of_timer" src="~@/static/icon/begin.png"></view>
-				<!--开启按钮-->
-
-				<view class="box-of-stop" v-show="!timer_flag">
-					<!--暂停和关闭按钮 -->
-					<view> <img src="~@/static/icon/stop.png" @click="stop_timer"></view>
-					<view><img src="~@/static/icon/juxing.png" @click="end_timer"></view>
-				</view>
-
-			</view>
-
-			<view class="set-goal" v-show="show_of_setting_things">
-				<view class="grey" @click="close_things"></view>
-				<view class="content">
-					<view class="henggan"></view>
-					<view class="title">请输入你的专注目标</view>
-					<view class="things">
-						<view class="write-things">
-							<input type="text" id="writeThing" v-model="target" :class="style" @focus="input_in" @blur="input_out" ref="input_in">
-						</view>
-						<view class="choice-things">
-							<view v-for="(item,index) in need_to_do_list" :key="index">
-								{{item}}
-							</view>
-						</view>
-					</view>
-					<view class="begin-to-time" @click="gogogo">开始计时</view>
-				</view>
+			<view style="height: 57rpx;" v-show="!show_or_not_show">
 			</view>
 		</view>
+
+		<!--======================================================= -->
+		<view class="time-bottom">
+			<!--尾部分 -->
+			<view style="position: relative;"><canvas id="myCanvas" canvas-id="myCanvas"></canvas></view>
+			<view class="min-second">
+				<!--MIN和SEC-->
+				<view class="min">MIN</view>
+				<view class="second">SEC</view>
+			</view>
+			<view class="timer" @click="change_time_in_dao">
+				<view v-show="!zheng_or_dao_flag">
+				<picker mode="time" :value="recordTime" @change="bindTimeChange" >
+					<view class="picker" >
+						<span>{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</span>
+					</view>
+				</picker>
+				</view>
+				<view v-show="zheng_or_dao_flag">{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</view>
+			</view>
+			<!--时钟界面，用于正/倒计时 -->
+
+			<view class="botton-begin-timer" v-show="timer_flag"><img @click="begin_of_timer" src="~@/static/icon/begin.png"></view>
+			<!--开启按钮-->
+
+			<view class="box-of-stop" v-show="!timer_flag">
+				<!--暂停和关闭按钮 -->
+				<view> <img src="~@/static/icon/stop.png" @click="stop_timer"></view>
+				<view><img src="~@/static/icon/juxing.png" @click="end_timer"></view>
+			</view>
+
+		</view>
+
+		<view class="set-goal" v-show="show_of_setting_things">
+			<view class="grey" @click="close_things"></view>
+			<view class="content">
+				<view class="henggan"></view>
+				<view class="title">请输入你的专注目标</view>
+				<view class="things">
+					<view class="write-things">
+						<input type="text" id="writeThing" v-model="target" :class="style" @focus="input_in" @blur="input_out" ref="input_in">
+					</view>
+					<view class="choice-things" >
+						<picker @change="bindPickerChange" :range="need_to_do_list">
+								<label class="">{{need_to_do_list[index]}}</label>		
+						</picker>
+					</view>
+				</view>
+				<view class="begin-to-time" @click="gogogo">开始计时</view>
+			</view>
+		</view>
+	</view>
 </template>
 
 <script>
-	
 	export default {
 		onReady: function(e) {
 			var context = uni.createCanvasContext('myCanvas')
 			context.setStrokeStyle("rgb(170,169,167)")
 			context.setLineWidth(3 * this.a)
-			context.moveTo(190 * this.a, 0)
-			context.arc(100 * this.a, 0, 90 * this.a, 0, Math.PI, false)
+			context.moveTo(220 * this.a, 0)
+			context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
 			context.stroke()
 			context.draw()
 		},
-		
+
 		data() {
 			return {
-				a: 0, //比例因子
+				a: 0, //canvas比例因子
+				recordTime:'01:30',
 				total_time: 0,
 				total_height: 0,
 				min: 0,
@@ -109,11 +107,10 @@
 				timer_flag: true,
 				_timer: null,
 				zheng_or_dao_flag: true, //判断是正计时还是倒计时，true正，false倒
-				setting_time: [40, 41, 42, 43, 44],
 				show_timer: true, //是否显示时钟，true为显示
 				show_or_not_show: true, //是否显示 正计时/倒计时 和 今日已专注时长  这两个标签， true为显示
 				time_of_index: 0,
-				need_to_do_list: [],
+				need_to_do_list: ["--点击选择待办事项--"],
 				show_of_setting_things: false, //是否显示选择待办事项界面，true进入
 				target: "请输入专注目标",
 				style: ["write", "white"],
@@ -122,6 +119,7 @@
 				context: uni.createCanvasContext('myCanvas'), //画布名字
 				begin_min: 0, //开始时候的min
 				begin_sec: 0, //开始时候的sec
+				index:0,//索引值
 			}
 		},
 		onLoad() {
@@ -129,8 +127,15 @@
 			this.a = this.get_a() / 750
 		},
 		methods: {
-
-
+            bindPickerChange(e) {	
+            	this.index = e.target.value			//将数组改变索引赋给定义的index变量
+            	this.jg=this.need_to_do_list[this.index]
+						                               //将array【改变索引】的值赋给定义的jg变量
+            },
+            bindTimeChange(e) {
+            	this.recordTime = e.target.value;
+            	this.min=60*(parseInt(this.recordTime[0])*10+parseInt(this.recordTime[1]))+parseInt(this.recordTime[3])*10+parseInt(this.recordTime[4])
+            },
 			getData() {
 				var result = 0
 				uni.getSystemInfo({
@@ -156,8 +161,8 @@
 				this.show_or_not_show = false
 				if (!this.time_of_index) {
 					if (!this.zheng_or_dao_flag) {
-						this.begin_sec = this.sec = 41
-						this.begin_min = this.min = 24
+						this.begin_sec = this.sec
+						this.begin_min = this.min 
 						this.dao_total_time = this.min * 60 + this.sec
 					}
 					this.show_of_setting_things = true
@@ -175,8 +180,8 @@
 								this.sec--
 								this.context.setStrokeStyle("rgb(170,169,167)")
 								this.context.setLineWidth(3 * this.a)
-								this.context.moveTo(190 * this.a, 0)
-								this.context.arc(100 * this.a, 0, 90 * this.a, 0, (1.0 / this.dao_total_time) * this.i * Math.PI, false) //正计时一小时的时候，弧将充满
+								this.context.moveTo(220 * this.a, 0)
+								this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / this.dao_total_time) * this.i * Math.PI, false) //正计时一小时的时候，弧将充满
 								this.context.stroke()
 								this.context.draw(true)
 								this.i++
@@ -194,8 +199,8 @@
 							}
 							this.context.setStrokeStyle("white")
 							this.context.setLineWidth(3 * this.a)
-							this.context.moveTo(190 * this.a, 0)
-							this.context.arc(100 * this.a, 0, 90 * this.a, 0, (1.0 / 3600) * this.i * Math.PI, false)
+							this.context.moveTo(220 * this.a, 0)
+							this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / 3600) * this.i * Math.PI, false)
 							this.context.stroke()
 							this.context.draw(true)
 							this.i++
@@ -203,8 +208,8 @@
 								console.log("您已经学习了一个小时了")
 								this.context.setStrokeStyle("rgb(170,169,167)")
 								this.context.setLineWidth(3 * this.a)
-								this.context.moveTo(190 * this.a, 0)
-								this.context.arc(100 * this.a, 0, 90 * this.a, 0, Math.PI, false)
+								this.context.moveTo(220 * this.a, 0)
+								this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
 								this.context.stroke()
 								this.context.draw()
 								this.i = 1
@@ -237,8 +242,8 @@
 				this.min = 0
 				this.context.setStrokeStyle("rgb(170,169,167)")
 				this.context.setLineWidth(3 * this.a)
-				this.context.moveTo(190 * this.a, 0)
-				this.context.arc(100 * this.a, 0, 90 * this.a, 0, Math.PI, false)
+				this.context.moveTo(220 * this.a, 0)
+				this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
 				this.context.stroke()
 				this.context.draw()
 				clearInterval(this._timer)
@@ -250,12 +255,12 @@
 				this.show_timer = false
 				this.zheng_or_dao_flag = false
 				this.timer_flag = true
-				this.min = 24
-				this.sec = 41
+				this.min = 60
+				this.sec = 0
 				this.context.setStrokeStyle("white")
 				this.context.setLineWidth(3 * this.a)
-				this.context.moveTo(190 * this.a, 0)
-				this.context.arc(100 * this.a, 0, 90 * this.a, 0, Math.PI, false)
+				this.context.moveTo(220 * this.a, 0)
+				this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
 				this.context.stroke()
 				this.context.draw()
 			},
@@ -267,13 +272,13 @@
 			change_time_in_dao() {
 				if (!this.zheng_or_dao_flag && !this.time_of_index) {
 					this.show_timer = false
-
+					
 				}
 			},
 			gogogo() {
 				if (this.target != "" && this.target != "请输入专注目标")
-					this.need_to_do_list.unshift(this.target)
-				if (this.target == "请输入专注目标" && this.need_to_do_list.length == 0) {
+					this.need_to_do_list.push(this.target)
+				if (this.target == "请输入专注目标" &&this.index==0) {
 					this.style.pop()
 					this.style.push("red")
 				} else {
@@ -292,8 +297,8 @@
 								this.sec--
 								this.context.setStrokeStyle("rgb(170,169,167)")
 								this.context.setLineWidth(3 * this.a)
-								this.context.moveTo(190 * this.a, 0)
-								this.context.arc(100 * this.a, 0, 90 * this.a, 0, (1.0 / this.dao_total_time) * this.i * Math.PI, false) //正计时一小时的时候，弧将充满
+								this.context.moveTo(220 * this.a, 0)
+								this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / this.dao_total_time) * this.i * Math.PI, false) //正计时一小时的时候，弧将充满
 								this.context.stroke()
 								this.context.draw(true)
 								this.i++
@@ -308,8 +313,8 @@
 						this.min = 0
 						this.context.setStrokeStyle("rgb(170,169,167)")
 						this.context.setLineWidth(3 * this.a)
-						this.context.moveTo(190 * this.a, 0)
-						this.context.arc(100 * this.a, 0, 90 * this.a, 0, Math.PI, false)
+						this.context.moveTo(220 * this.a, 0)
+						this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
 						this.context.stroke()
 						this.context.draw()
 						this._timer = setInterval(() => {
@@ -320,8 +325,8 @@
 							}
 							this.context.setStrokeStyle("white")
 							this.context.setLineWidth(3 * this.a)
-							this.context.moveTo(190 * this.a, 0)
-							this.context.arc(100 * this.a, 0, 90 * this.a, 0, (1.0 / 3600) * this.i * Math.PI, false) //正计时一小时的时候，弧将充满
+							this.context.moveTo(220 * this.a, 0)
+							this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / 3600) * this.i * Math.PI, false) //正计时一小时的时候，弧将充满
 							this.context.stroke()
 							this.context.draw(true)
 							this.i++
@@ -329,8 +334,8 @@
 								console.log("您已经学习了一个小时了")
 								this.context.setStrokeStyle("rgb(170,169,167)")
 								this.context.setLineWidth(3 * this.a)
-								this.context.moveTo(190 * this.a, 0)
-								this.context.arc(100 * this.a, 0, 90 * this.a, 0, Math.PI, false)
+								this.context.moveTo(220 * this.a, 0)
+								this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
 								this.context.stroke()
 								this.context.draw()
 								this.i = 1
@@ -349,9 +354,9 @@
 					this.target = "请输入专注目标"
 				this.style.push("white")
 			},
-			change_to_history(){
+			change_to_history() {
 				uni.navigateTo({
-					url:"../history/history"
+					url: "../history/history"
 				})
 			}
 		}
@@ -361,12 +366,13 @@
 <style>
 	#myCanvas {
 		position: absolute;
-		top: 100rpx;
-		left: 23%;
+		top: 92rpx;
+		left: 136.5rpx;
 		height: 220rpx;
 		width: 500rpx;
 		pointer-events: none;
 	}
+
 	.right {
 		width: 55rpx;
 		height: 55rpx;
@@ -460,30 +466,6 @@
 		justify-content: space-around;
 		width: 100%;
 	}
-
-	.dao_timer {
-		margin-bottom: 200rpx;
-	}
-
-	.dao_timer_father {
-		width: 42%;
-		margin: 0rpx auto;
-		/*border: 1px solid #000000;*/
-		z-index: 1;
-		position: relative;
-	}
-
-	.dao_timer_son {
-		display: flex;
-		justify-content: space-around;
-
-	}
-
-	.dao_timer_father:nth-child(3) {
-		border-top: 1px solid white;
-		border-bottom: 1px solid white;
-	}
-
 	.min {
 		width: 300rpx;
 		text-align: right;
@@ -500,7 +482,7 @@
 		margin: 0rpx auto 250rpx auto;
 		z-index: 1;
 		text-align: center;
-		font-size: 120rpx;
+		font-size: 114rpx;
 		/*border: 1px solid #000000;*/
 		position: relative;
 	}
@@ -534,6 +516,7 @@
 		border-top-left-radius: 70rpx;
 		text-align: center;
 		z-index: 8;
+		height: 40%;
 	}
 
 	.henggan {
@@ -546,7 +529,7 @@
 	.grey {
 		width: 100%;
 		height: 100%;
-		z-index: 2;
+		z-index: 6;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -565,12 +548,13 @@
 
 	.write {
 		background-color: rgb(240, 240, 240);
-		height: 100rpx;
-		line-height: 100rpx;
-		border-radius: 22.5rpx;
+		height: 130rpx;
+		line-height: 130rpx;
+		border-radius: 24rpx;
 		font-size: 20rpx;
 		width: 350rpx;
-
+		margin-top: 30rpx;
+		margin-bottom: 30rpx;
 	}
 
 	.white {
@@ -582,7 +566,9 @@
 	}
 
 	.choice-things {
-		margin-right: 100rpx;
+		margin-right: 40rpx;
+		margin-top: 80rpx;
+		font-weight:bold ;
 	}
 
 	.begin-to-time {
@@ -592,6 +578,6 @@
 		background-color: #000000;
 		color: white;
 		width: 60%;
-		margin: 20rpx auto;
+		margin: 35rpx auto;
 	}
 </style>

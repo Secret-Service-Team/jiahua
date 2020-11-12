@@ -8,7 +8,12 @@
     "pages/presell/presell",
     "pages/calendar/calendar",
     "pages/history/history",
-    "pages/history_message/history_message"
+    "pages/history_message/history_message",
+    "pages/bcalendar/bcalendar",
+    "pages/setstyle/setstyle",
+    "pages/aboutus/aboutus",
+    "pages/help/help",
+    "pages/privacypolicy/privacypolicy"
   ],
   "subPackages": [],
   "window": {
@@ -47,10 +52,5 @@
       }
     ]
   },
-  "usingComponents": {},
-<<<<<<< HEAD
-  "sitemapLocation": "sitemap23.json"
-=======
-  "sitemapLocation": "sitemap58.json"
->>>>>>> c07366d127fedc83171d967d53db16c00fcb096d
+  "usingComponents": {}
 }

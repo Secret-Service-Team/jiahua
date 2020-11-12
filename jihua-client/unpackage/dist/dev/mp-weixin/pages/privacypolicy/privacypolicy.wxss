@@ -1,0 +1,25 @@
+
+.topBar view {
+	margin-top: 40rpx;
+	font-size: 30px;
+	text-align: center;
+}
+.body {
+	margin-left: 30rpx;
+	margin-right: 30rpx;
+}
+.log-father{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+.loge {
+	width: 220rpx;
+	height: 220rpx;
+	margin-left: auto;
+	margin-right: auto;
+}
+
