@@ -72,14 +72,18 @@
 		font-weight: bold;
 }
 .choice_d_w_m view:first-child {
-		border-top-left-radius: 30rpx;
-		border-bottom-left-radius: 30rpx;
+		-webkit-border-top-left-radius: 30rpx;
+		        border-top-left-radius: 30rpx;
+		-webkit-border-bottom-left-radius: 30rpx;
+		        border-bottom-left-radius: 30rpx;
 		padding-left: 10rpx;
 		border-right: 0rpx;
 }
 .choice_d_w_m view:nth-child(3) {
-		border-top-right-radius: 30rpx;
-		border-bottom-right-radius: 30rpx;
+		-webkit-border-top-right-radius: 30rpx;
+		        border-top-right-radius: 30rpx;
+		-webkit-border-bottom-right-radius: 30rpx;
+		        border-bottom-right-radius: 30rpx;
 		padding-right: 10rpx;
 		border-left: 0rpx;
 }
@@ -104,13 +108,17 @@
 		width: 200rpx;
 }
 .total_record .record_son:first-child {
-		border-top-left-radius: 30rpx;
-		border-bottom-left-radius: 30rpx;
+		-webkit-border-top-left-radius: 30rpx;
+		        border-top-left-radius: 30rpx;
+		-webkit-border-bottom-left-radius: 30rpx;
+		        border-bottom-left-radius: 30rpx;
 		border-right: 0rpx;
 }
 .total_record .record_son:nth-child(3) {
-		border-top-right-radius: 30rpx;
-		border-bottom-right-radius: 30rpx;
+		-webkit-border-top-right-radius: 30rpx;
+		        border-top-right-radius: 30rpx;
+		-webkit-border-bottom-right-radius: 30rpx;
+		        border-bottom-right-radius: 30rpx;
 		border-left: 0rpx;
 }
 .right {
@@ -161,13 +169,17 @@
 }
 .zheng {
 		border: 1rpx solid white;
-		border-top-left-radius: 22.5rpx;
-		border-bottom-left-radius: 22.5rpx;
+		-webkit-border-top-left-radius: 22.5rpx;
+		        border-top-left-radius: 22.5rpx;
+		-webkit-border-bottom-left-radius: 22.5rpx;
+		        border-bottom-left-radius: 22.5rpx;
 }
 .dao {
 		border: 1rpx solid white;
-		border-top-right-radius: 22.5rpx;
-		border-bottom-right-radius: 22.5rpx;
+		-webkit-border-top-right-radius: 22.5rpx;
+		        border-top-right-radius: 22.5rpx;
+		-webkit-border-bottom-right-radius: 22.5rpx;
+		        border-bottom-right-radius: 22.5rpx;
 		color: rgb(98, 39, 37);
 }
 .jitang {
@@ -188,7 +200,8 @@
 		border: 1rpx solid #FFFFFF;
 		height: 55rpx;
 		line-height: 55rpx;
-		border-radius: 22.5rpx;
+		-webkit-border-radius: 22.5rpx;
+		        border-radius: 22.5rpx;
 }
 .time-bottom {
 		height: 720rpx;
@@ -265,8 +278,10 @@
 		background-color: white;
 		width: 100%;
 		color: #000000;
-		border-top-right-radius: 70rpx;
-		border-top-left-radius: 70rpx;
+		-webkit-border-top-right-radius: 70rpx;
+		        border-top-right-radius: 70rpx;
+		-webkit-border-top-left-radius: 70rpx;
+		        border-top-left-radius: 70rpx;
 		text-align: center;
 		z-index: 8;
 }
@@ -300,7 +315,8 @@
 		background-color: rgb(240, 240, 240);
 		height: 100rpx;
 		line-height: 100rpx;
-		border-radius: 22.5rpx;
+		-webkit-border-radius: 22.5rpx;
+		        border-radius: 22.5rpx;
 		font-size: 20rpx;
 		width: 350rpx;
 }
@@ -316,7 +332,8 @@
 .begin-to-time {
 		height: 55rpx;
 		line-height: 55rpx;
-		border-radius: 22.5rpx;
+		-webkit-border-radius: 22.5rpx;
+		        border-radius: 22.5rpx;
 		background-color: #000000;
 		color: white;
 		width: 60%;
