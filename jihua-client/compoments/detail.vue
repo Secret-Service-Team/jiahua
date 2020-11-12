@@ -8,12 +8,12 @@
 				该日支出收入（待完成
 			</view>
 		</view>
-		<view class="list"  v-for="(item2,index2) in listItem.detail" :key="index2">
+		<view class="list"  v-for="cost in flow.expend" :key="cost.fid">
 			<view class="listleft">
-				{{item2.type}} : {{item2.thing}}
+				{{cost.typeId}}
 			</view>
 			<view class="listright">
-				{{item2.money.toFixed(2)}}
+				{{cost.cost.toFixed(2)}}
 			</view>
 			
 		</view>
@@ -22,9 +22,9 @@
 
 <script>
 	export default	{
-		props: ['listItem'],
+		props: ['flow'],
 		mounted() {
-			console.log(this.listItem);
+			console.log(this.flow);
 		},
 	}
 </script>

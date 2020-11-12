@@ -78,9 +78,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
 var render = function() {
+  var this$1 = this
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function() {
+      return (this$1.switchCost = !this$1.switchCost)
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -174,12 +180,11 @@ var _default =
     var date = new Date();
     this.recordDate = "".concat(date.getFullYear(), "-").concat(date.getMonth() + 1, "-").concat(date.getDate());
     this.avgDate = this.recordDate;
-
+    this.openid = wx.getStorageSync('openid');
 
   },
   data: function data() {
     return {
-      a: '1',
       typeArr: [
       {
         src: '../static/jizhan_icon/icon_food.png',
@@ -249,7 +254,8 @@ var _default =
       doAvg: false,
       switchCost: false,
       recordType: 'food',
-      lastSelectType: 0 };
+      lastSelectType: 0,
+      remarks: '' };
 
   },
   methods: {
@@ -276,13 +282,45 @@ var _default =
     },
     submitRecord: function submitRecord() {
       // 提交流水
-      console.log(Number(this.money));
+      var sendData = {
+        cost: -this.money,
+        remarks: this.remarks,
+        date: this.recordDate,
+        openid: this.openid,
+        isAvg: this.doAvg,
+        typeId: this.recordType };
+
       if (Number(this.money)) {
         // 金额正确且已填写
         // 是否均摊
         if (this.doAvg) {
-
+          sendData.end = this.avgDate;
         }
+
+        if (this.switchCost) {
+          sendData.cost = this.money;
+        }
+        console.log(sendData);
+        wx.request({
+          url: 'http://localhost:3000/api/bookkeeping/turnover',
+          data: sendData,
+          method: 'POST',
+          success: function success(res) {
+            wx.showToast({
+              title: '记录成功！',
+              icon: 'success',
+              duration: 1500 });
+
+            console.log(res);
+          },
+          fail: function fail() {
+            wx.showToast({
+              title: '可能网络有点小问题T^T',
+              icon: 'none',
+              duration: 1500 });
+
+          } });
+
       } else {
         return false;
       }

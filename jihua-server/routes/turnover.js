@@ -40,7 +40,7 @@ router.get('/', async (req, res, next) => {
 
 // 添加流水
 router.post('/', async (req, res, next) => {
-  const date = dateFormat(req.body.date)
+  const date = dateFormat2(req.body.date)
   const record = await Turnover.findOne({
     date: date,
     typeId: req.body.typeId
@@ -48,10 +48,11 @@ router.post('/', async (req, res, next) => {
 
   tempVar = {
     cost: req.body.cost,
-    typeId: req.body.cost,
-    remarks: req.body.cost,
+    typeId: req.body.typeId,
+    remarks: req.body.remarks,
     date,
-    isAvg: req.body.isAvg
+    isAvg: req.body.isAvg,
+    openid: req.body.openid,
   }
   const newRecord = await new Turnover(tempVar).save()
   console.log(newRecord)
@@ -61,7 +62,8 @@ router.post('/', async (req, res, next) => {
     const newAvg = await new Average({
       end: dateFormat(req.body.end),
       start: date,
-      fid: newRecord._id
+      fid: newRecord._id,
+      openid: req.body.openid
     }).save()
     console.log(newAvg);
   }
@@ -172,6 +174,13 @@ function dateFormat(date) {
     day = `0${day}`
   }
   return `${time.getFullYear()}${month}${day}`
+}
+
+function dateFormat2(date) {
+  // date 2020-12-12
+  // 返回20201212此格式的字符
+  const time = date.split('-');
+  return `${time[0]}${time[1]}${time[2]}`
 }
 
 module.exports = router;

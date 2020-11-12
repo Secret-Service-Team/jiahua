@@ -81,10 +81,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.listItem.detail, function(item2, index2) {
-    var $orig = _vm.__get_orig(item2)
+  var l0 = _vm.__map(_vm.flow.expend, function(cost, __i0__) {
+    var $orig = _vm.__get_orig(cost)
 
-    var g0 = item2.money.toFixed(2)
+    var g0 = cost.cost.toFixed(2)
     return {
       $orig: $orig,
       g0: g0
@@ -156,9 +156,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 var _default =
 {
-  props: ['listItem'],
+  props: ['flow'],
   mounted: function mounted() {
-    console.log(this.listItem);
+    console.log(this.flow);
   } };exports.default = _default;
 
 /***/ }),

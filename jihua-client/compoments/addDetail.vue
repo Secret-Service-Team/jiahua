@@ -12,7 +12,7 @@
 		<view class="add-options">
 			<view class="add-options-type">
 				<span>支出</span>
-				<switch color="#111" :checked="switchCost"></switch>
+				<switch color="#111" :checked="switchCost" @click="() => this.switchCost = !this.switchCost"></switch>
 				<span>收入</span>
 			</view>
 		</view>
@@ -47,7 +47,7 @@
 			</picker>
 		</view>
 		<view class="add-submit">
-			<button @click="submitRecord">记录{{a}}</button>
+			<button @click="submitRecord">记录</button>
 		</view>
 	</view>
 </template>
@@ -58,12 +58,11 @@
 			const date = new Date();
 			this.recordDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 			this.avgDate = this.recordDate;
-			
+			this.openid = wx.getStorageSync('openid');
 			
 		},
 		data() {
 			return {
-				a:'1',
 				typeArr: [
 					{
 						src: '../static/jizhan_icon/icon_food.png',
@@ -134,6 +133,7 @@
 				switchCost: false,
 				recordType: 'food',
 				lastSelectType: 0,
+				remarks: '',
 			};
 		},
 		methods: {
@@ -160,13 +160,45 @@
 			},
 			submitRecord() {
 				// 提交流水
-				console.log(Number(this.money))
+				const sendData = {
+					cost: -this.money,
+					remarks: this.remarks,
+					date: this.recordDate,
+					openid: this.openid,
+					isAvg: this.doAvg,
+					typeId: this.recordType
+				}
 				if (Number(this.money)) {
 					// 金额正确且已填写
 					// 是否均摊
 					if (this.doAvg) {
-						
+						sendData.end = this.avgDate;
 					}
+					
+					if (this.switchCost) {
+						sendData.cost = this.money;
+					}
+					console.log(sendData);
+					wx.request({
+						url: 'http://localhost:3000/api/bookkeeping/turnover',
+						data: sendData,
+						method: 'POST',
+						success(res) {
+							wx.showToast({
+							  title: '记录成功！',
+							  icon: 'success',
+							  duration: 1500
+							})
+							console.log(res);
+						},
+						fail() {
+							wx.showToast({
+							  title: '可能网络有点小问题T^T',
+							  icon: 'none',
+							  duration: 1500
+							})
+						}
+					})
 				} else {
 					return false;
 				}

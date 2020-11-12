@@ -98,6 +98,33 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   },
   onHide: function onHide() {
     console.log('App Hide');
+  },
+  mounted: function mounted() {
+    wx.login({
+      success: function success(res) {
+        if (res.code) {
+          wx.request({
+            url: 'http://localhost:3000/api/users/login',
+            data: {
+              code: res.code },
+
+            success: function success(res2) {
+              console.log(res2);
+              wx.setStorage({
+                key: "openid",
+                data: res2.data.openid });
+
+              wx.setStorage({
+                key: "session_key",
+                data: res2.data.session_key });
+
+            } });
+
+        } else {
+          console.log('登录失败！' + res.errMsg);
+        }
+      } });
+
   } };exports.default = _default;
 
 /***/ }),
