@@ -1,6 +1,5 @@
-<template>
-	<view>
-		<view class="total" v-show="!flag_of_history" :style="{height:total_height}">
+<template>	
+		<view class="total" :style="{height:total_height}">
 			<view class="time-top">
 				<!--头部分 -->
 				<view class="liebiao">
@@ -20,7 +19,6 @@
 				<view style="width: 300rpx;hight: 55rpx;" v-show="!show_or_not_show"></view>
 			</view>
 			<!--======================================================= -->
-
 			<view class="time-middle">
 				<!--中间部分 -->
 				<view class="jitang">这里是没有毒的鸡汤</view>
@@ -86,50 +84,6 @@
 				</view>
 			</view>
 		</view>
-		<view class="history" v-show="flag_of_history&&!flag_of_history_message">
-			<img @click="back_to_timer_page" src="~@/static/icon/back.png" class="back">
-			<h1 style="font-weight: bold; margin-left: 42rpx; font-size: 50rpx;">备忘中心</h1>
-			<view class="go_to_history" @click="go_to_history_message">
-				<view class="tel">
-					<img src="~@/static/icon/history.png">
-					<view>历史统计</view>
-				</view>
-				<view><img src="~@/static/icon/right.png" class="right"></view>
-			</view>
-		</view>
-		<view class="history_message" v-show="flag_of_history_message">
-			<img @click="flag_of_history_message=false" src="~@/static/icon/back.png" class="back">
-			<h1 style="font-weight: bold; margin-left: 42rpx; font-size: 50rpx;">历史统计</h1>
-			<view class="choice_d_w_m">
-				<view>日</view>
-				<view>周</view>
-				<view>月</view>
-			</view>
-			<view class="total_record">
-				<view class="record_son">
-					<view>完成次数</view>
-					<view>{{times_of_finished}}</view>
-				</view>
-				<view class="record_son">
-					<view>
-						时长
-					</view>
-					<view>{{times_of_total>=3600?
-				' '+(Math.floor(times_of_total/3600)+' h '+(Math.floor(times_of_total/60-Math.floor(times_of_total/3600)*60))+' min')
-				:
-				('  '+Math.floor(times_of_total/60)+' min')}}
-					</view>
-				</view>
-				<view class="record_son">
-					<view>暂停次数</view>
-					<view>
-						{{times_of_pause}}
-					</view>
-				</view>
-			</view>
-		
-		</view>
-	</view>
 </template>
 
 <script>
@@ -147,9 +101,6 @@
 		
 		data() {
 			return {
-				times_of_finished: 3, //完成次数
-				times_of_total: 26060, //完成总时长
-				times_of_pause: 0, //暂停次数
 				a: 0, //比例因子
 				total_time: 0,
 				total_height: 0,
@@ -169,8 +120,6 @@
 				dao_total_time: 0, //倒计时总时间
 				i: 1, //记次数用的
 				context: uni.createCanvasContext('myCanvas'), //画布名字
-				flag_of_history: false, //判断是否有打开历史记录界面
-				flag_of_history_message: false, //判断是否有打开历史记录中的历史消息界面
 				begin_min: 0, //开始时候的min
 				begin_sec: 0, //开始时候的sec
 			}
@@ -400,14 +349,10 @@
 					this.target = "请输入专注目标"
 				this.style.push("white")
 			},
-			change_to_history() {
-				this.flag_of_history = true
-			},
-			back_to_timer_page() {
-				this.flag_of_history = false
-			},
-			go_to_history_message() {
-				this.flag_of_history_message = true
+			change_to_history(){
+				uni.navigateTo({
+					url:"../history/history"
+				})
 			}
 		}
 	}
@@ -422,114 +367,6 @@
 		width: 500rpx;
 		pointer-events: none;
 	}
-
-	.history {
-		height: 100%;
-		background-color: white;
-	}
-
-	.back {
-		margin-top: 20rpx;
-		margin-left: 18rpx;
-		width: 55rpx;
-		height: 55rpx;
-		margin-right: 20rpx;
-	}
-
-	.go_to_history img {
-		width: 40rpx;
-		height: 40rpx;
-		margin-right: 20rpx;
-		margin-left: 20rpx;
-	}
-
-	.go_to_history {
-		margin: 35rpx auto;
-		height: 60rpx;
-		width: 93%;
-		line-height: 60rpx;
-		padding-top: 15rpx;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.tel {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.tel view {
-		height: 60rpx;
-		line-height: 40rpx;
-	}
-
-	.history_message {
-		height: 100%;
-		background-color: white;
-	}
-
-	.choice_d_w_m {
-		display: flex;
-		width: 180rpx;
-		margin-left: 50rpx;
-		margin-top: 40rpx;
-		justify-content: space-around;
-	}
-
-	.choice_d_w_m view {
-		border: 1rpx solid black;
-		width: 60rpx;
-		height: 60rpx;
-		line-height: 60rpx;
-		text-align: center;
-		font-weight: bold;
-	}
-
-	.choice_d_w_m view:first-child {
-		border-top-left-radius: 30rpx;
-		border-bottom-left-radius: 30rpx;
-		padding-left: 10rpx;
-		border-right: 0rpx;
-	}
-
-	.choice_d_w_m view:nth-child(3) {
-		border-top-right-radius: 30rpx;
-		border-bottom-right-radius: 30rpx;
-		padding-right: 10rpx;
-		border-left: 0rpx;
-	}
-
-
-	.total_record {
-		display: flex;
-		width: 500rpx;
-		margin:40rpx auto;
-		justify-content: space-around;
-	}
-
-	.total_record .record_son {
-		border: 1rpx solid black;
-		width: 150rpx;
-		height: 100rpx;
-		line-height: 50rpx;
-		text-align: center;
-		font-weight: bold;
-	}
-    .total_record .record_son:nth-child(2){
-		width: 200rpx;
-	}
-	.total_record .record_son:first-child {
-		border-top-left-radius: 30rpx;
-		border-bottom-left-radius: 30rpx;
-		border-right: 0rpx;
-	}
-
-	.total_record .record_son:nth-child(3) {
-		border-top-right-radius: 30rpx;
-		border-bottom-right-radius: 30rpx;
-		border-left: 0rpx;
-	}
-
 	.right {
 		width: 55rpx;
 		height: 55rpx;

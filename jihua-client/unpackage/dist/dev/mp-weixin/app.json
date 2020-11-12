@@ -6,7 +6,9 @@
     "pages/personal/personal",
     "pages/table/table",
     "pages/presell/presell",
-    "pages/calendar/calendar"
+    "pages/calendar/calendar",
+    "pages/history/history",
+    "pages/history_message/history_message"
   ],
   "subPackages": [],
   "window": {
@@ -46,5 +48,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap83.json"
+  "sitemapLocation": "sitemap23.json"
 }

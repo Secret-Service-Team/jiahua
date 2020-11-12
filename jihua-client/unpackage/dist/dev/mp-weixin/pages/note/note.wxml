@@ -1,1 +1,1 @@
-<view>备忘</view>
+<view class="data-v-49a38774"><picker mode="time" value="{{recordTime}}" data-event-opts="{{[['change',[['bindTimeChange',['$event']]]]]}}" bindchange="__e" class="data-v-49a38774"><view class="picker data-v-49a38774">选择专注时间:<label class="_span data-v-49a38774">{{recordTime}}</label></view></picker></view>
