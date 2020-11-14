@@ -1,16 +1,4 @@
 
-.topBar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: #fff;
-	width: 100%;
-	z-index: 10;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
-	        flex-direction: column;
-}
 .top-container {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -31,8 +19,7 @@
 	line-height: 60rpx;
 	text-align: center;
 	width: 150rpx;
-	-webkit-border-radius: 30rpx;
-	        border-radius: 30rpx;
+	border-radius: 30rpx;
 }
 .topleft ._img {
 	width: 70rpx;
@@ -50,16 +37,6 @@
 	line-height: 60rpx;
 	text-align: center;
 	width: 150rpx;
-}
-.midleft {
-	
-   margin-top: 140rpx;
-	/* flex:1 1 0; */
-	margin-left: 100rpx;
-	
-	font-size: 12px;
-}
-.db1 {
 }
 .intotal {
 	margin-top: 30rpx;

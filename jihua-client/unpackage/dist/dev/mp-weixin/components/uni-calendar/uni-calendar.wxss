@@ -119,10 +119,8 @@
   height: 25px;
   line-height: 25px;
   font-size: 12px;
-  -webkit-border-top-left-radius: 25px;
-          border-top-left-radius: 25px;
-  -webkit-border-bottom-left-radius: 25px;
-          border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
   color: #333;
   background-color: #f1f1f1;
 }

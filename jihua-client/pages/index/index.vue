@@ -41,14 +41,14 @@
 				<view class="second">SEC</view>
 			</view>
 			<view class="timer" @click="change_time_in_dao">
-				<view v-show="!zheng_or_dao_flag">
-				<picker mode="time" :value="recordTime" @change="bindTimeChange" >
+				<view v-show="!zheng_or_dao_showing">
+				<picker mode="time" :value="recordTime" @change="bindTimeChange" start="00:01" end="16:00">
 					<view class="picker" >
 						<span>{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</span>
 					</view>
 				</picker>
 				</view>
-				<view v-show="zheng_or_dao_flag">{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</view>
+				<view v-show="zheng_or_dao_showing">{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</view>
 			</view>
 			<!--时钟界面，用于正/倒计时 -->
 
@@ -120,6 +120,7 @@
 				begin_min: 0, //开始时候的min
 				begin_sec: 0, //开始时候的sec
 				index:0,//索引值
+				zheng_or_dao_showing:true,//正/倒计时显示标志位
 			}
 		},
 		onLoad() {
@@ -135,6 +136,13 @@
             bindTimeChange(e) {
             	this.recordTime = e.target.value;
             	this.min=60*(parseInt(this.recordTime[0])*10+parseInt(this.recordTime[1]))+parseInt(this.recordTime[3])*10+parseInt(this.recordTime[4])
+				this.context.setStrokeStyle("white")
+				this.context.setLineWidth(3 * this.a)
+				this.context.moveTo(220 * this.a, 0)
+				this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
+				this.context.stroke()
+				this.context.draw()
+				this.sec=0
             },
 			getData() {
 				var result = 0
@@ -164,9 +172,11 @@
 						this.begin_sec = this.sec
 						this.begin_min = this.min 
 						this.dao_total_time = this.min * 60 + this.sec
+						this.zheng_or_dao_showing=true
 					}
 					this.show_of_setting_things = true
 					this.time_of_index++
+					
 				} else if (this.time_of_index == 1) {
 					this.timer_flag = !this.timer_flag
 					if (!this.zheng_or_dao_flag) { //倒计时
@@ -231,10 +241,13 @@
 				if (this.zheng_or_dao_flag)
 					this.total_time += this.min * 60 + this.sec
 				else
+				    {
 					this.total_time += this.begin_min * 60 + this.begin_sec - this.min * 60 - this.sec
+					this.zheng_or_dao_showing=false
+					}
 			},
 			setting_zheng_time() {
-
+				this.zheng_or_dao_showing=true
 				this.time_of_index = 0
 				this.show_timer = true
 				this.zheng_or_dao_flag = true
@@ -250,6 +263,7 @@
 
 			},
 			setting_dao_time() {
+				this.zheng_or_dao_showing=false
 				this.time_of_index = 0
 				clearInterval(this._timer)
 				this.show_timer = false
@@ -268,6 +282,8 @@
 				this.show_of_setting_things = false
 				this.time_of_index = 0
 				this.show_or_not_show = true
+				if(!this.zheng_or_dao_flag)
+				   this.zheng_or_dao_showing=false
 			},
 			change_time_in_dao() {
 				if (!this.zheng_or_dao_flag && !this.time_of_index) {
@@ -288,6 +304,12 @@
 					clearInterval(this._timer)
 					if (!this.zheng_or_dao_flag) { //倒计时
 						this.i = 1
+						this.context.setStrokeStyle("white")
+						this.context.setLineWidth(3 * this.a)
+						this.context.moveTo(220 * this.a, 0)
+						this.context.arc(120 * this.a, 0, 100 * this.a, 0,  Math.PI, false) //正计时一小时的时候，弧将充满
+						this.context.stroke()
+						this.context.draw(true)
 						this._timer = setInterval(() => {
 							if (this.min || this.sec) { //正常计时
 								if (!this.sec && this.min) {

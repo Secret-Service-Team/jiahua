@@ -55,17 +55,13 @@
 }
 .zheng {
 	border: 1rpx solid white;
-	-webkit-border-top-left-radius: 22.5rpx;
-	        border-top-left-radius: 22.5rpx;
-	-webkit-border-bottom-left-radius: 22.5rpx;
-	        border-bottom-left-radius: 22.5rpx;
+	border-top-left-radius: 22.5rpx;
+	border-bottom-left-radius: 22.5rpx;
 }
 .dao {
 	border: 1rpx solid white;
-	-webkit-border-top-right-radius: 22.5rpx;
-	        border-top-right-radius: 22.5rpx;
-	-webkit-border-bottom-right-radius: 22.5rpx;
-	        border-bottom-right-radius: 22.5rpx;
+	border-top-right-radius: 22.5rpx;
+	border-bottom-right-radius: 22.5rpx;
 	color: rgb(98, 39, 37);
 }
 .jitang {
@@ -86,8 +82,7 @@
 	border: 1rpx solid #FFFFFF;
 	height: 55rpx;
 	line-height: 55rpx;
-	-webkit-border-radius: 22.5rpx;
-	        border-radius: 22.5rpx;
+	border-radius: 22.5rpx;
 }
 .time-bottom {
 	height: 720rpx;
@@ -143,10 +138,8 @@
 	background-color: white;
 	width: 100%;
 	color: #000000;
-	-webkit-border-top-right-radius: 70rpx;
-	        border-top-right-radius: 70rpx;
-	-webkit-border-top-left-radius: 70rpx;
-	        border-top-left-radius: 70rpx;
+	border-top-right-radius: 70rpx;
+	border-top-left-radius: 70rpx;
 	text-align: center;
 	z-index: 8;
 	height: 40%;
@@ -181,8 +174,7 @@
 	background-color: rgb(240, 240, 240);
 	height: 130rpx;
 	line-height: 130rpx;
-	-webkit-border-radius: 24rpx;
-	        border-radius: 24rpx;
+	border-radius: 24rpx;
 	font-size: 20rpx;
 	width: 350rpx;
 	margin-top: 30rpx;
@@ -202,8 +194,7 @@
 .begin-to-time {
 	height: 55rpx;
 	line-height: 55rpx;
-	-webkit-border-radius: 22.5rpx;
-	        border-radius: 22.5rpx;
+	border-radius: 22.5rpx;
 	background-color: #000000;
 	color: white;
 	width: 60%;
