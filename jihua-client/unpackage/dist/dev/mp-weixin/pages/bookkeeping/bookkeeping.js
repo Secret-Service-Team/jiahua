@@ -203,13 +203,6 @@ __webpack_require__.r(__webpack_exports__);
     addDetail: addDetail },
 
   mounted: function mounted() {
-    uni.request({
-      url: 'https://www.fastmock.site/mock/c693fd7757e7ecfc8c9332f433ff33cf/api/bookkeeping/turnover',
-      method: 'GET',
-      success: function success(res) {
-        console.log(res);
-        console.log('前后端跑通');
-      } });
 
   },
   data: function data() {
@@ -218,92 +211,37 @@ __webpack_require__.r(__webpack_exports__);
       pay: 500.00,
       income: 300.00,
       showAddDetail: false,
-      list: [{
-        date: "10月11日",
-        detail: [{
-          type: "吃饭",
-          thing: '沙茶面',
-          money: -30 },
-
-        {
-          type: "购物",
-          thing: '生活用品',
-          money: -60 }] },
-
-
-
-      {
-        date: "10月10日",
-        detail: [{
-          type: "吃饭",
-          thing: '沙茶面',
-          money: -30 },
-
-        {
-          type: "购物",
-          thing: '生活用品',
-          money: -60 }] },
-
-
-      {
-        date: "10月10日",
-        detail: [{
-          type: "吃饭",
-          thing: '沙茶面',
-          money: -30 },
-
-        {
-          type: "购物",
-          thing: '生活用品',
-          money: -60 }] },
-
-
-      {
-        date: "10月10日",
-        detail: [{
-          type: "吃饭",
-          thing: '沙茶面',
-          money: -30 },
-
-        {
-          type: "购物",
-          thing: '生活用品',
-          money: -60 }] },
-
-
-      {
-        date: "10月10日",
-        detail: [{
-          type: "吃饭",
-          thing: '沙茶面',
-          money: -30 },
-
-        {
-          type: "购物",
-          thing: '生活用品',
-          money: -60 }] }] };
-
-
-
-
+      flows: [] };
 
   },
   onLoad: function onLoad() {
     this.huoquliushui();
   },
   methods: {
-    huoquliushui: function huoquliushui() {
+    clearFlows: function clearFlows(flows) {
+      // 清洗流水数据，删除没有流水的日期
+      // 最后执行
+    },
+    getPreset: function getPreset(flows) {
+      // 获取预设。获取完添加到数组中
+
+    },
+    getAvg: function getAvg(flows) {
+      // 将流水中的均摊替换为正确内容
+    },
+    huoquliushui: function huoquliushui() {var _this = this;
       uni.request({
-        url: 'https://azoux.xyz/api/bookkeeping/turnover/', //仅为示例，并非真实接口地址。
-        data: {},
+        url: 'http://localhost:3000/api/bookkeeping/turnover/', //仅为示例，并非真实接口地址。
+        data: {
+          date: new Date().getTime() },
 
         success: function success(res) {
           console.log(res.data.flows);
+          _this.flows = res.data.flows;
         } });
 
     },
     addDetail: function addDetail() {
-
       this.showAddDetail = true;
       if (this.addDetailClass.length === 1) {
         this.addDetailClass.push('slide-top');
@@ -312,9 +250,9 @@ __webpack_require__.r(__webpack_exports__);
         this.addDetailClass.push('slide-top');
       }
     },
-    cancelAddDetail: function cancelAddDetail() {var _this = this;
+    cancelAddDetail: function cancelAddDetail() {var _this2 = this;
       setTimeout(function () {
-        _this.showAddDetail = false;
+        _this2.showAddDetail = false;
       }, 501);
       if (this.addDetailClass.length === 1) {
         this.addDetailClass.push('slide-bottom');

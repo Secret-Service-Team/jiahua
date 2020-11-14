@@ -1,19 +1,20 @@
 
 switch.data-v-59d78ae6 {
 	margin: 0 15rpx;
+	zoom: .75;
 }
 .input-wrapper.data-v-59d78ae6 {
 	padding: 15rpx;
-	-webkit-border-radius: 10rpx;
-	        border-radius: 10rpx;
 	width: 100%;
 	height: 100%;
 	background-color: #fff;
-	border: 2rpx solid #2C405A;
-	-webkit-box-shadow: 10rpx 1px 1px #000000;
-	        box-shadow: 10rpx 1px 1px #000000;
-	margin-top: 10rpx;
-	width: 60%;
+	border: none;
+	border-bottom: 4rpx solid #ccc;
+	-webkit-box-shadow: 0px 2px #777;
+	        box-shadow: 0px 2px #777;
+	/* box-shadow: 0px 1px 10px #777; */
+	margin-top: 20rpx;
+	width: 90%;
 }
 input.data-v-59d78ae6 {
 	width: 100%;
@@ -23,23 +24,26 @@ button.data-v-59d78ae6 {
 	background-color: #333;
 	color: white;
 	position: absolute;
-	right: 30rpx;
-	bottom: 20rpx;
-	padding: 0 30rpx;
+	right: 75rpx;
+	bottom: 35rpx;
+	padding: 0 60rpx;
+	font-size: 22rpx;
 }
 .addDetail.data-v-59d78ae6 {
 	width: 90%;
 	height: 100%;
+	padding: 10rpx;
 	margin: 20rpx auto;
 }
 .add-choose-type.data-v-59d78ae6 {
 	list-style: none;
-	height: 20%;
+	height: 30%;
 	width: 100%;
+	margin-top: 30rpx;
 }
 .add-choose-type scroll-view.data-v-59d78ae6 {
 	width: 100%;
-	height: 100%;
+	white-space: nowrap;
 }
 .add-choose-type scroll-view .type.data-v-59d78ae6 {
 	width: 80rpx;
@@ -52,36 +56,54 @@ button.data-v-59d78ae6 {
 	width: 100%;
 	height: 100%;
 }
-.type ._span.data-v-59d78ae6 {
+.type view.data-v-59d78ae6 {
 	font-family: "agency fb" "arial, helvetica, sans-serif";
 	font-weight: 300;
-	font-size: 30rpx;
-	margin-left: 9rpx;
+	font-size: 27rpx;
+	margin-left: 12rpx;
 }
 .add-options.data-v-59d78ae6 {
 	/* background-color: #F0AD4E; */
 	height: 10%;
 	width: 100%;
-	margin-top: 20rpx;
+	margin-top: 50rpx;
+	margin-left: 5px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 32rpx;
+}
+.add-options-type.data-v-59d78ae6 {
+	width: 40%;
 }
 .add-input.data-v-59d78ae6 {
 	/* background-color: #007AFF; */
 	height: 20%;
 	width: 100%;
-	margin-top: 10rpx;
+	margin-top: 30rpx;
 }
 .add-options-time.data-v-59d78ae6 {
-	height: 10%;
-	width: 100%;
-	margin-top: 10rpx;
+	width: 60%;
 }
 .add-options-avg.data-v-59d78ae6 {
 	height: 10%;
 	width: 100%;
-	margin-top: 55rpx;
+	margin-top: 30rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 27rpx;
+}
+.add-options-avg-check.data-v-59d78ae6 {
+	padding: 5rpx;
 }
 .add-conseal.data-v-59d78ae6 {
-	margin: 20rpx 0 0;
 }
 .span-date.data-v-59d78ae6 {
 	font-family: "agency fb" "arial, helvetica, sans-serif";

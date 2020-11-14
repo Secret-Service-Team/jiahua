@@ -1,0 +1,118 @@
+
+switch.data-v-1f434318 {
+	margin: 0 15rpx;
+	zoom: .75;
+}
+.input-wrapper.data-v-1f434318 {
+	padding: 15rpx;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	border: none;
+	border-bottom: 4rpx solid #ccc;
+	-webkit-box-shadow: 0px 2px #777;
+	        box-shadow: 0px 2px #777;
+	/* box-shadow: 0px 1px 10px #777; */
+	margin-top: 20rpx;
+	width: 90%;
+}
+input.data-v-1f434318 {
+	width: 100%;
+}
+button.data-v-1f434318 {
+	border: none;
+	background-color: #333;
+	color: white;
+	position: absolute;
+	right: 75rpx;
+	bottom: 35rpx;
+	padding: 0 60rpx;
+	font-size: 22rpx;
+}
+.addDetail.data-v-1f434318 {
+	width: 90%;
+	height: 100%;
+	padding: 10rpx;
+	margin: 20rpx auto;
+}
+.add-choose-type.data-v-1f434318 {
+	list-style: none;
+	height: 30%;
+	width: 100%;
+	margin-top: 30rpx;
+}
+.add-choose-type scroll-view.data-v-1f434318 {
+	width: 100%;
+	white-space: nowrap;
+}
+.add-choose-type scroll-view .type.data-v-1f434318 {
+	width: 80rpx;
+	height: 80rpx;
+	display: inline-block;
+	margin: 10rpx 30rpx;
+	/* height: 80rpx; */
+}
+.add-choose-type scroll-view .type image.data-v-1f434318 {
+	width: 100%;
+	height: 100%;
+}
+.type view.data-v-1f434318 {
+	font-family: "agency fb" "arial, helvetica, sans-serif";
+	font-weight: 300;
+	font-size: 27rpx;
+	margin-left: 12rpx;
+}
+.add-input.data-v-1f434318 {
+	/* background-color: #007AFF; */
+	width: 100%;
+	margin-top: 100rpx;
+}
+.span-date.data-v-1f434318 {
+	font-family: "agency fb" "arial, helvetica, sans-serif";
+	font-weight: 600;
+	padding: 5rpx;
+	background-color: #eee;
+}
+.special.data-v-1f434318 {
+	background-color: #111;
+	color: white;
+	padding: 5rpx;
+}
+.add-frequent.data-v-1f434318 {
+	margin-top: 40rpx;
+}
+.add-frequent-select.data-v-1f434318 {
+	margin-top: 30rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	padding: 0 30rpx;
+}
+.select-item.data-v-1f434318 {
+	width: 50rpx;
+	height: 50rpx;
+	border: 1px solid;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+	-webkit-box-shadow: 1px 0px 12px 2px #9691D9;
+	        box-shadow: 1px 0px 12px 2px #9691D9;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.frequent_day_bgc.data-v-1f434318 {
+	background-color: #ccc;
+}
+

@@ -81,6 +81,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var m0 = _vm.formatDate(_vm.flow.date)
+
   var l0 = _vm.__map(_vm.flow.expend, function(cost, __i0__) {
     var $orig = _vm.__get_orig(cost)
 
@@ -95,6 +97,7 @@ var render = function() {
     {},
     {
       $root: {
+        m0: m0,
         l0: l0
       }
     }
@@ -158,8 +161,24 @@ var _default =
 {
   props: ['flow'],
   mounted: function mounted() {
-    console.log(this.flow);
-  } };exports.default = _default;
+    if (this.flow.expend.length === 0) {
+      this.showDetail = false;
+    }
+
+    // 如果是均摊
+  },
+  data: function data() {
+    return {
+      showDetail: true };
+
+  },
+  methods: {
+    formatDate: function formatDate(date) {
+      var year = date[0] + date[1] + date[2] + date[3];
+      var month = date[4] + date[5];
+      var day = date[6] + date[7];
+      return "".concat(year, "-").concat(month, "-").concat(day);
+    } } };exports.default = _default;
 
 /***/ }),
 

@@ -1,8 +1,8 @@
 <template>
-	<view class="detail-item">
+	<view class="detail-item" v-show="showDetail">
 		<view class="info">
 			<view class="date">
-				{{listItem.date}}
+				{{formatDate(flow.date)}}
 			</view>
 			<view class="io">
 				该日支出收入（待完成
@@ -24,7 +24,24 @@
 	export default	{
 		props: ['flow'],
 		mounted() {
-			console.log(this.flow);
+			if (this.flow.expend.length === 0) {
+				this.showDetail = false;
+			}
+			
+			// 如果是均摊
+		},
+		data() {
+			return {
+				showDetail: true,
+			};
+		},
+		methods: {
+			formatDate(date) {
+				const year = date[0] + date[1] + date[2] + date[3];
+				const month = date[4] + date[5];
+				const day = date[6] + date[7];
+				return `${year}-${month}-${day}`;
+			},
 		},
 	}
 </script>

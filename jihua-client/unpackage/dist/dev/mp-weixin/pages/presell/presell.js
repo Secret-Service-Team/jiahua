@@ -130,65 +130,109 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var addPreset = function addPreset() {__webpack_require__.e(/*! require.ensure | compoments/addPreset */ "compoments/addPreset").then((function () {return resolve(__webpack_require__(/*! ../../compoments/addPreset.vue */ 112));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: {
+    addPreset: addPreset },
+
   data: function data() {
     return {
-      presetlist: ["餐饮", "日常"],
-      addDetailClass: ['add-detail'],
-      showAddDetail: false };
+      addPresetClass: ['add-preset'],
+      showAddPreset: false,
+      presets: [
+      {
+        typeId: 'food',
+        pid: 'asd21d2d',
+        frequent: [1, 3, 5],
+        src: '../../static/icon/calender.png' },
+
+      {
+        typeId: 'food',
+        pid: 'asd21d2sd',
+        frequent: [1, 3, 5],
+        src: '../../static/icon/calender.png' },
+
+      {
+        typeId: 'food',
+        pid: 'asd21dss2d',
+        frequent: [1, 3, 5],
+        src: '../../static/icon/calender.png' },
+
+      {
+        typeId: 'food',
+        pid: 'asd21dsss2d',
+        frequent: [1, 3, 5],
+        src: '../../static/icon/calender.png' }] };
+
+
 
   },
   methods: {
-    addDetail: function addDetail() {
-
-      this.showAddDetail = true;
-      if (this.addDetailClass.length === 1) {
-        this.addDetailClass.push('slide-top');
+    main: function main() {
+      console.log('onload');
+    },
+    addPreset: function addPreset() {
+      this.showAddPreset = true;
+      if (this.addPresetClass.length === 1) {
+        this.addPresetClass.push('slide-top');
       } else {
-        this.addDetailClass.pop();
-        this.addDetailClass.push('slide-top');
+        this.addPresetClass.pop();
+        this.addPresetClass.push('slide-top');
       }
     },
-    cancelAddDetail: function cancelAddDetail() {var _this = this;
+    cancelAddPreset: function cancelAddPreset() {var _this = this;
+      console.log('in');
       setTimeout(function () {
-        _this.showAddDetail = false;
+        _this.showAddPreset = false;
       }, 501);
-      if (this.addDetailClass.length === 1) {
-        this.addDetailClass.push('slide-bottom');
+      if (this.addPresetClass.length === 1) {
+        this.addPresetClass.push('slide-bottom');
       } else {
-        this.addDetailClass.pop();
-        this.addDetailClass.push('slide-bottom');
+        this.addPresetClass.pop();
+        this.addPresetClass.push('slide-bottom');
       }
     } } };exports.default = _default;
 

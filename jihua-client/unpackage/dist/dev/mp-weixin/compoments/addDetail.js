@@ -174,17 +174,85 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   mounted: function mounted() {
     var date = new Date();
     this.recordDate = "".concat(date.getFullYear(), "-").concat(date.getMonth() + 1, "-").concat(date.getDate());
-    this.avgDate = this.recordDate;
     this.openid = wx.getStorageSync('openid');
-
   },
   data: function data() {
     return {
+      typeArr_line1: [
+      {
+        src: '../static/jizhan_icon/icon_food.png',
+        typeId: 'food',
+        type: '食物' },
+
+      {
+        src: '../static/jizhan_icon/icon_entertainment.png',
+        typeId: 'entertainment',
+        type: '娱乐' },
+
+      {
+        src: "../static/jizhan_icon/icon_traffic.png",
+        typeId: 'traffic',
+        type: '交通' },
+
+      {
+        src: "../static/jizhan_icon/icon_shopping.png",
+        typeId: 'shopping',
+        type: '购物' },
+
+      {
+        src: '../static/jizhan_icon/icon_study.png',
+        typeId: 'study',
+        type: '学习' },
+
+      {
+        src: '../static/jizhan_icon/icon_bonus.png',
+        typeId: 'bonus',
+        type: '津贴' }],
+
+
+      typeArr_line2: [{
+        src: '../static/jizhan_icon/icon_medicine.png',
+        typeId: 'medicine',
+        type: '医药' },
+
+      {
+        src: '../static/jizhan_icon/icon_clothes.png',
+        typeId: 'clothes',
+        type: '衣物' },
+
+      {
+        src: '../static/jizhan_icon/icon_daily.png',
+        typeId: 'daily',
+        type: '日常' },
+
+      {
+        src: '../static/jizhan_icon/icon_donate.png',
+        typeId: 'donate',
+        type: '捐助' },
+
+      {
+        src: '../static/jizhan_icon/icon_salary.png',
+        typeId: 'salary',
+        type: '薪水' },
+
+      {
+        src: '../static/jizhan_icon/icon_tour.png',
+        typeId: 'tour',
+        type: '旅行' }],
+
       typeArr: [
       {
         src: '../static/jizhan_icon/icon_food.png',
@@ -249,7 +317,7 @@ var _default =
 
       showAvg: false,
       recordDate: '20201106',
-      avgDate: '20201212',
+      avgDate: '请设置均摊时间..',
       money: '',
       doAvg: false,
       switchCost: false,
@@ -322,6 +390,11 @@ var _default =
           } });
 
       } else {
+        wx.showToast({
+          title: '请输入正确的金额...',
+          icon: 'none',
+          duration: 1500 });
+
         return false;
       }
     },

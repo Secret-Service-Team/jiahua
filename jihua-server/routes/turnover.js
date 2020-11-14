@@ -183,4 +183,11 @@ function dateFormat2(date) {
   return `${time[0]}${time[1]}${time[2]}`
 }
 
+function formatDate3(date) {
+  const year = date[0] + date[1] + date[2] + date[3];
+  const month = date[4] + date[5];
+  const day = date[6] + date[7];
+  return `${year}-${month}-${day}`;
+}
+
 module.exports = router;
