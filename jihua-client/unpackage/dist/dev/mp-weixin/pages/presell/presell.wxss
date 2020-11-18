@@ -64,8 +64,7 @@
 }
 .add-detail-button {
   background-color: rgb(16, 16, 16);
-  -webkit-border-radius: 30px;
-          border-radius: 30px;
+  border-radius: 30px;
   width: 100rpx;
   height: 100rpx;
   margin: 20rpx auto;
@@ -109,10 +108,8 @@
   height: 60%;
   width: 100%;
   background-color: #fff;
-  -webkit-border-top-left-radius: 45rpx;
-          border-top-left-radius: 45rpx;
-  -webkit-border-top-right-radius: 45rpx;
-          border-top-right-radius: 45rpx;
+  border-top-left-radius: 45rpx;
+  border-top-right-radius: 45rpx;
   border-top: 2rpx solid black;
 }
 /* animate------------------------------------- */

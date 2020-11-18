@@ -30,11 +30,6 @@
 </script>
 
 <style>
-	.history {
-		height: 100%;
-		background-color: white;
-	}
-
 	.tel {
 		display: flex;
 		justify-content: space-between;
@@ -49,7 +44,6 @@
 		margin: 35rpx auto;
 		height: 60rpx;
 		width: 93%;
-		line-height: 60rpx;
 		padding-top: 15rpx;
 		display: flex;
 		justify-content: space-between;
@@ -61,4 +55,5 @@
 		margin-right: 20rpx;
 		margin-left: 20rpx;
 	}
+	
 </style>

@@ -4,14 +4,12 @@ switch.data-v-2781eca7 {
 }
 .input-wrapper.data-v-2781eca7 {
 	padding: 15rpx;
-	-webkit-border-radius: 10rpx;
-	        border-radius: 10rpx;
+	border-radius: 10rpx;
 	width: 100%;
 	height: 100%;
 	background-color: #fff;
 	border: 2rpx solid #2C405A;
-	-webkit-box-shadow: 10rpx 1px 1px #000000;
-	        box-shadow: 10rpx 1px 1px #000000;
+	box-shadow: 10rpx 1px 1px #000000;
 	margin-top: 10rpx;
 	width: 60%;
 }

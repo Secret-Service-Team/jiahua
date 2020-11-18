@@ -1,8 +1,4 @@
 
-.history {
-	height: 100%;
-	background-color: white;
-}
 .tel {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -19,7 +15,6 @@
 	margin: 35rpx auto;
 	height: 60rpx;
 	width: 93%;
-	line-height: 60rpx;
 	padding-top: 15rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -34,4 +29,5 @@
 	margin-right: 20rpx;
 	margin-left: 20rpx;
 }
+
 
