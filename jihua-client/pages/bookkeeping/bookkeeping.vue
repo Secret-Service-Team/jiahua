@@ -163,7 +163,7 @@
 			cancelAddDetail() {
 				setTimeout(() => {
 					this.showAddDetail = false;
-				}, 501);
+				}, 700);
 				if (this.addDetailClass.length === 1) {
 					this.addDetailClass.push('slide-bottom');
 				} else {
@@ -337,13 +337,13 @@
 	 */
 
 	.slide-top {
-		-webkit-animation: slide-top 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-		animation: slide-top 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+		-webkit-animation: slide-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+		animation: slide-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 	}
 
 	.slide-bottom {
-		-webkit-animation: slide-bottom 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-		animation: slide-bottom 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+		-webkit-animation: slide-bottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+		animation: slide-bottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 	}
 
 	@-webkit-keyframes slide-top {

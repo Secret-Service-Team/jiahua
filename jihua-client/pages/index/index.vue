@@ -65,7 +65,7 @@
 
 		<view class="set-goal" v-show="show_of_setting_things">
 			<view class="grey" @click="close_things"></view>
-			<view class="content">
+			<view class="content" :class="content_style">
 				<view class="henggan"></view>
 				<view class="title">请输入你的专注目标</view>
 				<view class="things">
@@ -114,6 +114,7 @@
 				show_of_setting_things: false, //是否显示选择待办事项界面，true进入
 				target: "请输入专注目标",
 				style: ["write", "white"],
+				content_style:[],
 				dao_total_time: 0, //倒计时总时间
 				i: 1, //记次数用的
 				context: uni.createCanvasContext('myCanvas'), //画布名字
@@ -176,6 +177,13 @@
 					}
 					this.show_of_setting_things = true
 					this.time_of_index++
+					if (this.content_style.length ==0) {
+						this.content_style.push('slide-top');
+					} else {
+						this.content_style.pop();
+						this.content_style.push('slide-top');
+					}
+					
 					
 				} else if (this.time_of_index == 1) {
 					this.timer_flag = !this.timer_flag
@@ -279,11 +287,18 @@
 				this.context.draw()
 			},
 			close_things() {
-				this.show_of_setting_things = false
-				this.time_of_index = 0
-				this.show_or_not_show = true
-				if(!this.zheng_or_dao_flag)
-				   this.zheng_or_dao_showing=false
+				
+				setTimeout(() => {
+					this.show_of_setting_things = false
+					this.time_of_index = 0
+					this.show_or_not_show = true
+					if(!this.zheng_or_dao_flag)
+					   this.zheng_or_dao_showing=false
+				}, 701);
+				this.content_style.pop();
+				this.content_style.push('slide-bottom');
+				
+				
 			},
 			change_time_in_dao() {
 				if (!this.zheng_or_dao_flag && !this.time_of_index) {
@@ -601,5 +616,55 @@
 		color: white;
 		width: 60%;
 		margin: 35rpx auto;
+	}
+	
+	.slide-top {
+		-webkit-animation: slide-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+		animation: slide-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	}
+	
+	.slide-bottom {
+		-webkit-animation: slide-bottom 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+		animation: slide-bottom 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	}
+	
+	@-webkit-keyframes slide-top {
+		0% {
+			bottom: -800rpx;
+		}
+	
+		100% {
+			bottom: 0rpx;
+		}
+	}
+	
+	@keyframes slide-top {
+		0% {
+			bottom: -800rpx;
+		}
+	
+		100% {
+			bottom: 0rpx;
+		}
+	}
+	
+	@-webkit-keyframes slide-bottom {
+		0% {
+			bottom: 0rpx;
+		}
+	
+		100% {
+			bottom: -800rpx;
+		}
+	}
+	
+	@keyframes slide-bottom {
+		0% {
+			bottom: 0rpx;
+		}
+	
+		100% {
+			bottom: -800rpx;
+		}
 	}
 </style>

@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1936,9 +1936,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 105:
-/*!************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/beiwang/添加.png ***!
-  \************************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/beiwang/添加.png ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1947,9 +1947,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 128:
-/*!************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/logo.png ***!
-  \************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/logo.png ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1958,9 +1958,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALgAAAC4CAYAAABQ
 /***/ }),
 
 /***/ 129:
-/*!****************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/question.png ***!
-  \****************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/question.png ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1969,9 +1969,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAADOCAIAAABD
 /***/ }),
 
 /***/ 138:
-/*!**************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/bwlogo.png ***!
-  \**************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/bwlogo.png ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -2039,9 +2039,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 15:
-/*!**********************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/lie.png ***!
-  \**********************************************************************/
+/*!************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/lie.png ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -2782,9 +2782,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 16:
-/*!************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/begin.png ***!
-  \************************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/begin.png ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -2793,9 +2793,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 17:
-/*!***********************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/stop.png ***!
-  \***********************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/stop.png ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -2804,9 +2804,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 179:
-/*!**********************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/components/uni-calendar/util.js ***!
-  \**********************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/components/uni-calendar/util.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3167,9 +3167,9 @@ Calendar;exports.default = _default;
 /***/ }),
 
 /***/ 18:
-/*!*************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/juxing.png ***!
-  \*************************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/juxing.png ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -3178,9 +3178,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 180:
-/*!**************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/components/uni-calendar/calendar.js ***!
-  \**************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/components/uni-calendar/calendar.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9260,7 +9260,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -9281,14 +9281,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9374,7 +9374,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9782,9 +9782,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 27:
-/*!************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/beiwang/日历.png ***!
-  \************************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/beiwang/日历.png ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9824,9 +9824,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 36:
-/*!***************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/calender.png ***!
-  \***************************************************************************/
+/*!*****************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/calender.png ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9835,9 +9835,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 37:
-/*!************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/table.png ***!
-  \************************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/table.png ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9846,9 +9846,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 38:
-/*!**************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/presell.png ***!
-  \**************************************************************************/
+/*!****************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/presell.png ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9857,9 +9857,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 4:
-/*!*************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/pages.json ***!
-  \*************************************************************/
+/*!***************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/pages.json ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9868,9 +9868,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 47:
-/*!****************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/setstyle.png ***!
-  \****************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/setstyle.png ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9879,9 +9879,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 48:
-/*!*************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/right.png ***!
-  \*************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/right.png ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9890,9 +9890,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 49:
-/*!***************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/aboutus.png ***!
-  \***************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/aboutus.png ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9901,9 +9901,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 50:
-/*!*******************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/recommendus.png ***!
-  \*******************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/recommendus.png ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9912,9 +9912,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 51:
-/*!************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/help.png ***!
-  \************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/help.png ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9923,9 +9923,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 52:
-/*!*********************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/privacypolicy.png ***!
-  \*********************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/privacypolicy.png ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9934,9 +9934,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 53:
-/*!******************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/personcenter_icon/clearcache.png ***!
-  \******************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/clearcache.png ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9945,9 +9945,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 64:
-/*!***************************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/js_sdk/u-charts/u-charts/u-charts.js ***!
-  \***************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/js_sdk/u-charts/u-charts/u-charts.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15619,9 +15619,9 @@ if ( true && typeof module.exports === "object") {
 /***/ }),
 
 /***/ 87:
-/*!**************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/history.png ***!
-  \**************************************************************************/
+/*!****************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/history.png ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -15630,9 +15630,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 88:
-/*!************************************************************************!*\
-  !*** C:/Users/Lenovo/Desktop/jihua/jihua-client/static/icon/right.png ***!
-  \************************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/right.png ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

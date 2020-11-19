@@ -55,13 +55,17 @@
 }
 .zheng {
 	border: 1rpx solid white;
-	border-top-left-radius: 22.5rpx;
-	border-bottom-left-radius: 22.5rpx;
+	-webkit-border-top-left-radius: 22.5rpx;
+	        border-top-left-radius: 22.5rpx;
+	-webkit-border-bottom-left-radius: 22.5rpx;
+	        border-bottom-left-radius: 22.5rpx;
 }
 .dao {
 	border: 1rpx solid white;
-	border-top-right-radius: 22.5rpx;
-	border-bottom-right-radius: 22.5rpx;
+	-webkit-border-top-right-radius: 22.5rpx;
+	        border-top-right-radius: 22.5rpx;
+	-webkit-border-bottom-right-radius: 22.5rpx;
+	        border-bottom-right-radius: 22.5rpx;
 	color: rgb(98, 39, 37);
 }
 .jitang {
@@ -82,7 +86,8 @@
 	border: 1rpx solid #FFFFFF;
 	height: 55rpx;
 	line-height: 55rpx;
-	border-radius: 22.5rpx;
+	-webkit-border-radius: 22.5rpx;
+	        border-radius: 22.5rpx;
 }
 .time-bottom {
 	height: 720rpx;
@@ -138,8 +143,10 @@
 	background-color: white;
 	width: 100%;
 	color: #000000;
-	border-top-right-radius: 70rpx;
-	border-top-left-radius: 70rpx;
+	-webkit-border-top-right-radius: 70rpx;
+	        border-top-right-radius: 70rpx;
+	-webkit-border-top-left-radius: 70rpx;
+	        border-top-left-radius: 70rpx;
 	text-align: center;
 	z-index: 8;
 	height: 40%;
@@ -174,7 +181,8 @@
 	background-color: rgb(240, 240, 240);
 	height: 130rpx;
 	line-height: 130rpx;
-	border-radius: 24rpx;
+	-webkit-border-radius: 24rpx;
+	        border-radius: 24rpx;
 	font-size: 20rpx;
 	width: 350rpx;
 	margin-top: 30rpx;
@@ -194,10 +202,51 @@
 .begin-to-time {
 	height: 55rpx;
 	line-height: 55rpx;
-	border-radius: 22.5rpx;
+	-webkit-border-radius: 22.5rpx;
+	        border-radius: 22.5rpx;
 	background-color: #000000;
 	color: white;
 	width: 60%;
 	margin: 35rpx auto;
+}
+.slide-top {
+	-webkit-animation: slide-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	animation: slide-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.slide-bottom {
+	-webkit-animation: slide-bottom 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	animation: slide-bottom 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@-webkit-keyframes slide-top {
+0% {
+		bottom: -800rpx;
+}
+100% {
+		bottom: 0rpx;
+}
+}
+@keyframes slide-top {
+0% {
+		bottom: -800rpx;
+}
+100% {
+		bottom: 0rpx;
+}
+}
+@-webkit-keyframes slide-bottom {
+0% {
+		bottom: 0rpx;
+}
+100% {
+		bottom: -800rpx;
+}
+}
+@keyframes slide-bottom {
+0% {
+		bottom: 0rpx;
+}
+100% {
+		bottom: -800rpx;
+}
 }
 

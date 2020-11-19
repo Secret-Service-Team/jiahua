@@ -18,14 +18,18 @@
 	font-weight: bold;
 }
 .choice_d_w_m view:first-child {
-	border-top-left-radius: 30rpx;
-	border-bottom-left-radius: 30rpx;
+	-webkit-border-top-left-radius: 30rpx;
+	        border-top-left-radius: 30rpx;
+	-webkit-border-bottom-left-radius: 30rpx;
+	        border-bottom-left-radius: 30rpx;
 	padding-left: 10rpx;
 	border-right: 0rpx;
 }
 .choice_d_w_m view:nth-child(3) {
-	border-top-right-radius: 30rpx;
-	border-bottom-right-radius: 30rpx;
+	-webkit-border-top-right-radius: 30rpx;
+	        border-top-right-radius: 30rpx;
+	-webkit-border-bottom-right-radius: 30rpx;
+	        border-bottom-right-radius: 30rpx;
 	padding-right: 10rpx;
 	border-left: 0rpx;
 }
@@ -50,13 +54,17 @@
 	width: 200rpx;
 }
 .total_record .record_son:first-child {
-	border-top-left-radius: 30rpx;
-	border-bottom-left-radius: 30rpx;
+	-webkit-border-top-left-radius: 30rpx;
+	        border-top-left-radius: 30rpx;
+	-webkit-border-bottom-left-radius: 30rpx;
+	        border-bottom-left-radius: 30rpx;
 	border-right: 0rpx;
 }
 .total_record .record_son:nth-child(3) {
-	border-top-right-radius: 30rpx;
-	border-bottom-right-radius: 30rpx;
+	-webkit-border-top-right-radius: 30rpx;
+	        border-top-right-radius: 30rpx;
+	-webkit-border-bottom-right-radius: 30rpx;
+	        border-bottom-right-radius: 30rpx;
 	border-left: 0rpx;
 }
 page {
