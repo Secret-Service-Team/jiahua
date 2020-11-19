@@ -254,12 +254,12 @@ var _self;var canvaPie = null;var _default = { onLoad: function onLoad() {_self 
       times_of_pause: 0, //暂停次数
       cWidth: '', cHeight: '', pixelRatio: 1, serverData: '' };}, methods: { toJSON: function toJSON() {}, getServerData: function getServerData() {uni.request({ url: 'https://www.easy-mock.com/mock/5cc586b64fc5576cba3d647b/uni-wx-charts/chartsdata2', data: {}, success: function success(res) {console.log(res.data.data);var Pie = { series: [] }; //这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
           //Pie.series = res.data.data.Pie.series;
-          Pie.series = [{ "name": "计划1", "data": 50, "color": "rgba(0,0,0,0.8)" }, { "name": "计划2", "data": 30, "color": "rgba(0,0,0,0.6)" }, { "name": "计划3", "data": 20,
-            "color": "rgba(0,0,0,0.3)" },
+          Pie.series = [{ "name": "计划1", "data": 50, "color": "red" }, { "name": "计划2", "data": 30, "color": "pink" }, { "name": "计划3", "data": 20,
+            "color": "green" },
           {
             "name": "计划4",
             "data": 18,
-            "color": "rgba(0,0,0,0.1)" }];
+            "color": "yellow" }];
 
           _self.showPie("canvasPie", Pie);
         },

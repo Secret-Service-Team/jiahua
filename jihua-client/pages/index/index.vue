@@ -589,9 +589,10 @@
 		line-height: 130rpx;
 		border-radius: 24rpx;
 		font-size: 20rpx;
-		width: 350rpx;
+		width: 300rpx;
 		margin-top: 30rpx;
 		margin-bottom: 30rpx;
+		margin-left:50rpx;
 	}
 
 	.white {

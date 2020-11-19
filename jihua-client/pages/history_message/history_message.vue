@@ -81,19 +81,19 @@
 						Pie.series = [{
 							"name": "计划1",
 							"data": 50,
-							"color":"rgba(0,0,0,0.8)"
+							"color":"red"
 						}, {
 							"name": "计划2",
 							"data": 30,
-							"color":"rgba(0,0,0,0.6)"
+							"color":"pink"
 						}, {
 							"name": "计划3",
 							"data": 20,
-							"color":"rgba(0,0,0,0.3)"
+							"color":"green"
 						}, {
 							"name": "计划4",
 							"data": 18,
-							"color":"rgba(0,0,0,0.1)"
+							"color":"yellow"
 						}];
 						_self.showPie("canvasPie", Pie);
 					},
