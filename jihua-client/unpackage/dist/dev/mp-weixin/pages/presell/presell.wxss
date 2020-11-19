@@ -26,10 +26,8 @@ image {
 		width: 80%;
 		/* background-color: blue; */
 		border: 3rpx solid #9691D9;
-		-webkit-border-radius: 28rpx;
-		        border-radius: 28rpx;
-		-webkit-box-shadow: 1px 0px 12px 2px #9691D9;
-		        box-shadow: 1px 0px 12px 2px #9691D9;
+		border-radius: 28rpx;
+		box-shadow: 1px 0px 12px 2px #9691D9;
 		font-size: 30rpx;
 		position: absolute;
 		top: 140rpx;
@@ -68,10 +66,8 @@ image {
 		width: 42%;
 		height: 150rpx;
 		border: 5rpx solid #ccc;
-		-webkit-box-shadow: 1px 0px 12px 2px #ccc;
-		        box-shadow: 1px 0px 12px 2px #ccc;
-		-webkit-border-radius: 28rpx;
-		        border-radius: 28rpx;
+		box-shadow: 1px 0px 12px 2px #ccc;
+		border-radius: 28rpx;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -132,10 +128,8 @@ image {
 		height: 60%;
 		width: 100%;
 		background-color: #fff;
-		-webkit-border-top-left-radius: 45rpx;
-		        border-top-left-radius: 45rpx;
-		-webkit-border-top-right-radius: 45rpx;
-		        border-top-right-radius: 45rpx;
+		border-top-left-radius: 45rpx;
+		border-top-right-radius: 45rpx;
 		border-top: 2rpx solid black;
 }
 .add-detail-button-wrapper {
@@ -148,8 +142,7 @@ image {
 }
 .add-detail-button {
 		background-color: rgb(16, 16, 16);
-		-webkit-border-radius: 30px;
-		        border-radius: 30px;
+		border-radius: 30px;
 		width: 100rpx;
 		height: 100rpx;
 		margin: 20rpx auto;

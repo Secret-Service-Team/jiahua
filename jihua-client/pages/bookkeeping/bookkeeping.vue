@@ -78,16 +78,14 @@
 				// 将流水中的均摊替换为正确内容
 			},
 			huoquliushui() {
-				uni.request({
-					url: 'http://localhost:3000/api/bookkeeping/turnover/', //仅为示例，并非真实接口地址。
-					data: {
-						date: new Date().getTime()
-					},
-					success: (res) => {
-						console.log(res.data.flows);
-						this.flows = res.data.flows;
-					}
-				});
+				
+				this.$request('/bookkeeping/turnover/', {'date': new Date().getTime()
+				// 传参参数名：参数值,如果没有，就不需要传
+				}).then(res => {
+				// 打印调用成功回调
+				console.log(res.flows);
+				this.flows = res.flows;
+				})
 			},
 			addDetail() {
 				this.showAddDetail = true;

@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1932,6 +1932,41 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ 120:
+/*!*******************************************************!*\
+  !*** D:/uni-app/jihua/jihua-client/common/request.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}var baseUrl = 'http://192.168.43.59:3000/api';
+var request = function request()
+{var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';var date = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'GET';var header = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      method: type,
+      url: baseUrl + url,
+      data: date,
+      header: header,
+      dataType: 'json' }).
+    then(function (response) {
+      setTimeout(function () {
+        uni.hideLoading();
+      }, 200);var _response = _slicedToArray(
+      response, 2),error = _response[0],res = _response[1];
+      resolve(res.data);
+    }).catch(function (error) {var _error = _slicedToArray(
+      error, 2),err = _error[0],res = _error[1];
+      reject(err);
+    });
+  });
+};var _default =
+request;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -7461,7 +7496,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7482,14 +7517,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7575,7 +7610,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7983,9 +8018,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 27:
-/*!*********************************************************************!*\
-  !*** E:/study/大三上/软工实践/jihua/jihua-client/static/icon/calender.png ***!
-  \*********************************************************************/
+/*!**************************************************************!*\
+  !*** D:/uni-app/jihua/jihua-client/static/icon/calender.png ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7994,9 +8029,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 28:
-/*!******************************************************************!*\
-  !*** E:/study/大三上/软工实践/jihua/jihua-client/static/icon/table.png ***!
-  \******************************************************************/
+/*!***********************************************************!*\
+  !*** D:/uni-app/jihua/jihua-client/static/icon/table.png ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8005,9 +8040,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 29:
-/*!********************************************************************!*\
-  !*** E:/study/大三上/软工实践/jihua/jihua-client/static/icon/presell.png ***!
-  \********************************************************************/
+/*!*************************************************************!*\
+  !*** D:/uni-app/jihua/jihua-client/static/icon/presell.png ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8047,9 +8082,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!*******************************************************!*\
-  !*** E:/study/大三上/软工实践/jihua/jihua-client/pages.json ***!
-  \*******************************************************/
+/*!************************************************!*\
+  !*** D:/uni-app/jihua/jihua-client/pages.json ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8058,9 +8093,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 46:
-/*!*********************************************************************************!*\
-  !*** E:/study/大三上/软工实践/jihua/jihua-client/js_sdk/u-charts/u-charts/u-charts.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************!*\
+  !*** D:/uni-app/jihua/jihua-client/js_sdk/u-charts/u-charts/u-charts.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13731,15 +13766,15 @@ if ( true && typeof module.exports === "object") {
 
 /***/ }),
 
-/***/ 91:
-/*!****************************************************************************!*\
-  !*** E:/study/大三上/软工实践/jihua/jihua-client/compoments/uni-calendar/util.js ***!
-  \****************************************************************************/
+/***/ 98:
+/*!*********************************************************************!*\
+  !*** D:/uni-app/jihua/jihua-client/compoments/uni-calendar/util.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 92));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 99));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 Calendar = /*#__PURE__*/function () {
   function Calendar()
@@ -14094,10 +14129,10 @@ Calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 92:
-/*!********************************************************************************!*\
-  !*** E:/study/大三上/软工实践/jihua/jihua-client/compoments/uni-calendar/calendar.js ***!
-  \********************************************************************************/
+/***/ 99:
+/*!*************************************************************************!*\
+  !*** D:/uni-app/jihua/jihua-client/compoments/uni-calendar/calendar.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

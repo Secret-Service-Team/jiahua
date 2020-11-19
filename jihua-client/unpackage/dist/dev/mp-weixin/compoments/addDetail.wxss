@@ -10,8 +10,7 @@ switch.data-v-59d78ae6 {
 	background-color: #fff;
 	border: none;
 	border-bottom: 4rpx solid #ccc;
-	-webkit-box-shadow: 0px 2px #777;
-	        box-shadow: 0px 2px #777;
+	box-shadow: 0px 2px #777;
 	/* box-shadow: 0px 1px 10px #777; */
 	margin-top: 20rpx;
 	width: 90%;
