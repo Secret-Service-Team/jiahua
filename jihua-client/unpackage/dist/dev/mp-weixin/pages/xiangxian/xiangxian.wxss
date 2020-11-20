@@ -1,0 +1,128 @@
+
+.setting{
+		margin-top: 20rpx;
+		margin-left:80rpx ;
+		height: 60%;
+		font-weight: bold;
+}
+.setting view{
+		margin-top: 30rpx;
+}
+.title{
+		margin-top: 45rpx;
+		margin-left: 80rpx;
+}
+.top {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		        justify-content: space-between;
+		width: 100%;
+		height: 600rpx;
+}
+.top-left {
+		width: 50%;
+		height: 100%;
+		
+		color: rgb(211,170,102);
+}
+.top-right {
+		width: 50%;
+		height: 100%;
+		
+		color: rgb(204,126,121);
+}
+.bottom {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		        justify-content: space-between;
+		width: 100%;
+		height: 600rpx;
+}
+.bottom-left {
+		width: 50%;
+		height: 100%;
+		
+		color: rgb(167,214,244);
+}
+.bottom-right {
+		width: 50%;
+		height: 100%;
+		
+		color: rgb(116,166,144);
+}
+.shuzhi ._img {
+		width: 55rpx;
+		height: 55rpx;
+		position: fixed;
+		top: 0;
+		left: 350rpx;
+}
+.shugang {
+		position: fixed;
+		top: 40rpx;
+		width: 9rpx;
+		height: 86%;
+		background-color: rgb(51, 51, 51);
+		left: 375rpx;
+}
+.right{
+		width: 55rpx;
+		height: 55rpx;
+		position: fixed;
+		top: 47.5%;
+		right: 0;
+}
+.circle{
+		left: 5rpx;
+		width: 35rpx;
+		height: 35rpx;
+		position: fixed;
+		top: 48.2%;
+}
+.henggan{
+		position: fixed;
+		top: 49.3%;
+		width: 90%;
+		height: 9rpx;
+		background-color: rgb(51, 51, 51);
+		right: 43rpx;
+}
+.addnew {
+		position: fixed;
+		bottom: 2%;
+		margin: 0 auto;
+		width: 100rpx;
+		left: 326rpx;
+		z-index: 6;
+}
+.addnew ._img {
+		width: 100rpx;
+		height: 100rpx;
+}
+.slide-top {
+		-webkit-animation: slide-top 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+		animation: slide-top 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@-webkit-keyframes slide-top {
+0% {
+			bottom: -800rpx;
+}
+100% {
+			bottom: 0rpx;
+}
+}
+@keyframes slide-top {
+0% {
+			bottom: -800rpx;
+}
+100% {
+			bottom: 0rpx;
+}
+}
+

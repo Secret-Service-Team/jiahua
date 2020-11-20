@@ -140,7 +140,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timeLine = function timeLine() {Promise.all(/*! require.ensure | components/xuan-timeLine/xuan-timeLine */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/xuan-timeLine/xuan-timeLine")]).then((function () {return resolve(__webpack_require__(/*! ../../components/xuan-timeLine/xuan-timeLine.vue */ 143));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timeLine = function timeLine() {Promise.all(/*! require.ensure | components/xuan-timeLine/xuan-timeLine */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/xuan-timeLine/xuan-timeLine")]).then((function () {return resolve(__webpack_require__(/*! ../../components/xuan-timeLine/xuan-timeLine.vue */ 149));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -206,6 +206,11 @@ __webpack_require__.r(__webpack_exports__);
     jumptobcalender: function jumptobcalender() {
       uni.navigateTo({
         url: "../bcalendar/bcalendar" });
+
+    },
+    goto_xiangxian: function goto_xiangxian() {
+      uni.navigateTo({
+        url: "../xiangxian/xiangxian" });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

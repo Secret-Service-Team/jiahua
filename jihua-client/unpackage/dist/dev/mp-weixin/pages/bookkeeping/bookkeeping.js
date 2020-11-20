@@ -150,7 +150,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var detail = function detail() {__webpack_require__.e(/*! require.ensure | components/detail */ "components/detail").then((function () {return resolve(__webpack_require__(/*! ../../components/detail.vue */ 153));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var addDetail = function addDetail() {__webpack_require__.e(/*! require.ensure | components/addDetail */ "components/addDetail").then((function () {return resolve(__webpack_require__(/*! ../../components/addDetail.vue */ 160));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var detail = function detail() {__webpack_require__.e(/*! require.ensure | components/detail */ "components/detail").then((function () {return resolve(__webpack_require__(/*! ../../components/detail.vue */ 159));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var addDetail = function addDetail() {__webpack_require__.e(/*! require.ensure | components/addDetail */ "components/addDetail").then((function () {return resolve(__webpack_require__(/*! ../../components/addDetail.vue */ 166));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

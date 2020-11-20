@@ -8,7 +8,7 @@
 					</view>
 					
 				</view>
-				<view class="topright"> 四象限 </view>
+				<view class="topright" @click="goto_xiangxian"> 四象限 </view>
 				
 			</view>
 			<view class="middle">
@@ -66,6 +66,11 @@
 					url: "../bcalendar/bcalendar"
 				});
 			},
+			goto_xiangxian(){
+				uni.navigateTo({
+					url:"../xiangxian/xiangxian"
+				})
+			}
 		}
 	}
 </script>

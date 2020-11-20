@@ -13,7 +13,8 @@
     "pages/setstyle/setstyle",
     "pages/aboutus/aboutus",
     "pages/help/help",
-    "pages/privacypolicy/privacypolicy"
+    "pages/privacypolicy/privacypolicy",
+    "pages/xiangxian/xiangxian"
   ],
   "subPackages": [],
   "window": {
@@ -52,6 +53,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap75.json"
+  "usingComponents": {}
 }
