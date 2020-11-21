@@ -1,0 +1,118 @@
+
+.shuiping {
+	 
+	-webkit-animation: shuiping 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	animation: shuiping 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	-webkit-transform-origin:  center 50rpx ;
+	transform-origin:  center 50rpx ;
+}
+.shuzhi {
+	-webkit-animation: shuzhi 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	animation: shuzhi 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	-webkit-transform-origin: center 50rpx;
+	transform-origin:  center 50rpx;
+}
+@-webkit-keyframes shuiping {
+0% {
+		-webkit-transform: rotate(90deg);
+		        transform: rotate(90deg);
+}
+100% {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+}
+}
+@keyframes shuiping {
+0% {
+		-webkit-transform: rotate(90deg);
+		        transform: rotate(90deg);
+}
+100% {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+}
+}
+@-webkit-keyframes shuzhi {
+0% {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+}
+100% {
+		-webkit-transform: rotate(90deg);
+		        transform: rotate(90deg);
+}
+}
+@keyframes shuzhi {
+0% {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+}
+100% {
+		-webkit-transform: rotate(90deg);
+		        transform: rotate(90deg);
+}
+}
+.log-father {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	margin-top: 100rpx;
+	height: 50%;
+}
+.loge {
+	width: 300rpx;
+	height: 300rpx;
+	margin-left: auto;
+	margin-right: auto;
+}
+.lines {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	height: 300rpx;
+	margin-top: 90rpx;
+}
+.style {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	height: 100rpx;
+	line-height: 100rpx;
+}
+.style-son {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+}
+.key-icon {
+	width: 40rpx;
+	height: 40rpx;
+	padding-top: 28rpx;
+	margin-left: 25rpx;
+}
+.title {
+	margin-left: 15rpx;
+	font-size: 16px;
+}
+.right-icon {
+	width: 55rpx;
+	height: 55rpx;
+	margin-right: 33rpx;
+	padding-top: 28rpx;
+}
+.body {
+	margin-left: 30rpx;
+	margin-right: 30rpx;
+	font-size: 15px;
+	border-bottom: 2rpx solid #e3e3e3;
+}
+

@@ -31,7 +31,7 @@
 			height: '40px'
 		},
 		'small': {
-			width: '200px',
+			width: '100px',
 			height: '30px'
 		},
 		'mini': {
