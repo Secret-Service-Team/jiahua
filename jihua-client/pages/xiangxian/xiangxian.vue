@@ -37,7 +37,7 @@
 			<view class="henggan"></view>
 		    <img src="~@/static/xiangxian/circle.png" alt="" class="circle">
 		</view>
-		<view class="addnew">
+		<view class="addnew"@click="jumptoadd()  ">
 			<img src="~@/static/xiangxian/add.png"></img>
 		</view>
 	</view>
@@ -67,7 +67,11 @@
 
 		},
 		methods: {
-
+			jumptoadd() {
+				uni.navigateTo({
+					url: "../addnote/addnote"
+				});
+			},
 		}
 	}
 </script>
