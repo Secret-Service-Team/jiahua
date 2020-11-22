@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/xuan-timeLine/xuan-timeLine":1,"components/addDetail":1,"components/detail":1,"components/easy-select/easy-select":1,"components/uni-calendar/uni-calendar":1,"components/uni-calendar/uni-calendar-item":1};
+/******/ 		var cssChunks = {"components/uni-tag/uni-tag":1,"components/xuan-timeLine/xuan-timeLine":1,"components/addDetail":1,"components/detail":1,"components/easy-select/easy-select":1,"components/uni-calendar/uni-calendar":1,"components/uni-calendar/uni-calendar-item":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/xuan-timeLine/xuan-timeLine":"components/xuan-timeLine/xuan-timeLine","components/addDetail":"components/addDetail","components/detail":"components/detail","components/easy-select/easy-select":"components/easy-select/easy-select","components/uni-calendar/uni-calendar":"components/uni-calendar/uni-calendar","components/uni-calendar/uni-calendar-item":"components/uni-calendar/uni-calendar-item"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/uni-tag/uni-tag":"components/uni-tag/uni-tag","components/xuan-timeLine/xuan-timeLine":"components/xuan-timeLine/xuan-timeLine","components/addDetail":"components/addDetail","components/detail":"components/detail","components/easy-select/easy-select":"components/easy-select/easy-select","components/uni-calendar/uni-calendar":"components/uni-calendar/uni-calendar","components/uni-calendar/uni-calendar-item":"components/uni-calendar/uni-calendar-item"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

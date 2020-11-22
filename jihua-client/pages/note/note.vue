@@ -8,12 +8,27 @@
 					</view>
 					
 				</view>
+				
 				<view class="topright" @click="goto_xiangxian"> 四象限 </view>
 				
 			</view>
 			<view class="middle">
 							
 				<time-line ref="timeline" location="center" ></time-line>
+			
+			
+			
+			
+							
+			
+			</view>
+			<view class="down">
+							
+				<view class="add" @click="jumptoadd()  ">
+					
+						<img src="../../static/beiwang/添加.png" alt="" />
+					
+				</view>
 			
 			
 			
@@ -70,7 +85,13 @@
 				uni.navigateTo({
 					url:"../xiangxian/xiangxian"
 				})
-			}
+			},
+			jumptoadd() {
+				uni.navigateTo({
+					url: "../addnote/addnote"
+				});
+			},
+
 		}
 	}
 </script>
@@ -79,15 +100,24 @@
 	
 
 	.top-container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: #FFF;
+		width: 100%;
+		height: 10%;
 		display: flex;
-		margin-top: 15rpx;
+		margin-top: 0rpx;
+		
 		/* flex:1 1 0; */
 		justify-content: space-between;
+		z-index: 100;
 	}
 
 	.topright {
 		/* flex-flow: space-between; */
 		margin-top: 33rpx;
+		margin-bottom: 33rpx;
 		margin-right: 33rpx;
 		font-size: 15px;
 		border: 1rpx solid black;
@@ -105,7 +135,13 @@
 		margin-left: 33rpx;
 		
 	}
-
+	.topmiddle img {
+		width: 100rpx;
+		height: 100rpx;
+		margin-top: 100rpx;
+		margin-left: 20rpx;
+		
+	}
 	.topleft {
 		/* flex-flow: space-between; */
 		margin-top: 8rpx;
@@ -119,7 +155,32 @@
 
 	}
 
-	
+	.middle{
+		padding: 100rpx 0;
+		width: 100%;
+		height: 10%;
+		margin-top: 8rpx;
+	}
+	.down {
+		
+		width: 100%;
+		height: 100rpx;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		
+		background-color: #FFF;
+		
+		/* flex:1 1 0; */
+		justify-content: space-between;
+		z-index: 100;
+	}
+	.add img{
+		width: 70rpx;
+		height: 70rpx;
+		
+		margin-left: 345rpx;
+	}
 
 	
 

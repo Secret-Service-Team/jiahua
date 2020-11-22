@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/addnote/addnote",
     "pages/index/index",
     "pages/note/note",
     "pages/bookkeeping/bookkeeping",
@@ -53,5 +54,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap28.json"
 }
