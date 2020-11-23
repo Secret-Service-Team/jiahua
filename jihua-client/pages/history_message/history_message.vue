@@ -2,34 +2,77 @@
 	<view class="history_message">
 		<h1 style="font-weight: bold; margin-left: 42rpx; font-size: 50rpx;">历史统计</h1>
 		<view class="choice_d_w_m">
-			<view>日</view>
-			<view>周</view>
-			<view>月</view>
+			<view @click="goto_day">日</view>
+			<view @click="goto_week">周</view>
+			<view @click="goto_month">月</view>
 		</view>
-		<view class="total_record">
+		<view class="total_record" v-show="show_of_day">
 			<view class="record_son">
 				<view>完成次数</view>
-				<view>{{times_of_finished}}</view>
+				<view>{{times_of_finished_day}}</view>
 			</view>
 			<view class="record_son">
 				<view>
 					时长
 				</view>
-				<view>{{times_of_total>=3600?
-				' '+(Math.floor(times_of_total/3600)+' h '+(Math.floor(times_of_total/60-Math.floor(times_of_total/3600)*60))+' min')
+				<view>{{times_of_total_day>=3600?
+				' '+(Math.floor(times_of_total_day/3600)+' h '+(Math.floor(times_of_total_day/60-Math.floor(times_of_total_day/3600)*60))+' min')
 				:
-				('  '+Math.floor(times_of_total/60)+' min')}}
+				('  '+Math.floor(times_of_total_day/60)+' min')}}
 				</view>
 			</view>
 			<view class="record_son">
 				<view>暂停次数</view>
 				<view>
-					{{times_of_pause}}
+					{{times_of_pause_day}}
 				</view>
 			</view>
 		</view>
-
-		<view class="qiun-columns">
+        <view class="total_record" v-show="show_of_week">
+        	<view class="record_son">
+        		<view>完成次数</view>
+        		<view>{{times_of_finished_week}}</view>
+        	</view>
+        	<view class="record_son">
+        		<view>
+        			时长
+        		</view>
+        		<view>{{times_of_total_week>=86400?
+        		' '+(Math.floor(times_of_total_week/86400)+' day '+(Math.floor(times_of_total_week/3600-Math.floor(times_of_total_week/86400)*24))+' h')
+        		:
+        		('  '+Math.floor(times_of_total_week/3600)+' h')}}
+        		</view>
+        	</view>
+        	<view class="record_son">
+        		<view>暂停次数</view>
+        		<view>
+        			{{times_of_pause_week}}
+        		</view>
+        	</view>
+        </view>
+		<view class="total_record" v-show="show_of_month">
+			<view class="record_son">
+				<view>完成次数</view>
+				<view>{{times_of_finished_month}}</view>
+			</view>
+			<view class="record_son">
+				<view>
+					时长
+				</view>
+				<view>{{times_of_total_month>=86400?
+				' '+(Math.floor(times_of_total_month/86400)+' day '+(Math.floor(times_of_total_month/3600-Math.floor(times_of_total_month/86400)*24))+' h')
+				:
+				('  '+Math.floor(times_of_total_month/3600)+' h')}}
+				</view>
+			</view>
+			<view class="record_son">
+				<view>暂停次数</view>
+				<view>
+					{{times_of_pause_month}}
+				</view>
+			</view>
+		</view>
+		<view class="qiun-columns" v-show="true">
 			<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
 				<view class="qiun-title-dot-light">饼状图</view>
 			</view>
@@ -49,19 +92,38 @@
 			this.cWidth = uni.upx2px(750);
 			this.cHeight = uni.upx2px(500);
 			this.getServerData();
-			this.times_of_finished=3
-			this.times_of_pause=2
-			this.times_of_total=26600
+			this.times_of_finished_day=3
+			this.times_of_pause_day=2
+			this.times_of_total_day=26600
+			
+			this.times_of_finished_week=10
+			this.times_of_pause_week=12
+			this.times_of_total_week=26600*7
+			
+			this.times_of_finished_month=60
+			this.times_of_pause_month=55
+			this.times_of_total_month=26600*30
+			
+			this.show_of_day=true
 		},
 		data() {
 			return {
-				times_of_finished: 0, //完成次数
-				times_of_total: 0, //完成总时长
-				times_of_pause: 0, //暂停次数
+				times_of_finished_day: 0, //完成次数
+				times_of_total_day: 0, //完成总时长
+				times_of_pause_day: 0, //暂停次数
+				times_of_finished_week: 0, //周完成次数
+				times_of_total_week: 0, //周完成总时长
+				times_of_pause_week: 0, //周暂停次数
+				times_of_finished_month: 0, //月完成次数
+				times_of_total_month: 0, //月完成总时长
+				times_of_pause_month: 0, //月暂停次数
 				cWidth: '',
 				cHeight: '',
 				pixelRatio: 1,
 				serverData: '',
+				show_of_day:false,
+				show_of_week:false,
+				show_of_month:false
 			};
 		},
 		methods: {
@@ -123,7 +185,18 @@
 					},
 				});
 			},
-			
+		goto_day(){
+			this.show_of_month=this.show_of_week=false
+			this.show_of_day=true
+		},
+		goto_week(){
+			this.show_of_month=this.show_of_day=false
+			this.show_of_week=true
+		},
+		goto_month(){
+			this.show_of_day=this.show_of_week=false
+			this.show_of_month=true
+		}
 		}
 	};
 </script>

@@ -1,7 +1,13 @@
 <template>
 	<view>
 		<view class="topBar">
-			<view>个人中心</view>
+			<view class="topleft">
+				<img src="~@/static/personcenter_icon/photo.png" alt="" />
+			</view>
+			<view class="topright">
+				<view class="name">飞翔的企鹅</view>
+				<!-- <view class="motto">人寿几何？</view> -->
+			</view>
 		</view>
 		
 		<view class="lines">
@@ -21,13 +27,13 @@
 				<img class="right-icon" src="~@/static/personcenter_icon/right.png" alt="" />
 			</view>
 		
-			<view class="style" @click="jumptoreCommendUs">
+<!-- 			<view class="style" @click="jumptoreCommendUs">
 				<view class="style-son">
 					<img class="key-icon" src="~@/static/personcenter_icon/recommendus.png" alt="" />
 					<view class="title">推荐我们</view>
 				</view>
 				<img class="right-icon" src="~@/static/personcenter_icon/right.png" alt="" />
-			</view>
+			</view> -->
 			
 			<view class="style" @click="jumptoHelp">
 				<view class="style-son">
@@ -94,18 +100,50 @@
 </script>
 
 <style>
-	.topBar view {	
-		margin-top: 20rpx;
-		margin-left: 20rpx;
-		font-size: 22px;
+	.topBar {	
+		display: flex;
+		margin-top: 30rpx;
+		justify-content: space-between;
+		width: 100%;
+		height: 20%;
+		background-color: #f6f4f5;
 	}
+	.topleft {
+		margin-top: 50rpx;
+		margin-left: 65rpx;
+		width: 200rpx;
+		height: 180rpx;
+		padding-bottom: 50rpx;
+		/* background-color: #4CD964; */
+	} 
+	.topleft img {
+		width: 100%;
+		height: 100%;
+	}
+	.topright {
+		width: 57%;
+		/* background-color: #FF0000; */
+		display: flex;
+		flex-direction: column;
+	}
+	.name {
+		line-height: 200rpx;
+		/* text-align: center; */
+		font-size: 20px;
+		font-weight: bold;
+	}
+	/* .motto {
+		height: 60%;
+		font-size: 15px;
+	} */
 
 	.lines {
+		background-color: #f6f4f5;
 		display: flex;
 		flex-direction: column;
 		height: 600rpx;
 		justify-content: space-around;
-		margin-top: 40rpx;
+		margin-top: 50rpx;
 		/*border: 1rpx solid black;*/
 	}
 	.style {
@@ -113,8 +151,8 @@
 		justify-content: space-between;
 		height: 100rpx;
 		line-height: 100rpx;
-		border: 2rpx solid #e3e3e3;
-	    border-top: 0;
+	/* 	border: 2rpx solid #e3e3e3;
+	    border-top: 0; */
 	}
 	.style-son {
 		display: flex;

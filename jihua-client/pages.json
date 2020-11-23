@@ -2,13 +2,13 @@
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		
 		{
+			"path": "pages/index/index",
+			"style": {}
+		},{
 				    "path" : "pages/addnote/addnote",
 				    "style" : {}
 				}
-				,{
-			"path": "pages/index/index",
-			"style": {}
-		}, {
+				, {
 			"path": "pages/note/note",
 			"style": {}
 		}, {
@@ -94,6 +94,15 @@
 
 	    ,{
             "path" : "pages/xiangxian/xiangxian",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "components/easy-select/history_page/history_page",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",

@@ -178,8 +178,9 @@
 	.add img{
 		width: 70rpx;
 		height: 70rpx;
-		
+		bottom: 0;
 		margin-left: 345rpx;
+		margin-bottom: 0rpx;
 	}
 
 	

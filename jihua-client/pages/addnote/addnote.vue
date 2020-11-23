@@ -49,13 +49,27 @@
 			</view>
 			<view class="group5">
 				<view class="title5-left">
-					<view class="title5-left-1">分</view>
+					<view class="title5-left-1">描</view>
 						<view class="title5-left-1"> </view>
-					<view class="title5-left-2">类</view>
+					<view class="title5-left-2">述</view>
 				</view>
 				<view class="title5-right">
 					<input type="text" placeholder="请输入具体标签">
 				</view>
+			</view>
+			<view class="group6">
+				<picker mode="date" :value="recordDate" @change="bindDateChange">
+					  <view class="picker">
+						日 期<span class="span-date">{{recordDate}}</span>
+					  </view>
+				</picker>
+			</view>
+			<view class="group6">
+			<picker mode="time" :value="recordTime" @change="bindTimeChange">
+				<view class="picker" >
+					时 间<span class="span-time">{{recordTime}}</span>
+				</view>
+			</picker>
 			</view>
 		</view>
 
@@ -66,10 +80,11 @@
 </template>
 
 <script>
+	import addDetail from '../../components/addDetail.vue';
 	import uniTag from "@/components/uni-tag/uni-tag.vue"
 	export default {
 		components: {
-
+			
 			uniTag
 		},
 		data() {
@@ -77,6 +92,8 @@
 				flag_hide: false,
 				time: 0,
 				isclick: true,
+				recordTime:'01:30',
+				recordDate: '20201106',
 			}
 		},
 		onPageScroll() {
@@ -85,7 +102,14 @@
 				this.$refs.timeline.getScroll();
 			}
 		},
+		onLoad() {
+			const date = new Date();
+			this.recordTime = `${date.getHours()}-${date.getMinutes() + 1}`;
+			this.recordDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+		
+		},
 		methods: {
+				
 			timer() {
 				if (this.time > 0) {
 					this.isclick = false;
@@ -96,6 +120,7 @@
 					this.time = 10
 				}
 			},
+			
 			hide() {
 				this.flag_hide = !this.flag_hide
 			},
@@ -109,6 +134,26 @@
 					url: "../addnote/addnote"
 				});
 			},
+			bindDateChange(e) {
+				
+				this.recordDate = e.target.value;
+				console.log(e.target)
+			},
+			bindTimeChange(e) {
+				this.recordTime = e.target.value;
+				console.log(e.target)
+			},
+			
+			showdata(){
+				const date = new Date();
+				this.recordDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+				this.avgDate = this.recordDate;
+				return this.recordDate
+			},
+			showtime(){
+				
+				return this.recordTime
+			}
 		}
 	}
 </script>
@@ -166,7 +211,12 @@ width: 460px;
 		display: flex;
 		background-color: #FFF;
 	}
-
+.span-date {
+		font-family: "agency fb" "arial, helvetica, sans-serif";
+		font-weight: 600;
+		padding: 5rpx;
+		background-color: #eee;
+	}
 	.group5 {
 width: 460px;
 		height: 50px;
@@ -265,7 +315,7 @@ margin-left: 95rpx;
 		font-style: normal;
 		opacity: 1;
 		text-overflow: ellipsis;
-margin-left: 95rpx;
+		margin-left: 95rpx;
 
 	}
 
@@ -305,7 +355,7 @@ margin-left: 13rpx;
 		font-style: normal;
 		opacity: 1;
 		text-overflow: ellipsis;
-margin-left: 95rpx;
+		margin-left: 95rpx;
 	}
 
 	.title5-left {
@@ -355,4 +405,5 @@ margin-left: 95rpx;
 		font-size: 22px;
 		margin-bottom: 20rpx;
 	}
+	
 </style>

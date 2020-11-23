@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/addnote/addnote",
     "pages/index/index",
+    "pages/addnote/addnote",
     "pages/note/note",
     "pages/bookkeeping/bookkeeping",
     "pages/personal/personal",
@@ -15,7 +15,8 @@
     "pages/aboutus/aboutus",
     "pages/help/help",
     "pages/privacypolicy/privacypolicy",
-    "pages/xiangxian/xiangxian"
+    "pages/xiangxian/xiangxian",
+    "components/easy-select/history_page/history_page"
   ],
   "subPackages": [],
   "window": {
@@ -55,5 +56,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap28.json"
+  "sitemapLocation": "sitemap57.json"
 }

@@ -42,11 +42,11 @@
 			</view>
 			<view class="timer" @click="change_time_in_dao">
 				<view v-show="!zheng_or_dao_showing">
-				<picker mode="time" :value="recordTime" @change="bindTimeChange" start="00:01" end="16:00">
-					<view class="picker" >
-						<span>{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</span>
-					</view>
-				</picker>
+					<picker mode="time" :value="recordTime" @change="bindTimeChange" start="00:01" end="16:00">
+						<view class="picker">
+							<span>{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</span>
+						</view>
+					</picker>
 				</view>
 				<view v-show="zheng_or_dao_showing">{{min>=10?min:'0'+min}}:{{sec>=10?sec:'0'+sec}}</view>
 			</view>
@@ -72,9 +72,9 @@
 					<view class="write-things">
 						<input type="text" id="writeThing" v-model="target" :class="style" @focus="input_in" @blur="input_out" ref="input_in">
 					</view>
-					<view class="choice-things" >
+					<view class="choice-things">
 						<picker @change="bindPickerChange" :range="need_to_do_list">
-								<label class="">{{need_to_do_list[index]}}</label>		
+							<label class="">{{need_to_do_list[index]}}</label>
 						</picker>
 					</view>
 				</view>
@@ -99,7 +99,7 @@
 		data() {
 			return {
 				a: 0, //canvas比例因子
-				recordTime:'01:30',
+				recordTime: '01:30',
 				total_time: 0,
 				total_height: 0,
 				min: 0,
@@ -114,14 +114,14 @@
 				show_of_setting_things: false, //是否显示选择待办事项界面，true进入
 				target: "请输入专注目标",
 				style: ["write", "white"],
-				content_style:[],
+				content_style: [],
 				dao_total_time: 0, //倒计时总时间
 				i: 1, //记次数用的
 				context: uni.createCanvasContext('myCanvas'), //画布名字
 				begin_min: 0, //开始时候的min
 				begin_sec: 0, //开始时候的sec
-				index:0,//索引值
-				zheng_or_dao_showing:true,//正/倒计时显示标志位
+				index: 0, //索引值
+				zheng_or_dao_showing: true, //正/倒计时显示标志位
 			}
 		},
 		onLoad() {
@@ -129,22 +129,23 @@
 			this.a = this.get_a() / 750
 		},
 		methods: {
-            bindPickerChange(e) {	
-            	this.index = e.target.value			//将数组改变索引赋给定义的index变量
-            	this.jg=this.need_to_do_list[this.index]
-						                               //将array【改变索引】的值赋给定义的jg变量
-            },
-            bindTimeChange(e) {
-            	this.recordTime = e.target.value;
-            	this.min=60*(parseInt(this.recordTime[0])*10+parseInt(this.recordTime[1]))+parseInt(this.recordTime[3])*10+parseInt(this.recordTime[4])
+			bindPickerChange(e) {
+				this.index = e.target.value //将数组改变索引赋给定义的index变量
+				this.jg = this.need_to_do_list[this.index]
+				//将array【改变索引】的值赋给定义的jg变量
+			},
+			bindTimeChange(e) {
+				this.recordTime = e.target.value;
+				this.min = 60 * (parseInt(this.recordTime[0]) * 10 + parseInt(this.recordTime[1])) + parseInt(this.recordTime[3]) *
+					10 + parseInt(this.recordTime[4])
 				this.context.setStrokeStyle("white")
 				this.context.setLineWidth(3 * this.a)
 				this.context.moveTo(220 * this.a, 0)
 				this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
 				this.context.stroke()
 				this.context.draw()
-				this.sec=0
-            },
+				this.sec = 0
+			},
 			getData() {
 				var result = 0
 				uni.getSystemInfo({
@@ -171,20 +172,20 @@
 				if (!this.time_of_index) {
 					if (!this.zheng_or_dao_flag) {
 						this.begin_sec = this.sec
-						this.begin_min = this.min 
+						this.begin_min = this.min
 						this.dao_total_time = this.min * 60 + this.sec
-						this.zheng_or_dao_showing=true
+						this.zheng_or_dao_showing = true
 					}
 					this.show_of_setting_things = true
 					this.time_of_index++
-					if (this.content_style.length ==0) {
+					if (this.content_style.length == 0) {
 						this.content_style.push('slide-top');
 					} else {
 						this.content_style.pop();
 						this.content_style.push('slide-top');
 					}
-					
-					
+
+
 				} else if (this.time_of_index == 1) {
 					this.timer_flag = !this.timer_flag
 					if (!this.zheng_or_dao_flag) { //倒计时
@@ -205,6 +206,7 @@
 								this.i++
 							} else { //计时结束
 								console.log("计时结束")
+
 								clearInterval(this._timer)
 							}
 						}, 1000)
@@ -248,14 +250,13 @@
 				this.time_of_index = 0
 				if (this.zheng_or_dao_flag)
 					this.total_time += this.min * 60 + this.sec
-				else
-				    {
+				else {
 					this.total_time += this.begin_min * 60 + this.begin_sec - this.min * 60 - this.sec
-					this.zheng_or_dao_showing=false
-					}
+					this.zheng_or_dao_showing = false
+				}
 			},
 			setting_zheng_time() {
-				this.zheng_or_dao_showing=true
+				this.zheng_or_dao_showing = true
 				this.time_of_index = 0
 				this.show_timer = true
 				this.zheng_or_dao_flag = true
@@ -271,7 +272,7 @@
 
 			},
 			setting_dao_time() {
-				this.zheng_or_dao_showing=false
+				this.zheng_or_dao_showing = false
 				this.time_of_index = 0
 				clearInterval(this._timer)
 				this.show_timer = false
@@ -287,29 +288,29 @@
 				this.context.draw()
 			},
 			close_things() {
-				
+
 				setTimeout(() => {
 					this.show_of_setting_things = false
 					this.time_of_index = 0
 					this.show_or_not_show = true
-					if(!this.zheng_or_dao_flag)
-					   this.zheng_or_dao_showing=false
+					if (!this.zheng_or_dao_flag)
+						this.zheng_or_dao_showing = false
 				}, 701);
 				this.content_style.pop();
 				this.content_style.push('slide-bottom');
-				
-				
+
+
 			},
 			change_time_in_dao() {
 				if (!this.zheng_or_dao_flag && !this.time_of_index) {
 					this.show_timer = false
-					
+
 				}
 			},
 			gogogo() {
 				if (this.target != "" && this.target != "请输入专注目标")
 					this.need_to_do_list.push(this.target)
-				if (this.target == "请输入专注目标" &&this.index==0) {
+				if (this.target == "请输入专注目标" && this.index == 0) {
 					this.style.pop()
 					this.style.push("red")
 				} else {
@@ -322,7 +323,7 @@
 						this.context.setStrokeStyle("white")
 						this.context.setLineWidth(3 * this.a)
 						this.context.moveTo(220 * this.a, 0)
-						this.context.arc(120 * this.a, 0, 100 * this.a, 0,  Math.PI, false) //正计时一小时的时候，弧将充满
+						this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false) //正计时一小时的时候，弧将充满
 						this.context.stroke()
 						this.context.draw(true)
 						this._timer = setInterval(() => {
@@ -341,6 +342,18 @@
 								this.i++
 							} else { //计时结束
 								console.log("计时结束")
+								uni.showModal({
+									title: '提示',
+									content: '恭喜您！完成了相应的任务~',
+									success: function(res) {
+										if (res.confirm) {
+											console.log('用户点击确定');
+										} else if (res.cancel) {
+											console.log('用户点击取消');
+										}
+									},
+								})
+								this.ScanAudio()
 								clearInterval(this._timer)
 							}
 						}, 1000)
@@ -503,6 +516,7 @@
 		justify-content: space-around;
 		width: 100%;
 	}
+
 	.min {
 		width: 300rpx;
 		text-align: right;
@@ -592,7 +606,7 @@
 		width: 300rpx;
 		margin-top: 30rpx;
 		margin-bottom: 30rpx;
-		margin-left:50rpx;
+		margin-left: 50rpx;
 	}
 
 	.white {
@@ -606,7 +620,7 @@
 	.choice-things {
 		margin-right: 40rpx;
 		margin-top: 80rpx;
-		font-weight:bold ;
+		font-weight: bold;
 	}
 
 	.begin-to-time {
@@ -618,52 +632,52 @@
 		width: 60%;
 		margin: 35rpx auto;
 	}
-	
+
 	.slide-top {
 		-webkit-animation: slide-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 		animation: slide-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 	}
-	
+
 	.slide-bottom {
 		-webkit-animation: slide-bottom 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 		animation: slide-bottom 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 	}
-	
+
 	@-webkit-keyframes slide-top {
 		0% {
 			bottom: -800rpx;
 		}
-	
+
 		100% {
 			bottom: 0rpx;
 		}
 	}
-	
+
 	@keyframes slide-top {
 		0% {
 			bottom: -800rpx;
 		}
-	
+
 		100% {
 			bottom: 0rpx;
 		}
 	}
-	
+
 	@-webkit-keyframes slide-bottom {
 		0% {
 			bottom: 0rpx;
 		}
-	
+
 		100% {
 			bottom: -800rpx;
 		}
 	}
-	
+
 	@keyframes slide-bottom {
 		0% {
 			bottom: 0rpx;
 		}
-	
+
 		100% {
 			bottom: -800rpx;
 		}

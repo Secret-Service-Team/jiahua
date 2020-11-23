@@ -24,7 +24,7 @@
 								</view>
 								
 								<!-- 内容 -->
-								<view class="info-content">
+								<view class="info-content" @click="to_addnote">
 									<!-- 内容 -->
 									<view class="info-txt">{{item.content}}</view>
 								</view>
@@ -171,6 +171,11 @@
 					_class='right-info';
 				}
 				return _class;
+			},
+			to_addnote(){
+				uni.navigateTo({
+					url: "../../pages/addnote/addnote"
+				});
 			}
 		},
 	}
