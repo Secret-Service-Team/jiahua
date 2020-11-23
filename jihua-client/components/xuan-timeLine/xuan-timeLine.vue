@@ -34,6 +34,7 @@
 					</view>
 				</view>
 			</view>
+			<view @click="add">add</view>
 		</view>
 	</scroll-view>
 </template>
@@ -104,6 +105,16 @@
 			this.init();
 		},
 		methods:{
+			add(){
+				const new_array=[...this.time_line_list]
+				new_array.push({
+					title:'00:00',
+					title_span:'摸鱼',
+					content:'傻逼童浩'
+				})
+				this.time_line_list=new_array
+				this.$forceUpdate();
+			},
 			init(){
 				try {
 					// 获取屏幕高度

@@ -254,6 +254,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   onReady: function onReady(e) {
@@ -276,12 +277,12 @@ var _default =
       sec: 0,
       timer_flag: true,
       _timer: null,
-      zheng_or_dao_flag: true, //判断是正计时还是倒计时，true正，false倒
-      show_timer: true, //是否显示时钟，true为显示
-      show_or_not_show: true, //是否显示 正计时/倒计时 和 今日已专注时长  这两个标签， true为显示
+      zheng_or_dao_flag: true, //判断是正计时还是倒计时,true正,false倒
+      show_timer: true, //是否显示时钟,true为显示
+      show_or_not_show: true, //是否显示 正计时/倒计时 和 今日已专注时长  这两个标签, true为显示
       time_of_index: 0,
       need_to_do_list: ["--点击选择待办事项--"],
-      show_of_setting_things: false, //是否显示选择待办事项界面，true进入
+      show_of_setting_things: false, //是否显示选择待办事项界面,true进入
       target: "请输入专注目标",
       style: ["write", "white"],
       content_style: [],
@@ -291,8 +292,36 @@ var _default =
       begin_min: 0, //开始时候的min
       begin_sec: 0, //开始时候的sec
       index: 0, //索引值
-      zheng_or_dao_showing: true //正/倒计时显示标志位
-    };
+      zheng_or_dao_showing: true, //正/倒计时显示标志位
+      current_target: '', //当前目标
+      jitang_current: "这里是没有毒的鸡汤-v-",
+      jitang_messages: [
+      "温故而知新,可以为师矣。",
+      "学而不思则罔,思而不学则殆。",
+      "见贤思齐焉,见不贤而内自省也。",
+      "学而时习之,不亦说乎?",
+      "岁寒,然后知松柏之后凋也。",
+      "腹有诗书气自华,读书万卷始通神。",
+      "言必信,行必果。",
+      "世上无难事,只要肯登攀。",
+      "天生我材必有用。",
+      "读书破万卷,下笔如有神。",
+      "人而无信,不知其可也。",
+      "全欺芳蕙晚,似妒寒梅疾。",
+      "不傲才以骄人,不以宠而作威。",
+      "静以修身,俭以养德。",
+      "君子一诺,五岳皆轻。",
+      "鞠躬尽瘁,死而后已。",
+      "天下兴亡,匹夫有责。",
+      "为中华之崛起而读书",
+      "宝剑锋从磨砺出,梅花香自苦寒来。",
+      "敏而好学,不耻下问。",
+      "火以炼金,逆境磨练人。",
+      "逃避不能解决战争,只会解决你自己。",
+      "这里是没有毒的鸡汤~"] };
+
+
+
   },
   onLoad: function onLoad() {
     this.total_height = this.getData() + 'rpx';
@@ -303,6 +332,7 @@ var _default =
       this.index = e.target.value; //将数组改变索引赋给定义的index变量
       this.jg = this.need_to_do_list[this.index];
       //将array【改变索引】的值赋给定义的jg变量
+
     },
     bindTimeChange: function bindTimeChange(e) {
       this.recordTime = e.target.value;
@@ -370,7 +400,7 @@ var _default =
               _this.context.setStrokeStyle("rgb(170,169,167)");
               _this.context.setLineWidth(3 * _this.a);
               _this.context.moveTo(220 * _this.a, 0);
-              _this.context.arc(120 * _this.a, 0, 100 * _this.a, 0, 1.0 / _this.dao_total_time * _this.i * Math.PI, false); //正计时一小时的时候，弧将充满
+              _this.context.arc(120 * _this.a, 0, 100 * _this.a, 0, 1.0 / _this.dao_total_time * _this.i * Math.PI, false); //正计时一小时的时候,弧将充满
               _this.context.stroke();
               _this.context.draw(true);
               _this.i++;
@@ -424,6 +454,20 @@ var _default =
         this.total_time += this.begin_min * 60 + this.begin_sec - this.min * 60 - this.sec;
         this.zheng_or_dao_showing = false;
       }
+      if (this.zheng_or_dao_flag) {
+        uni.showModal({
+          title: '提示',
+          content: '您总共学习了' + this.min + '分钟' + this.sec + '秒',
+          success: function success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          } });
+
+      }
+      this.current_target = '';
     },
     setting_zheng_time: function setting_zheng_time() {
       this.zheng_or_dao_showing = true;
@@ -479,11 +523,18 @@ var _default =
     },
     gogogo: function gogogo() {var _this3 = this;
       if (this.target != "" && this.target != "请输入专注目标")
-      this.need_to_do_list.push(this.target);
+      {
+        this.need_to_do_list.push(this.target);
+        this.current_target = '为了达成' + this.target + '这个目标,请坚持!';
+      } else {
+        if (this.index)
+        this.current_target = '为了达成' + this.need_to_do_list[this.index] + '这个目标,请坚持!';
+      }
       if (this.target == "请输入专注目标" && this.index == 0) {
         this.style.pop();
         this.style.push("red");
       } else {
+        this.jitang_current = this.jitang_messages[Math.floor(Math.random() * this.jitang_messages.length)];
         this.target = "请输入专注目标";
         this.show_of_setting_things = false;
         this.timer_flag = !this.timer_flag;
@@ -493,7 +544,7 @@ var _default =
           this.context.setStrokeStyle("white");
           this.context.setLineWidth(3 * this.a);
           this.context.moveTo(220 * this.a, 0);
-          this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false); //正计时一小时的时候，弧将充满
+          this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false); //正计时一小时的时候,弧将充满
           this.context.stroke();
           this.context.draw(true);
           this._timer = setInterval(function () {
@@ -506,7 +557,7 @@ var _default =
               _this3.context.setStrokeStyle("rgb(170,169,167)");
               _this3.context.setLineWidth(3 * _this3.a);
               _this3.context.moveTo(220 * _this3.a, 0);
-              _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, 1.0 / _this3.dao_total_time * _this3.i * Math.PI, false); //正计时一小时的时候，弧将充满
+              _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, 1.0 / _this3.dao_total_time * _this3.i * Math.PI, false); //正计时一小时的时候,弧将充满
               _this3.context.stroke();
               _this3.context.draw(true);
               _this3.i++;
@@ -525,6 +576,16 @@ var _default =
 
               _this3.ScanAudio();
               clearInterval(_this3._timer);
+              _this3.timer_flag = !_this3.timer_flag;
+              _this3.show_or_not_show = true;
+              _this3.time_of_index = 0;
+              if (_this3.zheng_or_dao_flag)
+              _this3.total_time += _this3.min * 60 + _this3.sec;else
+              {
+                _this3.total_time += _this3.begin_min * 60 + _this3.begin_sec - _this3.min * 60 - _this3.sec;
+                _this3.zheng_or_dao_showing = false;
+              }
+
             }
           }, 1000);
         } else {
@@ -546,7 +607,7 @@ var _default =
             _this3.context.setStrokeStyle("white");
             _this3.context.setLineWidth(3 * _this3.a);
             _this3.context.moveTo(220 * _this3.a, 0);
-            _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, 1.0 / 3600 * _this3.i * Math.PI, false); //正计时一小时的时候，弧将充满
+            _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, 1.0 / 3600 * _this3.i * Math.PI, false); //正计时一小时的时候,弧将充满
             _this3.context.stroke();
             _this3.context.draw(true);
             _this3.i++;
