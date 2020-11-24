@@ -14,7 +14,7 @@
 			  success (res) {
 			    if (res.code) {
 			      wx.request({
-			        url: 'http://localhost:3000/api/users/login',
+			        url: 'http://192.168.43.59:3000/api/users/login',
 			        data: {
 			          code: res.code
 			        },

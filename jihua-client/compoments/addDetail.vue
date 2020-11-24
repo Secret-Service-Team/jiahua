@@ -3,13 +3,13 @@
 	<view class="addDetail">
 		<view class="add-choose-type">
 			<scroll-view scroll-x="true" scroll-left="120">
-				<view v-for="(item, index) in typeArr_line1" class="type" @click="switchType(item.type, index)" :key="item.typeId">
+				<view v-for="(item, index) in typeArr_line1" class="type" @click="switchType(item.typeId, index)" :key="item.typeId">
 					<image :src="item.src" @click="imgClick(e)"></image>
 					<view >{{item.type}}</view>
 				</view>	
 				</scroll-view>
 				<scroll-view scroll-x="true" scroll-left="120">
-				<view v-for="(item, index) in typeArr_line2" class="type" @click="switchType(item.type, index + 6)" :key="item.typeId">
+				<view v-for="(item, index) in typeArr_line2" class="type" @click="switchType(item.typeId, index + 6)" :key="item.typeId">
 					<image :src="item.src" @click="imgClick(e)"></image>
 					<view >{{item.type}}</view>
 				</view>		
@@ -224,8 +224,9 @@
 				// 	 computedStyle: ['backgroundColor']
 				// })
 				this.recordType = typeId;
-				console.log(type)
+				// console.log(type)
 			},
+			
 			submitRecord() {
 				// 提交流水
 				const sendData = {
@@ -247,25 +248,35 @@
 						sendData.cost = this.money;
 					}
 					console.log(sendData);
-					wx.request({
-						url: 'http://localhost:3000/api/bookkeeping/turnover',
-						data: sendData,
-						method: 'POST',
-						success(res) {
-							wx.showToast({
+					
+					// wx.request({
+					// 	url: 'http://192.168.43.59:3000/api/bookkeeping/turnover',
+					// 	data: sendData,
+					// 	method: 'POST',
+					// 	success(res) {
+					// 		wx.showToast({
+					// 		  title: '记录成功！',
+					// 		  icon: 'success',
+					// 		  duration: 1500
+					// 		})
+					// 		console.log(res);
+					// 	},
+					// 	fail() {
+					// 		wx.showToast({
+					// 		  title: '可能网络有点小问题T^T',
+					// 		  icon: 'none',
+					// 		  duration: 1500
+					// 		})
+					// 	}
+					// })
+					
+					this.$request('/bookkeeping/turnover/',sendData,'POST').then(res => {
+					wx.showToast({
 							  title: '记录成功！',
 							  icon: 'success',
 							  duration: 1500
 							})
 							console.log(res);
-						},
-						fail() {
-							wx.showToast({
-							  title: '可能网络有点小问题T^T',
-							  icon: 'none',
-							  duration: 1500
-							})
-						}
 					})
 				} else {
 					wx.showToast({

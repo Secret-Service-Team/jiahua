@@ -17,7 +17,6 @@
 	padding-left: 5rpx;
 	padding-top: 28rpx;
 	/* padding: 0 auto; */
-
 	/* flex:column; */
 }
 .top .right.data-v-3e0dbbe4 {
@@ -37,11 +36,11 @@
 	margin: 0 auto;
 	margin-top: 30rpx;
 }
-.choose.data-v-3e0dbbe4{
+.choose.data-v-3e0dbbe4 {
 	padding-top: 20rpx;
 	padding-bottom: 10rpx;
 }
-.slecet.data-v-3e0dbbe4{
+.slecet.data-v-3e0dbbe4 {
 	padding-left: 5rpx;
 }
 .rank.data-v-3e0dbbe4 {
@@ -132,7 +131,7 @@ page.data-v-3e0dbbe4 {
 	        flex-wrap: nowrap;
 }
 .qiun-title-dot-light.data-v-3e0dbbe4 {
-	border-left: 10rpx solid #0ea391;
+	border-left: 10rpx solid grey;
 	padding-left: 10rpx;
 	font-size: 32rpx;
 	color: #000000

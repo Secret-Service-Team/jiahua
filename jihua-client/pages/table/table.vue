@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="top">
+<!-- 		<view class="top">
 			<view class="left">
 				<view>
 					本周支出 : {{week.toFixed(2)}}
@@ -17,7 +17,7 @@
 					本月平均每天支出 : {{monthavg.toFixed(2)}}
 				</view>
 			</view>
-		</view>
+		</view> -->
 
 		<view class="table">
 			<view class="choose">
@@ -31,13 +31,23 @@
 
 				</view>
 			</view>
-
-			<view class="qiun-columns" :style="{display:zhuzhuangtu}">
-				<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
-					<view class="qiun-title-dot-light">基本柱状图</view>
+			<view class="charts-wrapper">
+				<view class="qiun-columns" :style="{display:bingtu}">
+					<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
+						<view class="qiun-title-dot-light">周饼图</view>
+					</view>
+					<view class="qiun-charts">
+						<canvas canvas-id="canvasPie" id="canvasPie" class="charts"></canvas>
+					</view>
 				</view>
-				<view class="qiun-charts">
-					<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+
+				<view class="qiun-columns" :style="{display:zhuzhuangtu}">
+					<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
+						<view class="qiun-title-dot-light">周柱状图</view>
+					</view>
+					<view class="qiun-charts">
+						<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -65,11 +75,28 @@
 	import uCharts from 'js_sdk/u-charts/u-charts/u-charts.js';
 	var _self;
 	var canvaColumn = null;
+	var canvaPie = null;
 	export default {
 		data() {
 			return {
-				zhuzhuangtu:'block',
-				bingtu:'none',
+				// i:0,
+				reflect: {
+					food:'食物',
+					entertainment: '娱乐',
+					traffic:'交通',
+					shopping:'购物',
+					study: '学习',
+					bonus:'津贴',
+					medicine:'医药',
+					clothes:'衣物',
+					daily:'日常',
+					donate:'捐助',
+					salary:'薪水',
+					tour:'旅行'
+				},
+				// temp:[],
+				zhuzhuangtu: 'block',
+				bingtu: 'none',
 				selecValue: '柱状图',
 				month: 500.00,
 				week: 150.00,
@@ -90,65 +117,116 @@
 						"num": 3,
 						"percent": 18.11
 					},
-
 				],
 				cWidth: '',
 				cHeight: '',
 				pixelRatio: 1,
 				serverData: '',
 			}
-
 		},
 		onLoad() {
 			_self = this;
 			this.cWidth = uni.upx2px(700);
 			this.cHeight = uni.upx2px(425);
-			this.getServerData();
+			this.getServerData1();
+			this.getServerData2();
 		},
 		methods: {
 			selectOne(options) {
 				this.selecValue = options.label
 				// console.log(this.selecValue)
-				if(this.selecValue=='柱状图')
-				{
+				if (this.selecValue == '柱状图') {
 					// console.log(this.selecValue)
-					this.zhuzhuangtu='block'
-					this.bingtu='none'
+					this.zhuzhuangtu = 'block'
+					this.bingtu = 'none'
 					// console.log(this.zhuzhuangtu)
-				}
-				else if(this.selecValue=='饼图')
-				{
+				} else if (this.selecValue == '饼图') {
 					// console.log(this.selecValue)
-					this.zhuzhuangtu='none'
-					this.bingtu='block'
+					this.zhuzhuangtu = 'none'
+					this.bingtu = 'block'
 					// console.log(this.zhuzhuangtu)
 				}
 			},
 			useOutClickSide() {
 				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions()
 			},
-			getServerData() {
-				uni.request({
-					url: 'https://www.ucharts.cn/data.json',
-					data: {},
-					success: function(res) {
-						console.log(res.data.data)
-						//下面这个根据需要保存后台数据，我是为了模拟更新柱状图，所以存下来了
-						_self.serverData = res.data.data;
-						let Column = {
-							categories: [],
-							series: []
-						};
-						//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
-						Column.categories = res.data.data.Column.categories;
-						Column.series = res.data.data.Column.series;
-						_self.showColumn("canvasColumn", Column);
-					},
-					fail: () => {
-						_self.tips = "网络错误，小程序端请检查合法域名";
-					},
-				});
+			getServerData2() {
+				const that = this
+				this.$request('/bookkeeping/table/week/types', {'date': new Date().getTime()
+				}).then(res => {
+				 console.log(res.data)
+				 let Pie = {
+				  series: []
+				 };
+				for(let i=0;i<res.data.length;i++){
+					res.data[i].name = that.reflect[res.data[i].name];
+					// console.log(res.data[i].name)
+					// console.log(reflect[res.data[i].name])
+				}
+				
+				Pie.series.push(...res.data);
+				console.log(Pie.series);
+				 
+				 _self.showPie("canvasPie", Pie);
+				})
+				
+				// uni.request({
+				// 	url: 'http://192.168.43.59:3000/api/bookkeeping/table/week/types',
+				// 	data: {
+				// 		'date': new Date().getTime()
+				// 	},
+				// 	success: function(res) {
+				// 		// console.log(res.data.data)
+				// 		let Pie = {
+				// 			series: []
+				// 		};
+				// 		//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
+				// 		Pie.series = [];
+				// 		Pie.series.push(res.data.data[0]);
+				// 		Pie.series.push(res.data.data[1]);
+				// 		_self.showPie("canvasPie", Pie);
+				// 	},
+				// 	fail: () => {
+				// 		_self.tips = "网络错误，小程序端请检查合法域名";
+				// 	},
+				// });
 			},
+			getServerData1() {
+				// uni.request({
+				// 	url: 'http://192.168.43.59:3000/api/bookkeeping/table/week/total',
+				// 	data: {
+				// 		'date': new Date().getTime()
+				// 	},
+				// 	success: function(res) {
+				// 		// console.log(res.data)
+				// 		let Column = {
+				// 			categories: [],
+				// 			series: []
+				// 		};
+				// 		//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
+				// 		Column.categories = res.data[0].date;
+				// 		Column.series = [];
+				// 		Column.series.push(res.data[1]);
+				// 		Column.series.push(res.data[2]);
+				// 		_self.showColumn("canvasColumn", Column);
+				// 	},
+				// 	fail: () => {
+				// 		_self.tips = "网络错误，小程序端请检查合法域名";
+				// 	},
+				// });
+				this.$request('/bookkeeping/table/week/total',{'date':new Date().getTime()}).then(res => {
+					// console.log(res.data)
+					let Column = {
+								categories: [],
+								series: []
+							};
+							Column.categories = res.data[0].date;
+							Column.series = [];
+							Column.series.push(res.data[1]);
+							Column.series.push(res.data[2]);
+							_self.showColumn("canvasColumn", Column);
+				})
+			}, 
 			showColumn(canvasId, chartData) {
 				canvaColumn = new uCharts({
 					$this: _self,
@@ -179,8 +257,30 @@
 						}
 					}
 				});
-
-			}
+			},
+			showPie(canvasId, chartData) {
+				canvaPie = new uCharts({
+					$this: _self,
+					canvasId: canvasId,
+					type: 'pie',
+					fontSize: 11,
+					legend: {
+						show: true
+					},
+					background: '#FFFFFF',
+					pixelRatio: _self.pixelRatio,
+					series: chartData.series,
+					animation: true,
+					width: _self.cWidth * _self.pixelRatio,
+					height: _self.cHeight * _self.pixelRatio,
+					dataLabel: true,
+					extra: {
+						pie: {
+							lableWidth: 15
+						}
+					},
+				});
+			},
 		}
 	}
 </script>
@@ -202,7 +302,6 @@
 		padding-left: 5rpx;
 		padding-top: 28rpx;
 		/* padding: 0 auto; */
-
 		/* flex:column; */
 	}
 
@@ -214,7 +313,6 @@
 		box-sizing: border-box;
 		padding-left: 20rpx;
 		padding-top: 28rpx;
-
 	}
 
 	.table {
@@ -224,15 +322,17 @@
 		border-radius: 15rpx;
 		margin: 0 auto;
 		margin-top: 30rpx;
-
 	}
-	.choose{
+
+	.choose {
 		padding-top: 20rpx;
 		padding-bottom: 10rpx;
 	}
-	.slecet{
+
+	.slecet {
 		padding-left: 5rpx;
 	}
+
 	.rank {
 		margin-top: 30rpx;
 	}
@@ -276,7 +376,6 @@
 		margin-bottom: 35rpx;
 	}
 
-
 	page {
 		background: #F2F2F2;
 		width: 750upx;
@@ -318,7 +417,7 @@
 	}
 
 	.qiun-title-dot-light {
-		border-left: 10upx solid #0ea391;
+		border-left: 10upx solid grey;
 		padding-left: 10upx;
 		font-size: 32upx;
 		color: #000000

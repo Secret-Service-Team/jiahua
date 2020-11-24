@@ -64,7 +64,17 @@
 		},
 		onLoad() {
 			this.huoquliushui();
+			
 		},
+		
+		onPullDownRefresh() {
+		        console.log('refresh');
+		        setTimeout(function () {
+		            uni.stopPullDownRefresh();
+		        }, 1000);
+				this.flows=[];
+				this.huoquliushui();
+		    },
 		methods: {
 			clearFlows(flows) {
 				// 清洗流水数据，删除没有流水的日期
@@ -78,12 +88,12 @@
 				// 将流水中的均摊替换为正确内容
 			},
 			huoquliushui() {
-				
 				this.$request('/bookkeeping/turnover/', {'date': new Date().getTime()
 				// 传参参数名：参数值,如果没有，就不需要传
 				}).then(res => {
+					console.log(res.data)
 				// 打印调用成功回调
-				console.log(res.flows);
+				// console.log(res.flows);
 				this.flows = res.flows;
 				})
 			},

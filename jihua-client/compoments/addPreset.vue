@@ -229,25 +229,33 @@
 				
 				console.log(sendData);
 				
-				wx.request({
-					url: 'http://localhost:3000/api/bookkeeping/preset',
-					data: sendData,
-					method: 'POST',
-					success(res) {
+				// wx.request({
+				// 	url: 'http://localhost:3000/api/bookkeeping/preset',
+				// 	data: sendData,
+				// 	method: 'POST',
+				// 	success(res) {
+				// 		wx.showToast({
+				// 		  title: '预设添加成功！',
+				// 		  icon: 'success',
+				// 		  duration: 1500
+				// 		})
+				// 		console.log(res);
+				// 	},
+				// 	fail() {
+				// 		wx.showToast({
+				// 		  title: '可能网络有点小问题T^T',
+				// 		  icon: 'none',
+				// 		  duration: 1500
+				// 		})
+				// 	}
+				// })
+				this.$request('/bookkeeping/preset/', sendData,'POST').then(res => {
 						wx.showToast({
 						  title: '预设添加成功！',
 						  icon: 'success',
 						  duration: 1500
 						})
 						console.log(res);
-					},
-					fail() {
-						wx.showToast({
-						  title: '可能网络有点小问题T^T',
-						  icon: 'none',
-						  duration: 1500
-						})
-					}
 				})
 			},
 			imgClick(e) {
