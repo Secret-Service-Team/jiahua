@@ -202,7 +202,7 @@
 
 	.title {
 		margin-left: 15rpx;
-		font-size: 16px;
+		font-size: 38rpx;
 	}
 
 	.right-icon {
@@ -215,7 +215,7 @@
 	.body {
 		margin-left: 30rpx;
 		margin-right: 30rpx;
-		font-size: 15px;
+		font-size: 34rpx;
 		border-bottom: 2rpx solid #e3e3e3;
 	}
 </style>

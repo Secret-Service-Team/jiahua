@@ -45,11 +45,6 @@
 .top .left {
 	margin-top: 20rpx;
 }
-.add ._img{
-	width: 70rpx;
-	height: 70rpx;
-	margin-left: 320rpx;
-}
 .record {
 	display: -webkit-box;
 	display: -webkit-flex;

@@ -20,7 +20,7 @@
 							<view class="info-content-wrap" :style="{ opacity: current[index]&&current[index].is=='ok'?1:0}" :class="current[index]&&current[index].is=='ok'?comeani:''">
 								<!-- 标题 -->
 								<view class="info-title">
-									{{item.title}}<span>{{item.title_span}}</span>
+									<checkbox class="db1" color="#000" checked="true" style="transform:scale(0.8)"/>{{item.title}}<span>{{item.title_span}}</span>
 								</view>
 								
 								<!-- 内容 -->

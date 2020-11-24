@@ -48,14 +48,6 @@
 
 		},
 		{
-			"path": "pages/history_message/history_message",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-
-		},
-		{
 			"path": "pages/bcalendar/bcalendar",
 			"style": {
 				"navigationBarTitleText": "",

@@ -9,10 +9,10 @@
 
 			<view class="method-of-timer" v-show="show_or_not_show">
 				<!--正计时/倒计时-->
-				<view class="zheng" @click="setting_zheng_time">
+				<view class="zheng" @click="setting_zheng_time" :class="current_timer_style1">
 					正计时
 				</view>
-				<view class="dao" @click="setting_dao_time">
+				<view class="dao" @click="setting_dao_time" :class="current_timer_style2">
 					倒计时
 				</view>
 			</view>
@@ -99,6 +99,8 @@
 
 		data() {
 			return {
+				current_timer_style1:[],
+				current_timer_style2:[],
 				a: 0, //canvas比例因子
 				recordTime: '01:30',
 				total_time: 0,
@@ -296,10 +298,15 @@
 							}
 						},
 					})
+					this.ScanAudio()
 				}
 				this.current_target=''
 			},
 			setting_zheng_time() {
+				if(this.current_timer_style1.length==0)
+					this.current_timer_style1.push("current_timer")
+				if(this.current_timer_style2.length==1)
+					this.current_timer_style2.pop()
 				this.zheng_or_dao_showing = true
 				this.time_of_index = 0
 				this.show_timer = true
@@ -316,6 +323,10 @@
 
 			},
 			setting_dao_time() {
+				if(this.current_timer_style2.length==0)
+					this.current_timer_style2.push("current_timer")
+				if(this.current_timer_style1.length==1)
+					this.current_timer_style1.pop()
 				this.zheng_or_dao_showing = false
 				this.time_of_index = 0
 				clearInterval(this._timer)
@@ -355,10 +366,10 @@
 				if (this.target != "" && this.target != "请输入专注目标")
 					{
 						this.need_to_do_list.push(this.target)
-						this.current_target='为了达成'+this.target+'这个目标,请坚持!'
+						this.current_target='待办事项:'+this.target
 					}else{
 						if(this.index)
-							this.current_target='为了达成'+this.need_to_do_list[this.index]+'这个目标,请坚持!'
+							this.current_target='待办事项:'+this.need_to_do_list[this.index]
 					}
 				if (this.target == "请输入专注目标" && this.index == 0) {
 					this.style.pop()
@@ -475,6 +486,10 @@
 </script>
 
 <style>
+	.current_timer{
+		font-weight: bold;
+	}
+	
 	#myCanvas {
 		position: absolute;
 		top: 92rpx;
@@ -550,14 +565,14 @@
 	.jitang {
 		margin: 0 auto;
 		text-align: center;
-		width: 600rpx;
+		width: 100%;
 		height: 55rpx;
 		line-height: 55rpx;
 		font-weight: bold;
 		color: white;
-		font-size: 40rpx;
+		font-size: 38rpx;
 		margin-bottom: 40rpx;
-		padding-left: 20rpx;
+		padding-left: 10rpx;
 	}
 
 	.total-time {

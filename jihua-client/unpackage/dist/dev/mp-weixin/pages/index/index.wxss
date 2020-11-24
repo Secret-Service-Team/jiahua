@@ -1,4 +1,7 @@
 
+.current_timer{
+		font-weight: bold;
+}
 #myCanvas {
 		position: absolute;
 		top: 92rpx;
@@ -75,14 +78,14 @@
 .jitang {
 		margin: 0 auto;
 		text-align: center;
-		width: 600rpx;
+		width: 100%;
 		height: 55rpx;
 		line-height: 55rpx;
 		font-weight: bold;
 		color: white;
-		font-size: 40rpx;
+		font-size: 38rpx;
 		margin-bottom: 40rpx;
-		padding-left: 20rpx;
+		padding-left: 10rpx;
 }
 .total-time {
 		margin: 0 auto;

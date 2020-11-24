@@ -1,0 +1,47 @@
+
+.name{
+	text-align: center;
+}
+.topBar view {
+	margin-top: 40rpx;
+	margin-bottom: 30rpx;
+	margin-left: 30rpx;
+	text-align: center;
+	font-weight: bold;
+	font-size: 45rpx;
+}
+.body {
+	margin-left: 30rpx;
+	margin-right: 30rpx;
+	margin-top: 30rpx;
+	padding-left: 15rpx;
+	padding-right: 15rpx;
+	padding-top: 10rpx;
+	padding-bottom: 10rpx;
+	/* font-weight: bold; */
+	font-size: 40rpx;
+	border:  5rpx #000000  solid;
+}
+.picture {
+	margin-top: 30rpx;
+	margin-bottom: 25rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+}
+.picture-son {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+}
+.picture-son ._img {
+	width: 120rpx;
+	height: 120rpx;
+}
+

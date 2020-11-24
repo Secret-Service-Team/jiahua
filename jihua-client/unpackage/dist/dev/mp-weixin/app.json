@@ -9,7 +9,6 @@
     "pages/presell/presell",
     "pages/calendar/calendar",
     "pages/history/history",
-    "pages/history_message/history_message",
     "pages/bcalendar/bcalendar",
     "pages/setstyle/setstyle",
     "pages/aboutus/aboutus",
@@ -56,5 +55,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap65.json"
+  "sitemapLocation": "sitemap80.json"
 }

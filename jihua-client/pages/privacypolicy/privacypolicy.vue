@@ -55,8 +55,9 @@
 <style>
 	.topBar view {
 		margin-top: 50rpx;
-		font-size: 30px;
+		font-size: 52rpx;
 		text-align: center;
+		font-weight: bold;
 	}
 	.body {
 		margin-left: 30rpx;

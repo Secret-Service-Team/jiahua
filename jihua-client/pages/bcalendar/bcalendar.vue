@@ -20,11 +20,6 @@
 					</view>
 				</view>
 			</view>
-			<view class="add" @click="jumptobcalender() ">
-				
-					<img src="../../static/beiwang/添加.png" alt="" />
-				
-			</view>
 
 		</view>
 
@@ -110,11 +105,6 @@
 
 	.top .left {
 		margin-top: 20rpx;
-	}
-	.add img{
-		width: 70rpx;
-		height: 70rpx;
-		margin-left: 320rpx;
 	}
 	.record {
 		display: flex;

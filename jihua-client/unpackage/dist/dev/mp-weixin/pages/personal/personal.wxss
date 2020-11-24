@@ -37,7 +37,7 @@
 .name {
 	line-height: 200rpx;
 	/* text-align: center; */
-	font-size: 20px;
+	font-size: 43rpx;
 	font-weight: bold;
 }
 /* .motto {
@@ -86,7 +86,7 @@
 }
 .title {
 	margin-left: 15rpx;
-	font-size: 16px;
+	font-size: 35rpx;
 }
 .right-icon{
 	width: 55rpx;

@@ -269,6 +269,8 @@ var _default =
 
   data: function data() {
     return {
+      current_timer_style1: [],
+      current_timer_style2: [],
       a: 0, //canvas比例因子
       recordTime: '01:30',
       total_time: 0,
@@ -466,10 +468,15 @@ var _default =
             }
           } });
 
+        this.ScanAudio();
       }
       this.current_target = '';
     },
     setting_zheng_time: function setting_zheng_time() {
+      if (this.current_timer_style1.length == 0)
+      this.current_timer_style1.push("current_timer");
+      if (this.current_timer_style2.length == 1)
+      this.current_timer_style2.pop();
       this.zheng_or_dao_showing = true;
       this.time_of_index = 0;
       this.show_timer = true;
@@ -486,6 +493,10 @@ var _default =
 
     },
     setting_dao_time: function setting_dao_time() {
+      if (this.current_timer_style2.length == 0)
+      this.current_timer_style2.push("current_timer");
+      if (this.current_timer_style1.length == 1)
+      this.current_timer_style1.pop();
       this.zheng_or_dao_showing = false;
       this.time_of_index = 0;
       clearInterval(this._timer);
@@ -525,10 +536,10 @@ var _default =
       if (this.target != "" && this.target != "请输入专注目标")
       {
         this.need_to_do_list.push(this.target);
-        this.current_target = '为了达成' + this.target + '这个目标,请坚持!';
+        this.current_target = '待办事项:' + this.target;
       } else {
         if (this.index)
-        this.current_target = '为了达成' + this.need_to_do_list[this.index] + '这个目标,请坚持!';
+        this.current_target = '待办事项:' + this.need_to_do_list[this.index];
       }
       if (this.target == "请输入专注目标" && this.index == 0) {
         this.style.pop();

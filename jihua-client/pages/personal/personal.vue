@@ -51,7 +51,7 @@
 				<img class="right-icon" src="~@/static/personcenter_icon/right.png" alt="" />
 			</view>		
 				
-			<view class="style">
+			<view class="style" @click="clear">
 				<view class="style-son">
 					<img class="key-icon" src="~@/static/personcenter_icon/clearcache.png" alt="" />
 					<view class="title">清除缓存</view>
@@ -93,6 +93,20 @@
 				uni.navigateTo({
 					url:"../privacypolicy/privacypolicy"
 				});
+			},
+			clear(){
+				uni.showModal({
+					title: '提示',
+					content: '缓存已清除',
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						} 
+						else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					},
+				})
 			}
 			
 		}
@@ -129,7 +143,7 @@
 	.name {
 		line-height: 200rpx;
 		/* text-align: center; */
-		font-size: 20px;
+		font-size: 43rpx;
 		font-weight: bold;
 	}
 	/* .motto {
@@ -166,7 +180,7 @@
 	}
 	.title {
 		margin-left: 15rpx;
-		font-size: 16px;
+		font-size: 35rpx;
 	}	
 	.right-icon{
 		width: 55rpx;
