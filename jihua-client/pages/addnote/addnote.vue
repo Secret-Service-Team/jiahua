@@ -4,7 +4,7 @@
 		<view class="top-container">
 
 			<view class="title">
-				新建 / 编辑代办
+				新建代办
 			</view>
 
 
@@ -81,12 +81,11 @@
 		</view>
 		<view class="buttom">
 
-
+			<view class="kill" @click="exit">
+				<img src="../../static/beiwang/退出.png" alt="" />
+			</view>
 			<view class="save" @click="add">
 				<img src="../../static/beiwang/对.png" alt="" />
-			</view>
-			<view class="kill" @click="kill">
-				<img src="../../static/beiwang/叉号.png" alt="" />
 			</view>
 		</view>
 	</view>
@@ -115,19 +114,19 @@
 				style3: [],
 				style4: [],
 				flag: '',
-				sty: '',
+				sty: 0,
 
 				flag: '',
 				detial: '',
 				demo: {
 					"thingtitle": '',
 					"sty": '',
-
+					"openid": '123',
 					"recordTime": '0130',
-					"recordDate": '20201106',
+					"recordDate": '2020-11-06',
 					"flag": '',
 					"detial": '',
-				}
+				},
 			}
 		},
 		onPageScroll() {
@@ -141,28 +140,106 @@
 			this.recordTime = `${date.getHours()}-${date.getMinutes() + 1}`;
 			this.recordDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
+
 		},
 		methods: {
+			//getaddnote_messages(){}
 			add() {
-				
+
 				this.demo.thingtitle = this.thingtitle
 				this.demo.sty1 = this.sty1
 
 				this.demo.recordTime = this.recordTime,
-					this.demo.recordDate = this.recordDate,
-
+					//this.demo.recordDate = this.recordDate,
 					this.demo.sty = this.sty,
 
 					this.demo.flag = this.flag,
 					this.demo.detial = this.detial,
 					console.log(this.demo)
+				if (this.thingtitle == "") {
+					uni.showModal({
+						title: '提示',
+						content: '标题没写鸭~',
+						success: function(res) {
+							if (res.confirm) {
+
+
+
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						},
+					})
+					return
+				}
+				if (this.sty == 0) {
+					uni.showModal({
+						title: '提示',
+						content: '象限是不是忘了？',
+						success: function(res) {
+							if (res.confirm) {
+
+
+
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						},
+					})
+					return
+				}
+				if (this.flag == 0) {
+					uni.showModal({
+						title: '提示',
+						content: '代办是什么标签的呢？',
+						success: function(res) {
+							if (res.confirm) {
+
+
+
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						},
+					})
+					return
+				}
+                
 				uni.showModal({
 					title: '提示',
 					content: '是否添加代办呢~',
 					success: function(res) {
 						if (res.confirm) {
-							console.log('用户点击确定');
-							
+							uni.request({
+								url: 'http://127.0.0.1:8000/jihua/addtodo/', //仅为示例，并非真实接口地址。
+								method: 'POST',
+								data: this.demo,
+								success: (res) => {
+									console.log(res.data);
+								}
+							})
+							uni.navigateBack({
+								delta: 1
+							})
+
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					},
+				})
+			},
+			exit() {
+
+
+				uni.showModal({
+					title: '提示',
+					content: '信息还未保存就要离开了吗？',
+					success: function(res) {
+						if (res.confirm) {
+							uni.navigateBack({
+								delta: 1
+							})
+
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}
@@ -304,9 +381,8 @@
 		font-family: "agency fb""arial, helvetica, sans-serif";
 		font-weight: 300;
 		margin-left: 20rpx;
-
+		background-color: #FFF;
 		width: 700rpx;
-		height: 650rpx;
 		left: 0rpx;
 		top: 0rpx;
 		z-index: 5;
@@ -325,7 +401,7 @@
 		font-family: "agency fb""arial, helvetica, sans-serif";
 		font-weight: 300;
 		margin-left: 20rpx;
-
+		background-color: #FFF;
 		width: 700rpx;
 		height: 50rpx;
 		left: 0rpx;

@@ -56,13 +56,6 @@
 
 		},
 		{
-			"path": "pages/setstyle/setstyle",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/aboutus/aboutus",
 			"style": {
 				"navigationBarTitleText": "",
@@ -95,6 +88,15 @@
         }
         ,{
             "path" : "components/easy-select/history_page/history_page",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/changenote/changenote",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",

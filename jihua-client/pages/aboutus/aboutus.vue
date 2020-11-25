@@ -24,6 +24,7 @@
 			<view class="topBar">
 				<view>关于我们</view>
 			</view>
+			
 			<p><span style="color: white; width: 30rpx;">空格</span>我们是一个尚处于成长中的团队。在一次机缘巧合的时间结点下，我们相遇了。故事要从一个小小的活动室开始说起，一张不长也不宽的大桌子，桌面上摆满了电脑和密密麻麻的数据线，还有几杯永远也喝不完的咖啡。我们有激情，有活力，有理想，有野心<span style="text-decoration: line-through">（还有黑眼圈）</span></p></br>
 			
 			<view class="picture">
@@ -78,6 +79,18 @@
 		},
 		methods: {
 			
+		},
+		onReady() {
+			uni.setNavigationBarColor({
+				backgroundColor: this.style.backgroundColor,
+				frontColor:this.style.textStyle,
+				fail: (e) => {
+					console.log(e)
+				},
+				success: (e) => {
+					console.log(e)
+				}
+			})
 		}
 	}
 </script>
@@ -102,7 +115,7 @@
 		padding-left: 15rpx;
 		padding-right: 15rpx;
 		padding-top: 10rpx;
-		padding-bottom: 10rpx;
+		padding-bottom: 40rpx;
 		/* font-weight: bold; */
 		font-size: 40rpx;
 		border:  5rpx #000000  solid;

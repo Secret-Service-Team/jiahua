@@ -97,25 +97,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var m0 = __webpack_require__(/*! @/static/personcenter_icon/photo.png */ 58)
+  var m0 = __webpack_require__(/*! @/static/personcenter_icon/aboutus.png */ 61)
 
-  var m1 = __webpack_require__(/*! @/static/personcenter_icon/setstyle.png */ 59)
+  var m1 = __webpack_require__(/*! @/static/personcenter_icon/right.png */ 60)
 
-  var m2 = __webpack_require__(/*! @/static/personcenter_icon/right.png */ 60)
+  var m2 = __webpack_require__(/*! @/static/personcenter_icon/help.png */ 62)
 
-  var m3 = __webpack_require__(/*! @/static/personcenter_icon/aboutus.png */ 61)
+  var m3 = __webpack_require__(/*! @/static/personcenter_icon/right.png */ 60)
 
-  var m4 = __webpack_require__(/*! @/static/personcenter_icon/right.png */ 60)
+  var m4 = __webpack_require__(/*! @/static/personcenter_icon/privacypolicy.png */ 63)
 
-  var m5 = __webpack_require__(/*! @/static/personcenter_icon/help.png */ 62)
+  var m5 = __webpack_require__(/*! @/static/personcenter_icon/right.png */ 60)
 
-  var m6 = __webpack_require__(/*! @/static/personcenter_icon/right.png */ 60)
-
-  var m7 = __webpack_require__(/*! @/static/personcenter_icon/privacypolicy.png */ 63)
-
-  var m8 = __webpack_require__(/*! @/static/personcenter_icon/right.png */ 60)
-
-  var m9 = __webpack_require__(/*! @/static/personcenter_icon/clearcache.png */ 64)
+  var m6 = __webpack_require__(/*! @/static/personcenter_icon/clearcache.png */ 64)
 
   _vm.$mp.data = Object.assign(
     {},
@@ -127,10 +121,7 @@ var render = function() {
         m3: m3,
         m4: m4,
         m5: m5,
-        m6: m6,
-        m7: m7,
-        m8: m8,
-        m9: m9
+        m6: m6
       }
     }
   )
@@ -168,6 +159,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
 //
 //
 //
@@ -276,7 +268,35 @@ var _default =
           }
         } });
 
-    } } };exports.default = _default;
+    },
+    test: function test() {
+      uni.showModal({
+        title: '提示',
+        content: '缓存已清除',
+        success: function success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+          } else
+          if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        } });
+
+    } },
+
+
+  onShow: function onShow() {
+    uni.setNavigationBarColor({
+      backgroundColor: this.style.backgroundColor,
+      frontColor: this.style.textStyle,
+      fail: function fail(e) {
+        console.log(e);
+      },
+      success: function success(e) {
+        console.log(e);
+      } });
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

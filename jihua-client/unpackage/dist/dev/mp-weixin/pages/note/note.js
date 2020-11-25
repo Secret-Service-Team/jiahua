@@ -143,7 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timeLine = function timeLine() {Promise.all(/*! require.ensure | components/xuan-timeLine/xuan-timeLine */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/xuan-timeLine/xuan-timeLine")]).then((function () {return resolve(__webpack_require__(/*! ../../components/xuan-timeLine/xuan-timeLine.vue */ 182));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timeLine = function timeLine() {Promise.all(/*! require.ensure | components/xuan-timeLine/xuan-timeLine */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/xuan-timeLine/xuan-timeLine")]).then((function () {return resolve(__webpack_require__(/*! ../../components/xuan-timeLine/xuan-timeLine.vue */ 191));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

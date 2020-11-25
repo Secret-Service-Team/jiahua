@@ -15,7 +15,7 @@ _vue.default.config.productionTip = false;
 _vue.default.prototype.ScanAudio = function () {
   var music = null;
   music = uni.createInnerAudioContext(); //创建播放器对象
-  music.src = "static/music/a.mp3"; //选择播放的音频
+  music.src = "https://azoux.xyz/static/todo/music/a.mp3"; //选择播放的音频
   music.play(); //执行播放
 };
 _App.default.mpType = 'app';

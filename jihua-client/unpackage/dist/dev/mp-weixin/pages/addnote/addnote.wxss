@@ -71,9 +71,8 @@
 	font-family: "agency fb""arial, helvetica, sans-serif";
 	font-weight: 300;
 	margin-left: 20rpx;
-
+	background-color: #FFF;
 	width: 700rpx;
-	height: 650rpx;
 	left: 0rpx;
 	top: 0rpx;
 	z-index: 5;
@@ -91,7 +90,7 @@
 	font-family: "agency fb""arial, helvetica, sans-serif";
 	font-weight: 300;
 	margin-left: 20rpx;
-
+	background-color: #FFF;
 	width: 700rpx;
 	height: 50rpx;
 	left: 0rpx;

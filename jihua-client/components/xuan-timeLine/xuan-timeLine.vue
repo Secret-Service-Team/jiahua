@@ -8,23 +8,23 @@
 				<view class="time-line-list">
 					
 					<!-- 时间轴内容块 -->
-					<view class="time-line-info" :key="index" :class="[layoutClass(index)]" :id="'timeline'+index" v-for="(item,index) of time_line_list">
+					<view class="time-line-info" :class="[layoutClass(index)]" :id="'timeline'+index" v-for="(item,index) of time_line_list" :key="item.id">
 						
 						
 						<!-- 内容块内容 -->
 						<view class="line-info-content" >
 							
 							<!-- 时间轴圆点 -->
-							<view class="line-on-round" :style="{ opacity: current[index]&&current[index].is=='ok'?1:0,top:'50px'}" :class="current[index]&&current[index].is=='ok'?comeani:''"></view>
+							<view class="line-on-round" :style="{ opacity: current[index]&&current[index].is=='ok'?1:1,top:'50px'}" :class="current[index]&&current[index].is=='ok'?comeani:''"></view>
 							
-							<view class="info-content-wrap" :style="{ opacity: current[index]&&current[index].is=='ok'?1:0}" :class="current[index]&&current[index].is=='ok'?comeani:''">
+							<view class="info-content-wrap" :style="{ opacity: current[index]&&current[index].is=='ok'?1:1}" :class="current[index]&&current[index].is=='ok'?comeani:''">
 								<!-- 标题 -->
 								<view class="info-title">
-									<checkbox class="db1" color="#000" checked="true" style="transform:scale(0.8)"/>{{item.title}}<span>{{item.title_span}}</span>
+									<checkbox class="db1" color="#000" checked="false" style="transform:scale(0.8)"/>{{item.title}}<span>{{item.title_span}}</span>
 								</view>
 								
 								<!-- 内容 -->
-								<view class="info-content" @click="to_addnote">
+								<view class="info-content" @click="to_changenote">
 									<!-- 内容 -->
 									<view class="info-txt">{{item.content}}</view>
 								</view>
@@ -34,11 +34,16 @@
 					</view>
 				</view>
 			</view>
-			<view @click="add">add</view>
+			
+				<view  class="add" @click="add">
+					add
+				</view>
+			</view>
 		</view>
 	</scroll-view>
 </template>
 
+ 
 <script>
 	export default{
 		data(){
@@ -48,32 +53,38 @@
 					{
 						title:'9:00',
 						title_span:'学习',
-						content:'完成软工作业'
+						content:'完成软工作业',
+						id: 1
 					},
 					{
 						title:'12:00',
 						title_span:'娱乐',
-						content:'摸鱼'
+						content:'摸鱼',
+						id: 2
 					},
 					{
 						title:'17:00',
 						title_span:'应酬',
-						content:'鼓岭烧烤。'
+						content:'鼓岭烧烤。',
+						id: 3
 					},
 					{
 						title:'19:00',
 						title_span:'学习',
-						content:'完成接口实验报告'
+						content:'完成接口实验报告',
+						id: 4
 					},
 					{
 						title:'21:00',
 						title_span:'学习',
-						content:'软工代码完善'
+						content:'软工代码完善',
+						id: 5
 					},
 					{
 						title:'24:00',
 						title_span:'休息',
-						content:'睡了睡了苟命要紧'
+						content:'睡了睡了苟命要紧',
+						id: 6
 					},
 				],
 				HEIGHT:0,//屏幕高度
@@ -107,10 +118,12 @@
 		methods:{
 			add(){
 				const new_array=[...this.time_line_list]
+				console.log(new_array)
 				new_array.push({
 					title:'00:00',
 					title_span:'摸鱼',
-					content:'傻逼童浩'
+					content:'傻逼童浩',
+					id: new Date().getTime()
 				})
 				this.time_line_list=new_array
 				this.$forceUpdate();
@@ -183,9 +196,9 @@
 				}
 				return _class;
 			},
-			to_addnote(){
+			to_changenote(){
 				uni.navigateTo({
-					url: "../../pages/addnote/addnote"
+					url: "../../pages/changenote/changenote"
 				});
 			}
 		},
@@ -393,13 +406,15 @@
 			opacity: 0;
 		}
 		40% {
-			opacity: 0;
+			opacity: 0.4;
 		}
 		60% {
 			transform: scale(1.2);
+			opacity: 0.6;
 		}
 		100% {
 			transform: scale(1);
+			opacity: 1;
 		}
 	}
 

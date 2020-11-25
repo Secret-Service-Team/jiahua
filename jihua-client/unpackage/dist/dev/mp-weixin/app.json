@@ -10,12 +10,12 @@
     "pages/calendar/calendar",
     "pages/history/history",
     "pages/bcalendar/bcalendar",
-    "pages/setstyle/setstyle",
     "pages/aboutus/aboutus",
     "pages/help/help",
     "pages/privacypolicy/privacypolicy",
     "pages/xiangxian/xiangxian",
-    "components/easy-select/history_page/history_page"
+    "components/easy-select/history_page/history_page",
+    "pages/changenote/changenote"
   ],
   "subPackages": [],
   "window": {
@@ -54,6 +54,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap80.json"
+  "usingComponents": {}
 }

@@ -269,6 +269,7 @@ var _default =
 
   data: function data() {
     return {
+
       current_timer_style1: [],
       current_timer_style2: [],
       a: 0, //canvas比例因子
@@ -328,8 +329,24 @@ var _default =
   onLoad: function onLoad() {
     this.total_height = this.getData() + 'rpx';
     this.a = this.get_a() / 750;
+    this.huoquzhuanzhujishi();
   },
   methods: {
+    huoquzhuanzhujishi: function huoquzhuanzhujishi() {var _this = this;
+      uni.request({
+        url: 'http://127.0.0.1:8000/jihua/getdaytotaltime/', //仅为示例，并非真实接口地址。
+        data: {
+          openid: '125',
+          studytime: '2020-11-23' },
+
+        method: 'POST',
+        success: function success(res) {
+          _this.total_time = res.data.data;
+          console.log(res.data.data);
+        } });
+
+    },
+
     bindPickerChange: function bindPickerChange(e) {
       this.index = e.target.value; //将数组改变索引赋给定义的index变量
       this.jg = this.need_to_do_list[this.index];
@@ -367,7 +384,7 @@ var _default =
 
       return result;
     },
-    begin_of_timer: function begin_of_timer() {var _this = this; //开始计时
+    begin_of_timer: function begin_of_timer() {var _this2 = this; //开始计时
       clearInterval(this._timer);
       this.show_timer = true;
       this.show_or_not_show = false;
@@ -393,48 +410,48 @@ var _default =
         if (!this.zheng_or_dao_flag) {//倒计时
 
           this._timer = setInterval(function () {
-            if (_this.min || _this.sec) {//正常计时
-              if (!_this.sec && _this.min) {
-                _this.min--;
-                _this.sec = 60;
+            if (_this2.min || _this2.sec) {//正常计时
+              if (!_this2.sec && _this2.min) {
+                _this2.min--;
+                _this2.sec = 60;
               }
-              _this.sec--;
-              _this.context.setStrokeStyle("rgb(170,169,167)");
-              _this.context.setLineWidth(3 * _this.a);
-              _this.context.moveTo(220 * _this.a, 0);
-              _this.context.arc(120 * _this.a, 0, 100 * _this.a, 0, 1.0 / _this.dao_total_time * _this.i * Math.PI, false); //正计时一小时的时候,弧将充满
-              _this.context.stroke();
-              _this.context.draw(true);
-              _this.i++;
+              _this2.sec--;
+              _this2.context.setStrokeStyle("rgb(170,169,167)");
+              _this2.context.setLineWidth(3 * _this2.a);
+              _this2.context.moveTo(220 * _this2.a, 0);
+              _this2.context.arc(120 * _this2.a, 0, 100 * _this2.a, 0, 1.0 / _this2.dao_total_time * _this2.i * Math.PI, false); //正计时一小时的时候,弧将充满
+              _this2.context.stroke();
+              _this2.context.draw(true);
+              _this2.i++;
             } else {//计时结束
               console.log("计时结束");
 
-              clearInterval(_this._timer);
+              clearInterval(_this2._timer);
             }
           }, 1000);
         } else {//正计时
           this._timer = setInterval(function () {
-            _this.sec++;
-            if (_this.sec == 60) {
-              _this.sec = 0;
-              _this.min++;
+            _this2.sec++;
+            if (_this2.sec == 60) {
+              _this2.sec = 0;
+              _this2.min++;
             }
-            _this.context.setStrokeStyle("white");
-            _this.context.setLineWidth(3 * _this.a);
-            _this.context.moveTo(220 * _this.a, 0);
-            _this.context.arc(120 * _this.a, 0, 100 * _this.a, 0, 1.0 / 3600 * _this.i * Math.PI, false);
-            _this.context.stroke();
-            _this.context.draw(true);
-            _this.i++;
-            if (_this.i == 3601) {
+            _this2.context.setStrokeStyle("white");
+            _this2.context.setLineWidth(3 * _this2.a);
+            _this2.context.moveTo(220 * _this2.a, 0);
+            _this2.context.arc(120 * _this2.a, 0, 100 * _this2.a, 0, 1.0 / 3600 * _this2.i * Math.PI, false);
+            _this2.context.stroke();
+            _this2.context.draw(true);
+            _this2.i++;
+            if (_this2.i == 3601) {
               console.log("您已经学习了一个小时了");
-              _this.context.setStrokeStyle("rgb(170,169,167)");
-              _this.context.setLineWidth(3 * _this.a);
-              _this.context.moveTo(220 * _this.a, 0);
-              _this.context.arc(120 * _this.a, 0, 100 * _this.a, 0, Math.PI, false);
-              _this.context.stroke();
-              _this.context.draw();
-              _this.i = 1;
+              _this2.context.setStrokeStyle("rgb(170,169,167)");
+              _this2.context.setLineWidth(3 * _this2.a);
+              _this2.context.moveTo(220 * _this2.a, 0);
+              _this2.context.arc(120 * _this2.a, 0, 100 * _this2.a, 0, Math.PI, false);
+              _this2.context.stroke();
+              _this2.context.draw();
+              _this2.i = 1;
             }
           }, 1000);
         }
@@ -512,14 +529,14 @@ var _default =
       this.context.stroke();
       this.context.draw();
     },
-    close_things: function close_things() {var _this2 = this;
+    close_things: function close_things() {var _this3 = this;
 
       setTimeout(function () {
-        _this2.show_of_setting_things = false;
-        _this2.time_of_index = 0;
-        _this2.show_or_not_show = true;
-        if (!_this2.zheng_or_dao_flag)
-        _this2.zheng_or_dao_showing = false;
+        _this3.show_of_setting_things = false;
+        _this3.time_of_index = 0;
+        _this3.show_or_not_show = true;
+        if (!_this3.zheng_or_dao_flag)
+        _this3.zheng_or_dao_showing = false;
       }, 701);
       this.content_style.pop();
       this.content_style.push('slide-bottom');
@@ -532,9 +549,8 @@ var _default =
 
       }
     },
-    gogogo: function gogogo() {var _this3 = this;
-      if (this.target != "" && this.target != "请输入专注目标")
-      {
+    gogogo: function gogogo() {var _this4 = this;
+      if (this.target != "" && this.target != "请输入专注目标") {
         this.need_to_do_list.push(this.target);
         this.current_target = '待办事项:' + this.target;
       } else {
@@ -559,19 +575,19 @@ var _default =
           this.context.stroke();
           this.context.draw(true);
           this._timer = setInterval(function () {
-            if (_this3.min || _this3.sec) {//正常计时
-              if (!_this3.sec && _this3.min) {
-                _this3.min--;
-                _this3.sec = 60;
+            if (_this4.min || _this4.sec) {//正常计时
+              if (!_this4.sec && _this4.min) {
+                _this4.min--;
+                _this4.sec = 60;
               }
-              _this3.sec--;
-              _this3.context.setStrokeStyle("rgb(170,169,167)");
-              _this3.context.setLineWidth(3 * _this3.a);
-              _this3.context.moveTo(220 * _this3.a, 0);
-              _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, 1.0 / _this3.dao_total_time * _this3.i * Math.PI, false); //正计时一小时的时候,弧将充满
-              _this3.context.stroke();
-              _this3.context.draw(true);
-              _this3.i++;
+              _this4.sec--;
+              _this4.context.setStrokeStyle("rgb(170,169,167)");
+              _this4.context.setLineWidth(3 * _this4.a);
+              _this4.context.moveTo(220 * _this4.a, 0);
+              _this4.context.arc(120 * _this4.a, 0, 100 * _this4.a, 0, 1.0 / _this4.dao_total_time * _this4.i * Math.PI, false); //正计时一小时的时候,弧将充满
+              _this4.context.stroke();
+              _this4.context.draw(true);
+              _this4.i++;
             } else {//计时结束
               console.log("计时结束");
               uni.showModal({
@@ -585,16 +601,16 @@ var _default =
                   }
                 } });
 
-              _this3.ScanAudio();
-              clearInterval(_this3._timer);
-              _this3.timer_flag = !_this3.timer_flag;
-              _this3.show_or_not_show = true;
-              _this3.time_of_index = 0;
-              if (_this3.zheng_or_dao_flag)
-              _this3.total_time += _this3.min * 60 + _this3.sec;else
+              _this4.ScanAudio();
+              clearInterval(_this4._timer);
+              _this4.timer_flag = !_this4.timer_flag;
+              _this4.show_or_not_show = true;
+              _this4.time_of_index = 0;
+              if (_this4.zheng_or_dao_flag)
+              _this4.total_time += _this4.min * 60 + _this4.sec;else
               {
-                _this3.total_time += _this3.begin_min * 60 + _this3.begin_sec - _this3.min * 60 - _this3.sec;
-                _this3.zheng_or_dao_showing = false;
+                _this4.total_time += _this4.begin_min * 60 + _this4.begin_sec - _this4.min * 60 - _this4.sec;
+                _this4.zheng_or_dao_showing = false;
               }
 
             }
@@ -610,27 +626,27 @@ var _default =
           this.context.stroke();
           this.context.draw();
           this._timer = setInterval(function () {
-            _this3.sec++;
-            if (_this3.sec == 60) {
-              _this3.sec = 0;
-              _this3.min++;
+            _this4.sec++;
+            if (_this4.sec == 60) {
+              _this4.sec = 0;
+              _this4.min++;
             }
-            _this3.context.setStrokeStyle("white");
-            _this3.context.setLineWidth(3 * _this3.a);
-            _this3.context.moveTo(220 * _this3.a, 0);
-            _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, 1.0 / 3600 * _this3.i * Math.PI, false); //正计时一小时的时候,弧将充满
-            _this3.context.stroke();
-            _this3.context.draw(true);
-            _this3.i++;
-            if (_this3.i == 3601) {
+            _this4.context.setStrokeStyle("white");
+            _this4.context.setLineWidth(3 * _this4.a);
+            _this4.context.moveTo(220 * _this4.a, 0);
+            _this4.context.arc(120 * _this4.a, 0, 100 * _this4.a, 0, 1.0 / 3600 * _this4.i * Math.PI, false); //正计时一小时的时候,弧将充满
+            _this4.context.stroke();
+            _this4.context.draw(true);
+            _this4.i++;
+            if (_this4.i == 3601) {
               console.log("您已经学习了一个小时了");
-              _this3.context.setStrokeStyle("rgb(170,169,167)");
-              _this3.context.setLineWidth(3 * _this3.a);
-              _this3.context.moveTo(220 * _this3.a, 0);
-              _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, Math.PI, false);
-              _this3.context.stroke();
-              _this3.context.draw();
-              _this3.i = 1;
+              _this4.context.setStrokeStyle("rgb(170,169,167)");
+              _this4.context.setLineWidth(3 * _this4.a);
+              _this4.context.moveTo(220 * _this4.a, 0);
+              _this4.context.arc(120 * _this4.a, 0, 100 * _this4.a, 0, Math.PI, false);
+              _this4.context.stroke();
+              _this4.context.draw();
+              _this4.i = 1;
             }
           }, 1000);
         }

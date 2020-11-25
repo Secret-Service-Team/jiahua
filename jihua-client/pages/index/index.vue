@@ -27,7 +27,7 @@
 				:
 				('  '+Math.floor(total_time/60)+' min')}}
 			</view>
-			<view  v-show="!show_or_not_show" class="current_target">
+			<view v-show="!show_or_not_show" class="current_target">
 				{{current_target}}
 			</view>
 		</view>
@@ -99,8 +99,9 @@
 
 		data() {
 			return {
-				current_timer_style1:[],
-				current_timer_style2:[],
+
+				current_timer_style1: [],
+				current_timer_style2: [],
 				a: 0, //canvas比例因子
 				recordTime: '01:30',
 				total_time: 0,
@@ -125,9 +126,9 @@
 				begin_sec: 0, //开始时候的sec
 				index: 0, //索引值
 				zheng_or_dao_showing: true, //正/倒计时显示标志位
-				current_target:'',//当前目标
-				jitang_current:"这里是没有毒的鸡汤-v-",
-				jitang_messages:[
+				current_target: '', //当前目标
+				jitang_current: "这里是没有毒的鸡汤-v-",
+				jitang_messages: [
 					"温故而知新,可以为师矣。",
 					"学而不思则罔,思而不学则殆。",
 					"见贤思齐焉,见不贤而内自省也。",
@@ -151,345 +152,360 @@
 					"火以炼金,逆境磨练人。",
 					"逃避不能解决战争,只会解决你自己。",
 					"这里是没有毒的鸡汤~",
-					
+
 				]
 			}
 		},
 		onLoad() {
 			this.total_height = this.getData() + 'rpx'
 			this.a = this.get_a() / 750
+			this.huoquzhuanzhujishi()
 		},
 		methods: {
-			bindPickerChange(e) {
-				this.index = e.target.value //将数组改变索引赋给定义的index变量
-				this.jg = this.need_to_do_list[this.index]
-				//将array【改变索引】的值赋给定义的jg变量
-				
-			},
-			bindTimeChange(e) {
-				this.recordTime = e.target.value;
-				this.min = 60 * (parseInt(this.recordTime[0]) * 10 + parseInt(this.recordTime[1])) + parseInt(this.recordTime[3]) *
-					10 + parseInt(this.recordTime[4])
-				this.context.setStrokeStyle("white")
-				this.context.setLineWidth(3 * this.a)
-				this.context.moveTo(220 * this.a, 0)
-				this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
-				this.context.stroke()
-				this.context.draw()
-				this.sec = 0
-			},
-			getData() {
-				var result = 0
-				uni.getSystemInfo({
-					success: function(res) {
-						result = res.screenHeight * 2 - res.statusBarHeight * 2
-						console.log(result)
+			huoquzhuanzhujishi() {
+				uni.request({
+					url: 'http://127.0.0.1:8000/jihua/getdaytotaltime/', //仅为示例，并非真实接口地址。
+					data: {
+						openid: '125',
+						studytime: '2020-11-23'
+					},
+					method: 'POST',
+					success: (res) => {
+						this.total_time = res.data.data
+						console.log(res.data.data)
 					}
-				})
-				return result
-			},
-			get_a() {
-				var result = 0
-				uni.getSystemInfo({
-					success: function(res) {
-						result = res.windowWidth * 2
-					}
-				})
-				return result
-			},
-			begin_of_timer() { //开始计时
-				clearInterval(this._timer)
-				this.show_timer = true
-				this.show_or_not_show = false
-				if (!this.time_of_index) {
-					if (!this.zheng_or_dao_flag) {
-						this.begin_sec = this.sec
-						this.begin_min = this.min
-						this.dao_total_time = this.min * 60 + this.sec
-						this.zheng_or_dao_showing = true
-					}
-					this.show_of_setting_things = true
-					this.time_of_index++
-					if (this.content_style.length == 0) {
-						this.content_style.push('slide-top');
-					} else {
-						this.content_style.pop();
-						this.content_style.push('slide-top');
-					}
+				});
+			}
+			,
+		bindPickerChange(e) {
+			this.index = e.target.value //将数组改变索引赋给定义的index变量
+			this.jg = this.need_to_do_list[this.index]
+			//将array【改变索引】的值赋给定义的jg变量
+
+		},
+		bindTimeChange(e) {
+			this.recordTime = e.target.value;
+			this.min = 60 * (parseInt(this.recordTime[0]) * 10 + parseInt(this.recordTime[1])) + parseInt(this.recordTime[3]) *
+				10 + parseInt(this.recordTime[4])
+			this.context.setStrokeStyle("white")
+			this.context.setLineWidth(3 * this.a)
+			this.context.moveTo(220 * this.a, 0)
+			this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
+			this.context.stroke()
+			this.context.draw()
+			this.sec = 0
+		},
+		getData() {
+			var result = 0
+			uni.getSystemInfo({
+				success: function(res) {
+					result = res.screenHeight * 2 - res.statusBarHeight * 2
+					console.log(result)
+				}
+			})
+			return result
+		},
+		get_a() {
+			var result = 0
+			uni.getSystemInfo({
+				success: function(res) {
+					result = res.windowWidth * 2
+				}
+			})
+			return result
+		},
+		begin_of_timer() { //开始计时
+			clearInterval(this._timer)
+			this.show_timer = true
+			this.show_or_not_show = false
+			if (!this.time_of_index) {
+				if (!this.zheng_or_dao_flag) {
+					this.begin_sec = this.sec
+					this.begin_min = this.min
+					this.dao_total_time = this.min * 60 + this.sec
+					this.zheng_or_dao_showing = true
+				}
+				this.show_of_setting_things = true
+				this.time_of_index++
+				if (this.content_style.length == 0) {
+					this.content_style.push('slide-top');
+				} else {
+					this.content_style.pop();
+					this.content_style.push('slide-top');
+				}
 
 
-				} else if (this.time_of_index == 1) {
-					this.timer_flag = !this.timer_flag
-					if (!this.zheng_or_dao_flag) { //倒计时
+			} else if (this.time_of_index == 1) {
+				this.timer_flag = !this.timer_flag
+				if (!this.zheng_or_dao_flag) { //倒计时
 
-						this._timer = setInterval(() => {
-							if (this.min || this.sec) { //正常计时
-								if (!this.sec && this.min) {
-									this.min--
-									this.sec = 60
-								}
-								this.sec--
-								this.context.setStrokeStyle("rgb(170,169,167)")
-								this.context.setLineWidth(3 * this.a)
-								this.context.moveTo(220 * this.a, 0)
-								this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / this.dao_total_time) * this.i * Math.PI, false) //正计时一小时的时候,弧将充满
-								this.context.stroke()
-								this.context.draw(true)
-								this.i++
-							} else { //计时结束
-								console.log("计时结束")
-
-								clearInterval(this._timer)
+					this._timer = setInterval(() => {
+						if (this.min || this.sec) { //正常计时
+							if (!this.sec && this.min) {
+								this.min--
+								this.sec = 60
 							}
-						}, 1000)
-					} else { //正计时
-						this._timer = setInterval(() => {
-							this.sec++
-							if (this.sec == 60) {
-								this.sec = 0
-								this.min++
-							}
-							this.context.setStrokeStyle("white")
+							this.sec--
+							this.context.setStrokeStyle("rgb(170,169,167)")
 							this.context.setLineWidth(3 * this.a)
 							this.context.moveTo(220 * this.a, 0)
-							this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / 3600) * this.i * Math.PI, false)
+							this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / this.dao_total_time) * this.i * Math.PI, false) //正计时一小时的时候,弧将充满
 							this.context.stroke()
 							this.context.draw(true)
 							this.i++
-							if (this.i == 3601) {
-								console.log("您已经学习了一个小时了")
-								this.context.setStrokeStyle("rgb(170,169,167)")
-								this.context.setLineWidth(3 * this.a)
-								this.context.moveTo(220 * this.a, 0)
-								this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
-								this.context.stroke()
-								this.context.draw()
-								this.i = 1
-							}
-						}, 1000)
-					}
-				}
+						} else { //计时结束
+							console.log("计时结束")
 
-			},
-			stop_timer() { //停止计时
-				this.timer_flag = !this.timer_flag
-				clearInterval(this._timer)
-			},
-			end_timer() {
-				this.timer_flag = !this.timer_flag
-				this.show_or_not_show = true
-				clearInterval(this._timer)
-				this.time_of_index = 0
-				if (this.zheng_or_dao_flag)
-					this.total_time += this.min * 60 + this.sec
-				else {
-					this.total_time += this.begin_min * 60 + this.begin_sec - this.min * 60 - this.sec
-					this.zheng_or_dao_showing = false
-				}
-				if(this.zheng_or_dao_flag){
-					uni.showModal({
-						title: '提示',
-						content: '您总共学习了'+this.min+'分钟'+this.sec+'秒',
-						success: function(res) {
-							if (res.confirm) {
-								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
-							}
-						},
-					})
-					this.ScanAudio()
-				}
-				this.current_target=''
-			},
-			setting_zheng_time() {
-				if(this.current_timer_style1.length==0)
-					this.current_timer_style1.push("current_timer")
-				if(this.current_timer_style2.length==1)
-					this.current_timer_style2.pop()
-				this.zheng_or_dao_showing = true
-				this.time_of_index = 0
-				this.show_timer = true
-				this.zheng_or_dao_flag = true
-				this.sec = 0
-				this.min = 0
-				this.context.setStrokeStyle("rgb(170,169,167)")
-				this.context.setLineWidth(3 * this.a)
-				this.context.moveTo(220 * this.a, 0)
-				this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
-				this.context.stroke()
-				this.context.draw()
-				clearInterval(this._timer)
-
-			},
-			setting_dao_time() {
-				if(this.current_timer_style2.length==0)
-					this.current_timer_style2.push("current_timer")
-				if(this.current_timer_style1.length==1)
-					this.current_timer_style1.pop()
-				this.zheng_or_dao_showing = false
-				this.time_of_index = 0
-				clearInterval(this._timer)
-				this.show_timer = false
-				this.zheng_or_dao_flag = false
-				this.timer_flag = true
-				this.min = 60
-				this.sec = 0
-				this.context.setStrokeStyle("white")
-				this.context.setLineWidth(3 * this.a)
-				this.context.moveTo(220 * this.a, 0)
-				this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
-				this.context.stroke()
-				this.context.draw()
-			},
-			close_things() {
-
-				setTimeout(() => {
-					this.show_of_setting_things = false
-					this.time_of_index = 0
-					this.show_or_not_show = true
-					if (!this.zheng_or_dao_flag)
-						this.zheng_or_dao_showing = false
-				}, 701);
-				this.content_style.pop();
-				this.content_style.push('slide-bottom');
-
-
-			},
-			change_time_in_dao() {
-				if (!this.zheng_or_dao_flag && !this.time_of_index) {
-					this.show_timer = false
-
-				}
-			},
-			gogogo() {
-				if (this.target != "" && this.target != "请输入专注目标")
-					{
-						this.need_to_do_list.push(this.target)
-						this.current_target='待办事项:'+this.target
-					}else{
-						if(this.index)
-							this.current_target='待办事项:'+this.need_to_do_list[this.index]
-					}
-				if (this.target == "请输入专注目标" && this.index == 0) {
-					this.style.pop()
-					this.style.push("red")
-				} else {
-					this.jitang_current=this.jitang_messages[Math.floor(Math.random()*(this.jitang_messages.length))]
-					this.target = "请输入专注目标"
-					this.show_of_setting_things = false
-					this.timer_flag = !this.timer_flag
-					clearInterval(this._timer)
-					if (!this.zheng_or_dao_flag) { //倒计时
-						this.i = 1
+							clearInterval(this._timer)
+						}
+					}, 1000)
+				} else { //正计时
+					this._timer = setInterval(() => {
+						this.sec++
+						if (this.sec == 60) {
+							this.sec = 0
+							this.min++
+						}
 						this.context.setStrokeStyle("white")
 						this.context.setLineWidth(3 * this.a)
 						this.context.moveTo(220 * this.a, 0)
-						this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false) //正计时一小时的时候,弧将充满
+						this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / 3600) * this.i * Math.PI, false)
 						this.context.stroke()
 						this.context.draw(true)
-						this._timer = setInterval(() => {
-							if (this.min || this.sec) { //正常计时
-								if (!this.sec && this.min) {
-									this.min--
-									this.sec = 60
-								}
-								this.sec--
-								this.context.setStrokeStyle("rgb(170,169,167)")
-								this.context.setLineWidth(3 * this.a)
-								this.context.moveTo(220 * this.a, 0)
-								this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / this.dao_total_time) * this.i * Math.PI, false) //正计时一小时的时候,弧将充满
-								this.context.stroke()
-								this.context.draw(true)
-								this.i++
-							} else { //计时结束
-								console.log("计时结束")
-								uni.showModal({
-									title: '提示',
-									content: '恭喜您！完成了相应的任务~',
-									success: function(res) {
-										if (res.confirm) {
-											console.log('用户点击确定');
-										} else if (res.cancel) {
-											console.log('用户点击取消');
-										}
-									},
-								})
-								this.ScanAudio()
-								clearInterval(this._timer)
-								this.timer_flag = !this.timer_flag
-								this.show_or_not_show = true
-								this.time_of_index = 0
-								if (this.zheng_or_dao_flag)
-									this.total_time += this.min * 60 + this.sec
-								else {
-									this.total_time += this.begin_min * 60 + this.begin_sec - this.min * 60 - this.sec
-									this.zheng_or_dao_showing = false
-								}
-								
-							}
-						}, 1000)
-					} else {
-						this.i = 1
-						this.sec = 0
-						this.min = 0
-						this.context.setStrokeStyle("rgb(170,169,167)")
-						this.context.setLineWidth(3 * this.a)
-						this.context.moveTo(220 * this.a, 0)
-						this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
-						this.context.stroke()
-						this.context.draw()
-						this._timer = setInterval(() => {
-							this.sec++
-							if (this.sec == 60) {
-								this.sec = 0
-								this.min++
-							}
-							this.context.setStrokeStyle("white")
+						this.i++
+						if (this.i == 3601) {
+							console.log("您已经学习了一个小时了")
+							this.context.setStrokeStyle("rgb(170,169,167)")
 							this.context.setLineWidth(3 * this.a)
 							this.context.moveTo(220 * this.a, 0)
-							this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / 3600) * this.i * Math.PI, false) //正计时一小时的时候,弧将充满
+							this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
+							this.context.stroke()
+							this.context.draw()
+							this.i = 1
+						}
+					}, 1000)
+				}
+			}
+
+		},
+		stop_timer() { //停止计时
+			this.timer_flag = !this.timer_flag
+			clearInterval(this._timer)
+		},
+		end_timer() {
+			this.timer_flag = !this.timer_flag
+			this.show_or_not_show = true
+			clearInterval(this._timer)
+			this.time_of_index = 0
+			if (this.zheng_or_dao_flag)
+				this.total_time += this.min * 60 + this.sec
+			else {
+				this.total_time += this.begin_min * 60 + this.begin_sec - this.min * 60 - this.sec
+				this.zheng_or_dao_showing = false
+			}
+			if (this.zheng_or_dao_flag) {
+				uni.showModal({
+					title: '提示',
+					content: '您总共学习了' + this.min + '分钟' + this.sec + '秒',
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					},
+				})
+				this.ScanAudio()
+			}
+			this.current_target = ''
+		},
+		setting_zheng_time() {
+			if (this.current_timer_style1.length == 0)
+				this.current_timer_style1.push("current_timer")
+			if (this.current_timer_style2.length == 1)
+				this.current_timer_style2.pop()
+			this.zheng_or_dao_showing = true
+			this.time_of_index = 0
+			this.show_timer = true
+			this.zheng_or_dao_flag = true
+			this.sec = 0
+			this.min = 0
+			this.context.setStrokeStyle("rgb(170,169,167)")
+			this.context.setLineWidth(3 * this.a)
+			this.context.moveTo(220 * this.a, 0)
+			this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
+			this.context.stroke()
+			this.context.draw()
+			clearInterval(this._timer)
+
+		},
+		setting_dao_time() {
+			if (this.current_timer_style2.length == 0)
+				this.current_timer_style2.push("current_timer")
+			if (this.current_timer_style1.length == 1)
+				this.current_timer_style1.pop()
+			this.zheng_or_dao_showing = false
+			this.time_of_index = 0
+			clearInterval(this._timer)
+			this.show_timer = false
+			this.zheng_or_dao_flag = false
+			this.timer_flag = true
+			this.min = 60
+			this.sec = 0
+			this.context.setStrokeStyle("white")
+			this.context.setLineWidth(3 * this.a)
+			this.context.moveTo(220 * this.a, 0)
+			this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
+			this.context.stroke()
+			this.context.draw()
+		},
+		close_things() {
+
+			setTimeout(() => {
+				this.show_of_setting_things = false
+				this.time_of_index = 0
+				this.show_or_not_show = true
+				if (!this.zheng_or_dao_flag)
+					this.zheng_or_dao_showing = false
+			}, 701);
+			this.content_style.pop();
+			this.content_style.push('slide-bottom');
+
+
+		},
+		change_time_in_dao() {
+			if (!this.zheng_or_dao_flag && !this.time_of_index) {
+				this.show_timer = false
+
+			}
+		},
+		gogogo() {
+			if (this.target != "" && this.target != "请输入专注目标") {
+				this.need_to_do_list.push(this.target)
+				this.current_target = '待办事项:' + this.target
+			} else {
+				if (this.index)
+					this.current_target = '待办事项:' + this.need_to_do_list[this.index]
+			}
+			if (this.target == "请输入专注目标" && this.index == 0) {
+				this.style.pop()
+				this.style.push("red")
+			} else {
+				this.jitang_current = this.jitang_messages[Math.floor(Math.random() * (this.jitang_messages.length))]
+				this.target = "请输入专注目标"
+				this.show_of_setting_things = false
+				this.timer_flag = !this.timer_flag
+				clearInterval(this._timer)
+				if (!this.zheng_or_dao_flag) { //倒计时
+					this.i = 1
+					this.context.setStrokeStyle("white")
+					this.context.setLineWidth(3 * this.a)
+					this.context.moveTo(220 * this.a, 0)
+					this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false) //正计时一小时的时候,弧将充满
+					this.context.stroke()
+					this.context.draw(true)
+					this._timer = setInterval(() => {
+						if (this.min || this.sec) { //正常计时
+							if (!this.sec && this.min) {
+								this.min--
+								this.sec = 60
+							}
+							this.sec--
+							this.context.setStrokeStyle("rgb(170,169,167)")
+							this.context.setLineWidth(3 * this.a)
+							this.context.moveTo(220 * this.a, 0)
+							this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / this.dao_total_time) * this.i * Math.PI, false) //正计时一小时的时候,弧将充满
 							this.context.stroke()
 							this.context.draw(true)
 							this.i++
-							if (this.i == 3601) {
-								console.log("您已经学习了一个小时了")
-								this.context.setStrokeStyle("rgb(170,169,167)")
-								this.context.setLineWidth(3 * this.a)
-								this.context.moveTo(220 * this.a, 0)
-								this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
-								this.context.stroke()
-								this.context.draw()
-								this.i = 1
+						} else { //计时结束
+							console.log("计时结束")
+							uni.showModal({
+								title: '提示',
+								content: '恭喜您！完成了相应的任务~',
+								success: function(res) {
+									if (res.confirm) {
+										console.log('用户点击确定');
+									} else if (res.cancel) {
+										console.log('用户点击取消');
+									}
+								},
+							})
+							this.ScanAudio()
+							clearInterval(this._timer)
+							this.timer_flag = !this.timer_flag
+							this.show_or_not_show = true
+							this.time_of_index = 0
+							if (this.zheng_or_dao_flag)
+								this.total_time += this.min * 60 + this.sec
+							else {
+								this.total_time += this.begin_min * 60 + this.begin_sec - this.min * 60 - this.sec
+								this.zheng_or_dao_showing = false
 							}
-						}, 1000)
-					}
+
+						}
+					}, 1000)
+				} else {
+					this.i = 1
+					this.sec = 0
+					this.min = 0
+					this.context.setStrokeStyle("rgb(170,169,167)")
+					this.context.setLineWidth(3 * this.a)
+					this.context.moveTo(220 * this.a, 0)
+					this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
+					this.context.stroke()
+					this.context.draw()
+					this._timer = setInterval(() => {
+						this.sec++
+						if (this.sec == 60) {
+							this.sec = 0
+							this.min++
+						}
+						this.context.setStrokeStyle("white")
+						this.context.setLineWidth(3 * this.a)
+						this.context.moveTo(220 * this.a, 0)
+						this.context.arc(120 * this.a, 0, 100 * this.a, 0, (1.0 / 3600) * this.i * Math.PI, false) //正计时一小时的时候,弧将充满
+						this.context.stroke()
+						this.context.draw(true)
+						this.i++
+						if (this.i == 3601) {
+							console.log("您已经学习了一个小时了")
+							this.context.setStrokeStyle("rgb(170,169,167)")
+							this.context.setLineWidth(3 * this.a)
+							this.context.moveTo(220 * this.a, 0)
+							this.context.arc(120 * this.a, 0, 100 * this.a, 0, Math.PI, false)
+							this.context.stroke()
+							this.context.draw()
+							this.i = 1
+						}
+					}, 1000)
 				}
-			},
-			input_in() {
-				if (this.target == "请输入专注目标")
-					this.target = ""
-				this.style.pop()
-			},
-			input_out() {
-				if (this.target == "")
-					this.target = "请输入专注目标"
-				this.style.push("white")
-			},
-			change_to_history() {
-				uni.navigateTo({
-					url: "../history/history"
-				})
 			}
+		},
+		input_in() {
+			if (this.target == "请输入专注目标")
+				this.target = ""
+			this.style.pop()
+		},
+		input_out() {
+			if (this.target == "")
+				this.target = "请输入专注目标"
+			this.style.push("white")
+		},
+		change_to_history() {
+			uni.navigateTo({
+				url: "../history/history"
+			})
 		}
+	}
 	}
 </script>
 
 <style>
-	.current_timer{
+	.current_timer {
 		font-weight: bold;
 	}
-	
+
 	#myCanvas {
 		position: absolute;
 		top: 92rpx;
@@ -498,10 +514,12 @@
 		width: 500rpx;
 		pointer-events: none;
 	}
-    .current_target{
+
+	.current_target {
 		height: 57rpx;
 		text-align: center;
 	}
+
 	.right {
 		width: 55rpx;
 		height: 55rpx;
@@ -510,7 +528,7 @@
 	.total {
 		color: white;
 		padding-top: 30rpx;
-		background: url(~@/static/BGT/BGT.jpg) no-repeat;
+		background: url("https://azoux.xyz/static/todo/BGT/BGT.jpg") no-repeat;
 		background-size: 100% 100%;
 		background-position: 0 0;
 	}

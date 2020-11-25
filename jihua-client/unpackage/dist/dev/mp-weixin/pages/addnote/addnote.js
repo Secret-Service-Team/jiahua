@@ -97,9 +97,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var m0 = __webpack_require__(/*! ../../static/beiwang/对.png */ 27)
+  var m0 = __webpack_require__(/*! ../../static/beiwang/退出.png */ 27)
 
-  var m1 = __webpack_require__(/*! ../../static/beiwang/叉号.png */ 28)
+  var m1 = __webpack_require__(/*! ../../static/beiwang/对.png */ 28)
 
   _vm.$mp.data = Object.assign(
     {},
@@ -143,8 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniTag = function uniTag() {__webpack_require__.e(/*! require.ensure | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then((function () {return resolve(__webpack_require__(/*! @/components/uni-tag/uni-tag.vue */ 175));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniTag = function uniTag() {__webpack_require__.e(/*! require.ensure | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then((function () {return resolve(__webpack_require__(/*! @/components/uni-tag/uni-tag.vue */ 184));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -260,16 +259,16 @@ __webpack_require__.r(__webpack_exports__);
       style3: [],
       style4: [],
       flag: '',
-      sty: '' }, _defineProperty(_ref, "flag",
+      sty: 0 }, _defineProperty(_ref, "flag",
 
     ''), _defineProperty(_ref, "detial",
     ''), _defineProperty(_ref, "demo",
     {
       "thingtitle": '',
       "sty": '',
-
+      "openid": '123',
       "recordTime": '0130',
-      "recordDate": '20201106',
+      "recordDate": '2020-11-06',
       "flag": '',
       "detial": '' }), _ref;
 
@@ -286,27 +285,105 @@ __webpack_require__.r(__webpack_exports__);
     this.recordTime = "".concat(date.getHours(), "-").concat(date.getMinutes() + 1);
     this.recordDate = "".concat(date.getFullYear(), "-").concat(date.getMonth() + 1, "-").concat(date.getDate());
 
+
   },
   methods: {
+    //getaddnote_messages(){}
     add: function add() {
 
       this.demo.thingtitle = this.thingtitle;
       this.demo.sty1 = this.sty1;
 
       this.demo.recordTime = this.recordTime,
-      this.demo.recordDate = this.recordDate,
-
+      //this.demo.recordDate = this.recordDate,
       this.demo.sty = this.sty,
 
       this.demo.flag = this.flag,
       this.demo.detial = this.detial,
       console.log(this.demo);
+      if (this.thingtitle == "") {
+        uni.showModal({
+          title: '提示',
+          content: '标题没写鸭~',
+          success: function success(res) {
+            if (res.confirm) {
+
+
+
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          } });
+
+        return;
+      }
+      if (this.sty == 0) {
+        uni.showModal({
+          title: '提示',
+          content: '象限是不是忘了？',
+          success: function success(res) {
+            if (res.confirm) {
+
+
+
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          } });
+
+        return;
+      }
+      if (this.flag == 0) {
+        uni.showModal({
+          title: '提示',
+          content: '代办是什么标签的呢？',
+          success: function success(res) {
+            if (res.confirm) {
+
+
+
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          } });
+
+        return;
+      }
+
       uni.showModal({
         title: '提示',
         content: '是否添加代办呢~',
         success: function success(res) {
           if (res.confirm) {
-            console.log('用户点击确定');
+            uni.request({
+              url: 'http://127.0.0.1:8000/jihua/addtodo/', //仅为示例，并非真实接口地址。
+              method: 'POST',
+              data: this.demo,
+              success: function success(res) {
+                console.log(res.data);
+              } });
+
+            uni.navigateBack({
+              delta: 1 });
+
+
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        } });
+
+    },
+    exit: function exit() {
+
+
+      uni.showModal({
+        title: '提示',
+        content: '信息还未保存就要离开了吗？',
+        success: function success(res) {
+          if (res.confirm) {
+            uni.navigateBack({
+              delta: 1 });
+
 
           } else if (res.cancel) {
             console.log('用户点击取消');

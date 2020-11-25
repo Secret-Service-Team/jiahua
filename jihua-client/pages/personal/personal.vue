@@ -2,22 +2,23 @@
 	<view>
 		<view class="topBar">
 			<view class="topleft">
-				<img src="~@/static/personcenter_icon/photo.png" alt="" />
+				 <open-data type="userAvatarUrl"></open-data>  
+				<!-- <img src="~@/static/personcenter_icon/photo.png" alt="" /> -->
 			</view>
 			<view class="topright">
-				<view class="name">飞翔的企鹅</view>
+				<view class="name"><open-data type="userNickName" lang="zh_CN"></open-data></view>
 				<!-- <view class="motto">人寿几何？</view> -->
 			</view>
 		</view>
 		
 		<view class="lines">
-			<view class="style" @click="jumptoSetStyle">
+			<!-- <view class="style" @click="jumptoSetStyle">
 				<view class="style-son">
 					<img class="key-icon" src="~@/static/personcenter_icon/setstyle.png" alt="" />
 					<view class="title">样式设置</view>
 				</view>
 				<img class="right-icon" src="~@/static/personcenter_icon/right.png" alt="" />
-			</view>
+			</view> -->
 			
 			<view class="style" @click="jumptoAboutUs">
 				<view class="style-son">
@@ -107,9 +108,35 @@
 						}
 					},
 				})
+			},
+			test(){
+				uni.showModal({
+					title: '提示',
+					content: '缓存已清除',
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						} 
+						else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					},
+				})
 			}
 			
-		}
+		},
+		onShow() {
+			uni.setNavigationBarColor({
+				backgroundColor: this.style.backgroundColor,
+				frontColor:this.style.textStyle,
+				fail: (e) => {
+					console.log(e)
+				},
+				success: (e) => {
+					console.log(e)
+				}
+			})
+		},
 	}
 </script>
 

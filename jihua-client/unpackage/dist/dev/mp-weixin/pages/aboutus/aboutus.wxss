@@ -17,7 +17,7 @@
 	padding-left: 15rpx;
 	padding-right: 15rpx;
 	padding-top: 10rpx;
-	padding-bottom: 10rpx;
+	padding-bottom: 40rpx;
 	/* font-weight: bold; */
 	font-size: 40rpx;
 	border:  5rpx #000000  solid;
