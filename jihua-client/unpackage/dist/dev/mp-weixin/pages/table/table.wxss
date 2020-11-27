@@ -19,7 +19,6 @@
 	padding-left: 5rpx;
 	padding-top: 28rpx;
 	/* padding: 0 auto; */
-
 	/* flex:column; */
 }
 .top .right.data-v-3e0dbbe4 {
@@ -50,7 +49,9 @@
 	padding-left: 5rpx;
 }
 .rank.data-v-3e0dbbe4 {
+	margin: 0 auto;
 	margin-top: 30rpx;
+	width: 80%;
 }
 .no.data-v-3e0dbbe4 {
 	display: -webkit-box;

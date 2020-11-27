@@ -1,15 +1,10 @@
 <template>
 	<view>
-
 		<view class="top-container">
 
 			<view class="title">
-				编辑代办
+				编辑待办
 			</view>
-
-
-
-
 		</view>
 		<view class="middle">
 			<view class="group2">
@@ -25,7 +20,6 @@
 			</view>
 			<view class="group3">
 				<view class="title3-left">
-
 					<view class="title3-left-1">分</view>
 					<view class="title3-left-1"> </view>
 					<view class="title3-left-2">类</view>
@@ -80,8 +74,6 @@
 			</view>
 		</view>
 		<view class="buttom">
-
-
 			<view class="save" @click="add">
 				<img src="../../static/beiwang/对.png" alt="" />
 			</view>
@@ -90,9 +82,6 @@
 			</view>
 		</view>
 	</view>
-
-
-
 </template>
 
 <script>
@@ -107,27 +96,18 @@
 				flag_hide: false,
 				time: 0,
 				isclick: true,
-				thingtitle: '',
-				recordTime: '0130',
-				recordDate: '20201106',
 				style1: [],
 				style2: [],
 				style3: [],
 				style4: [],
-				flag: '',
+				thingtitle: '',
 				sty: '',
-
+				recordTime: '',
+				recordDate: '',
 				flag: '',
 				detial: '',
-				demo: {
-					"thingtitle": '',
-					"sty": '',
-
-					"recordTime": '0130',
-					"recordDate": '20201106',
-					"flag": '',
-					"detial": '',
-				}
+				id: 1,
+				openid:''
 			}
 		},
 		onPageScroll() {
@@ -136,71 +116,150 @@
 				this.$refs.timeline.getScroll();
 			}
 		},
+mounted() {
+			this.openid = wx.getStorageSync('openid')
+		},
 		onLoad() {
 			const date = new Date();
-			this.recordTime = `${date.getHours()}-${date.getMinutes() + 1}`;
-			this.recordDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+			var day = date.getDate()
+			var month = date.getMonth() + 1
+			this.recordDate = date.getFullYear() + '-' + (month >= 10 ? month : '0' + month) + '-' + (day >= 10 ? day : '0' +
+				day)
+		},
+		onShow: function(option) {
+			const eventChannel = this.getOpenerEventChannel()
+			const addd = this.setData
+			eventChannel.on('acceptDataFromA', function(data) {
+				console.log(data.demo.xiangxian)
+				addd(data)
+			})
 
 		},
 		methods: {
+			setData(data) {
+				this.thingtitle = data.demo.content
+				this.sty = data.demo.xiangxian
+				this.recordTime = data.demo.title
+				this.flag = data.demo.title_span
+				this.detial = data.demo.detial
+				this.id = data.demo.id
+				var tttt = data.demo.xiangxian
+				if (tttt == 1)
+					this.style1.push("change1")
+				else if (tttt == 2)
+					this.style2.push("change2")
+				else if (tttt == 3)
+					this.style3.push("change3")
+				else if (tttt == 4)
+					this.style4.push("change4")
+			},
 			add() {
-				
-				this.demo.thingtitle = this.thingtitle
-				this.demo.sty1 = this.sty1
-
-				this.demo.recordTime = this.recordTime,
-					this.demo.recordDate = this.recordDate,
-
-					this.demo.sty = this.sty,
-
-					this.demo.flag = this.flag,
-					this.demo.detial = this.detial,
-					console.log(this.demo)
+				const that = this
 				uni.showModal({
 					title: '提示',
-					content: '是否修改代办呢~',
+					content: '改动完整了吗~',
 					success: function(res) {
 						if (res.confirm) {
-							console.log('用户点击确定');
-							
+							uni.request({
+								url: 'https://blog.surfly.top/jihua/xgtodo/', //仅为示例，并非真实接口地址。
+								data: {
+									openid: that.openid,
+									id: that.id,
+									thingtitle: that.thingtitle,
+									sty: that.sty,
+									recordTime: that.recordTime,
+									recordDate: that.recordDate,
+									flag: that.flag,
+									detial: that.detial,
+								},
+								method: 'POST',
+							})
+							success: (res) => {
+									bus.$emit("aMsg", res.data);
+									//console.log(res.data)
+								},
+
+								uni.navigateBack({
+									delta: 1
+								})
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				})
+			},
+			kill() {
+				const that = this
+
+				uni.showModal({
+					title: '提示',
+					content: '真的要删掉了吗~',
+					success: function(res) {
+						if (res.confirm) {
+
+							uni.request({
+								url: 'https://blog.surfly.top/jihua/deletetodo/', //仅为示例，并非真实接口地址。
+								data: {
+									openid: that.openid,
+									starttime: that.totalDate,
+									id: that.id,
+									thingtitle: that.thingtitle,
+									sty: that.sty,
+									recordTime: that.recordTime,
+									recordDate: that.recordDate,
+									flag: that.flag,
+									detial: that.detial,
+								},
+								method: 'POST',
+							})
+
+							success: (res) => {
+								bus.$emit("aMsg", res.data);
+								//console.log(res.data)
+							}
+							uni.navigateBack({
+								delta: 1
+							})
+
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}
 					},
 				})
 			},
+
 			xiangxian1() {
 				if (this.style1.length != 0) return
 				this.sty = 1
-				this.style1.push("change")
-				this.style2.pop("change")
-				this.style3.pop("change")
-				this.style4.pop("change")
+				this.style1.push("change1")
+				this.style2.pop("change2")
+				this.style3.pop("change3")
+				this.style4.pop("change4")
 			},
 			xiangxian2() {
 				if (this.style2.length != 0) return
 				this.sty = 2
-				this.style2.push("change")
-				this.style1.pop("change")
-				this.style3.pop("change")
-				this.style4.pop("change")
+				this.style2.push("change2")
+				this.style1.pop("change1")
+				this.style3.pop("change3")
+				this.style4.pop("change4")
 			},
 			xiangxian3() {
 				if (this.style3.length != 0) return
-				this.style3.push("change")
+				this.style3.push("change3")
 				this.sty = 3
 
-				this.style2.pop("change")
-				this.style1.pop("change")
-				this.style4.pop("change")
+				this.style2.pop("change2")
+				this.style1.pop("change1")
+				this.style4.pop("change4")
 			},
 			xiangxian4() {
 				if (this.style4.length != 0) return
 				this.sty = 4
-				this.style4.push("change")
-				this.style2.pop("change")
-				this.style1.pop("change")
-				this.style3.pop("change")
+				this.style4.push("change4")
+				this.style2.pop("change2")
+				this.style1.pop("change1")
+				this.style3.pop("change3")
 			},
 			timer() {
 				if (this.time > 0) {
@@ -242,9 +301,28 @@
 </script>
 
 <style>
-	.change {
-		background-color: #000000;
+	.change1 {
+		background-color: rgb(211, 170, 102);
 		color: white;
+		border: 1rpx solid white !important;
+	}
+
+	.change2 {
+		background-color: rgb(206, 128, 121);
+		color: white;
+		border: 1rpx solid white !important;
+	}
+
+	.change3 {
+		background-color: rgb(167, 214, 244);
+		color: white;
+		border: 1rpx solid white !important;
+	}
+
+	.change4 {
+		background-color: rgb(116, 166, 145);
+		color: white;
+		border: 1rpx solid white !important;
 	}
 
 	.top-container {
@@ -304,9 +382,8 @@
 		font-family: "agency fb""arial, helvetica, sans-serif";
 		font-weight: 300;
 		margin-left: 20rpx;
-
 		width: 700rpx;
-		height: 650rpx;
+		height: 75rpx;
 		left: 0rpx;
 		top: 0rpx;
 		z-index: 5;
@@ -536,7 +613,7 @@
 
 	.title5-right {
 
-		background-color: #FF;
+
 		width: 700rpx;
 		height: 50rpx;
 		left: 0rpx;

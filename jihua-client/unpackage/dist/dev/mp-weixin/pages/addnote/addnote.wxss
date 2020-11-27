@@ -1,7 +1,23 @@
 
-.change {
-	background-color: #000000;
+.change1 {
+	background-color: rgb(211, 170, 102);
 	color: white;
+	border: 1rpx solid white !important;
+}
+.change2 {
+	background-color: rgb(206, 128, 121);
+	color: white;
+	border: 1rpx solid white !important;
+}
+.change3 {
+	background-color: rgb(167, 214, 244);
+	color: white;
+	border: 1rpx solid white !important;
+}
+.change4 {
+	background-color: rgb(116, 166, 145);
+	color: white;
+	border: 1rpx solid white !important;
 }
 .top-container {
 	position: flex;

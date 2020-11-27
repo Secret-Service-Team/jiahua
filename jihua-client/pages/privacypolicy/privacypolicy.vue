@@ -5,7 +5,7 @@
 		</view>
 		
 		<view class="logo-father">
-			<img class="logo" src="~@/static/personcenter_icon/bwlogo.png" alt="" />
+			<img class="logo" src="../../static/personcenter_icon/bwlogo.png" alt="" />
 		</view>
 		
 		<view class="body">

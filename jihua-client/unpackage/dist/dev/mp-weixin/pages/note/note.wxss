@@ -10,7 +10,7 @@
 	display: -webkit-flex;
 	display: flex;
 	margin-top: 0rpx;
-	
+
 	/* flex:1 1 0; */
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
@@ -54,29 +54,29 @@
 	text-align: center;
 	width: 150rpx;
 }
-.middle{
+.middle {
 	padding: 100rpx 0;
 	width: 100%;
 	height: 10%;
 	margin-top: 8rpx;
 }
 .down {
-	
+
 	width: 100%;
 	height: 100rpx;
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	
+
 	background-color: #FFF;
-	
+
 	/* flex:1 1 0; */
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
 	        justify-content: space-between;
 	z-index: 100;
 }
-.add ._img{
+.add ._img {
 	width: 70rpx;
 	height: 70rpx;
 	bottom: 0;

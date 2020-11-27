@@ -8,7 +8,6 @@
     "pages/table/table",
     "pages/presell/presell",
     "pages/calendar/calendar",
-    "pages/history/history",
     "pages/bcalendar/bcalendar",
     "pages/aboutus/aboutus",
     "pages/help/help",
@@ -22,7 +21,8 @@
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8",
-    "navigationBarTitleText": "记划"
+    "navigationBarTitleText": "记划",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#999999",
@@ -44,7 +44,8 @@
         "text": "记账",
         "pagePath": "pages/bookkeeping/bookkeeping",
         "iconPath": "static/icon/32.png",
-        "selectedIconPath": "static/icon/31.png"
+        "selectedIconPath": "static/icon/31.png",
+        "enablePullDownRefresh": true
       },
       {
         "text": "个人中心",

@@ -10,7 +10,8 @@
 /* 8 */,
 /* 9 */,
 /* 10 */,
-/* 11 */
+/* 11 */,
+/* 12 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/main.js?{"page":"pages%2Findex%2Findex"} ***!
   \*********************************************************************************************/
@@ -20,12 +21,12 @@
 "use strict";
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /*!**************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/pages/index/index.vue ***!
   \**************************************************************************/
@@ -34,7 +35,7 @@ createPage(_index.default);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_vue_vue_type_template_id_57280228___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=57280228& */ 13);
+/* harmony import */ var _index_vue_vue_type_template_id_57280228___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=57280228& */ 14);
 /* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ 19);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _index_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.vue?vue&type=style&index=0&lang=css& */ 21);
@@ -65,7 +66,7 @@ component.options.__file = "pages/index/index.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /*!*********************************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/pages/index/index.vue?vue&type=template&id=57280228& ***!
   \*********************************************************************************************************/
@@ -74,7 +75,7 @@ component.options.__file = "pages/index/index.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_index_vue_vue_type_template_id_57280228___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./index.vue?vue&type=template&id=57280228& */ 14);
+/* harmony import */ var _D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_index_vue_vue_type_template_id_57280228___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./index.vue?vue&type=template&id=57280228& */ 15);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_index_vue_vue_type_template_id_57280228___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_index_vue_vue_type_template_id_57280228___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -86,7 +87,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/fighting/Desktop/jihua/jihua-client/pages/index/index.vue?vue&type=template&id=57280228& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -104,8 +105,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var m0 = __webpack_require__(/*! @/static/icon/lie.png */ 15)
-
   var g0 = _vm.total_time >= 3600 ? Math.floor(_vm.total_time / 3600) : null
   var g1 =
     _vm.total_time >= 3600
@@ -113,23 +112,22 @@ var render = function() {
       : null
   var g2 = !(_vm.total_time >= 3600) ? Math.floor(_vm.total_time / 60) : null
 
-  var m1 = __webpack_require__(/*! @/static/icon/begin.png */ 16)
+  var m0 = __webpack_require__(/*! @/static/icon/begin.png */ 16)
 
-  var m2 = __webpack_require__(/*! @/static/icon/stop.png */ 17)
+  var m1 = __webpack_require__(/*! @/static/icon/stop.png */ 17)
 
-  var m3 = __webpack_require__(/*! @/static/icon/juxing.png */ 18)
+  var m2 = __webpack_require__(/*! @/static/icon/juxing.png */ 18)
 
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        m0: m0,
         g0: g0,
         g1: g1,
         g2: g2,
+        m0: m0,
         m1: m1,
-        m2: m2,
-        m3: m3
+        m2: m2
       }
     }
   )
@@ -141,7 +139,6 @@ render._withStripped = true
 
 
 /***/ }),
-/* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */,
@@ -254,7 +251,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   onReady: function onReady(e) {
@@ -269,7 +265,7 @@ var _default =
 
   data: function data() {
     return {
-
+      before_total_time: 0,
       current_timer_style1: [],
       current_timer_style2: [],
       a: 0, //canvas比例因子
@@ -285,6 +281,8 @@ var _default =
       show_or_not_show: true, //是否显示 正计时/倒计时 和 今日已专注时长  这两个标签, true为显示
       time_of_index: 0,
       need_to_do_list: ["--点击选择待办事项--"],
+      need_to_do_zhuangzhu_list: [],
+      need_to_do_beiwang_list: [],
       show_of_setting_things: false, //是否显示选择待办事项界面,true进入
       target: "请输入专注目标",
       style: ["write", "white"],
@@ -299,45 +297,89 @@ var _default =
       current_target: '', //当前目标
       jitang_current: "这里是没有毒的鸡汤-v-",
       jitang_messages: [
-      "温故而知新,可以为师矣。",
-      "学而不思则罔,思而不学则殆。",
-      "见贤思齐焉,见不贤而内自省也。",
+      "温故而知新,可以为师矣",
+      "学而不思则罔,思而不学则殆",
+      "见贤思齐焉,见不贤而内自省也",
       "学而时习之,不亦说乎?",
-      "岁寒,然后知松柏之后凋也。",
-      "腹有诗书气自华,读书万卷始通神。",
-      "言必信,行必果。",
-      "世上无难事,只要肯登攀。",
-      "天生我材必有用。",
-      "读书破万卷,下笔如有神。",
-      "人而无信,不知其可也。",
-      "全欺芳蕙晚,似妒寒梅疾。",
-      "不傲才以骄人,不以宠而作威。",
-      "静以修身,俭以养德。",
-      "君子一诺,五岳皆轻。",
-      "鞠躬尽瘁,死而后已。",
-      "天下兴亡,匹夫有责。",
+      "岁寒,然后知松柏之后凋也",
+      "腹有诗书气自华,读书万卷始通神",
+      "言必信,行必果",
+      "世上无难事,只要肯登攀",
+      "天生我材必有用",
+      "读书破万卷,下笔如有神",
+      "人而无信,不知其可也",
+      "全欺芳蕙晚,似妒寒梅疾",
+      "不傲才以骄人,不以宠而作威",
+      "静以修身,俭以养德",
+      "君子一诺,五岳皆轻",
+      "鞠躬尽瘁,死而后已",
+      "天下兴亡,匹夫有责",
       "为中华之崛起而读书",
-      "宝剑锋从磨砺出,梅花香自苦寒来。",
-      "敏而好学,不耻下问。",
-      "火以炼金,逆境磨练人。",
-      "逃避不能解决战争,只会解决你自己。",
-      "这里是没有毒的鸡汤~"] };
+      "宝剑锋从磨砺出,梅花香自苦寒来",
+      "敏而好学,不耻下问",
+      "火以炼金,逆境磨练人",
+      "逃避不能解决战争,只会解决你自己",
+      "这里是没有毒的鸡汤~"],
 
 
+      recordDate: '',
+      time_time: 0,
+      openid: '' };
 
+  },
+  mounted: function mounted() {
+    this.openid = wx.getStorageSync('openid');
+    this.huoquzhuanzhujishi();
+    this.changeshixiang();
   },
   onLoad: function onLoad() {
     this.total_height = this.getData() + 'rpx';
     this.a = this.get_a() / 750;
-    this.huoquzhuanzhujishi();
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    this.recordDate = date.getFullYear() + '-' + (month >= 10 ? month : '0' + month) + '-' + (day >= 10 ? day : '0' + day);
+
+
+  },
+  onShow: function onShow() {
+    this.changeshixiang();
+  },
+  onHide: function onHide() {
+    this.time_time++;
+    uni.request({
+      url: 'https://blog.surfly.top/jihua/addtotaltime/', //仅为示例，并非真实接口地址。
+      data: {
+        openid: this.openid,
+        studytime: this.recordDate,
+        usetime: this.total_time },
+
+      method: 'POST' });
+
   },
   methods: {
+    // getbeiwangshixiang1(){
+    // 	this.huoqubeiwangshixiang()
+    // 	this.need_to_do_list.push.apply(this.need_to_do_list, this.need_to_do_beiwang_list)
+    // 	 console.log(this.need_to_do_list)
+    // 	this.$forceUpdate();
+    // },
+    changeshixiang: function changeshixiang() {
+      this.huoqubeiwangshixiang();
+      this.need_to_do_list = ["--点击选择待办事项--"];
+      //this.need_to_do_beiwang_list=["moy","aaaa"]
+      this.need_to_do_list.push.apply(this.need_to_do_list, this.need_to_do_beiwang_list);
+      this.need_to_do_list.push.apply(this.need_to_do_list, this.need_to_do_zhuangzhu_list);
+      console.log(this.need_to_do_list);
+      this.$forceUpdate();
+
+    },
     huoquzhuanzhujishi: function huoquzhuanzhujishi() {var _this = this;
       uni.request({
-        url: 'http://127.0.0.1:8000/jihua/getdaytotaltime/', //仅为示例，并非真实接口地址。
+        url: 'https://blog.surfly.top/jihua/getdaytotaltime/', //仅为示例，并非真实接口地址。
         data: {
-          openid: '125',
-          studytime: '2020-11-23' },
+          openid: this.openid,
+          studytime: this.recordDate },
 
         method: 'POST',
         success: function success(res) {
@@ -346,7 +388,22 @@ var _default =
         } });
 
     },
+    huoqubeiwangshixiang: function huoqubeiwangshixiang() {var _this2 = this;
+      uni.request({
+        url: 'https://blog.surfly.top/jihua/findtodo/', //仅为示例，并非真实接口地址。
+        data: {
+          openid: this.openid,
+          starttime: this.recordDate },
 
+        method: 'POST',
+        success: function success(res) {
+          for (var i = 0; i < res.data.data.length; i++) {
+            _this2.need_to_do_beiwang_list[i] = res.data.data[i].whattodo;}
+          //console.log(res.data.data.length)
+
+        } });
+
+    },
     bindPickerChange: function bindPickerChange(e) {
       this.index = e.target.value; //将数组改变索引赋给定义的index变量
       this.jg = this.need_to_do_list[this.index];
@@ -370,7 +427,7 @@ var _default =
       uni.getSystemInfo({
         success: function success(res) {
           result = res.screenHeight * 2 - res.statusBarHeight * 2;
-          console.log(result);
+
         } });
 
       return result;
@@ -384,7 +441,9 @@ var _default =
 
       return result;
     },
-    begin_of_timer: function begin_of_timer() {var _this2 = this; //开始计时
+    begin_of_timer: function begin_of_timer() {var _this3 = this; //开始计时
+      if (this.time_time == 0)
+      this.changeshixiang();
       clearInterval(this._timer);
       this.show_timer = true;
       this.show_or_not_show = false;
@@ -410,48 +469,46 @@ var _default =
         if (!this.zheng_or_dao_flag) {//倒计时
 
           this._timer = setInterval(function () {
-            if (_this2.min || _this2.sec) {//正常计时
-              if (!_this2.sec && _this2.min) {
-                _this2.min--;
-                _this2.sec = 60;
+            if (_this3.min || _this3.sec) {//正常计时
+              if (!_this3.sec && _this3.min) {
+                _this3.min--;
+                _this3.sec = 60;
               }
-              _this2.sec--;
-              _this2.context.setStrokeStyle("rgb(170,169,167)");
-              _this2.context.setLineWidth(3 * _this2.a);
-              _this2.context.moveTo(220 * _this2.a, 0);
-              _this2.context.arc(120 * _this2.a, 0, 100 * _this2.a, 0, 1.0 / _this2.dao_total_time * _this2.i * Math.PI, false); //正计时一小时的时候,弧将充满
-              _this2.context.stroke();
-              _this2.context.draw(true);
-              _this2.i++;
-            } else {//计时结束
-              console.log("计时结束");
+              _this3.sec--;
+              _this3.context.setStrokeStyle("rgb(170,169,167)");
+              _this3.context.setLineWidth(3 * _this3.a);
+              _this3.context.moveTo(220 * _this3.a, 0);
+              _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, 1.0 / _this3.dao_total_time * _this3.i * Math.PI, false); //正计时一小时的时候,弧将充满
+              _this3.context.stroke();
+              _this3.context.draw(true);
+              _this3.i++;
+            } else {
 
-              clearInterval(_this2._timer);
+              clearInterval(_this3._timer);
             }
           }, 1000);
         } else {//正计时
           this._timer = setInterval(function () {
-            _this2.sec++;
-            if (_this2.sec == 60) {
-              _this2.sec = 0;
-              _this2.min++;
+            _this3.sec++;
+            if (_this3.sec == 60) {
+              _this3.sec = 0;
+              _this3.min++;
             }
-            _this2.context.setStrokeStyle("white");
-            _this2.context.setLineWidth(3 * _this2.a);
-            _this2.context.moveTo(220 * _this2.a, 0);
-            _this2.context.arc(120 * _this2.a, 0, 100 * _this2.a, 0, 1.0 / 3600 * _this2.i * Math.PI, false);
-            _this2.context.stroke();
-            _this2.context.draw(true);
-            _this2.i++;
-            if (_this2.i == 3601) {
-              console.log("您已经学习了一个小时了");
-              _this2.context.setStrokeStyle("rgb(170,169,167)");
-              _this2.context.setLineWidth(3 * _this2.a);
-              _this2.context.moveTo(220 * _this2.a, 0);
-              _this2.context.arc(120 * _this2.a, 0, 100 * _this2.a, 0, Math.PI, false);
-              _this2.context.stroke();
-              _this2.context.draw();
-              _this2.i = 1;
+            _this3.context.setStrokeStyle("white");
+            _this3.context.setLineWidth(3 * _this3.a);
+            _this3.context.moveTo(220 * _this3.a, 0);
+            _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, 1.0 / 3600 * _this3.i * Math.PI, false);
+            _this3.context.stroke();
+            _this3.context.draw(true);
+            _this3.i++;
+            if (_this3.i == 3601) {
+              _this3.context.setStrokeStyle("rgb(170,169,167)");
+              _this3.context.setLineWidth(3 * _this3.a);
+              _this3.context.moveTo(220 * _this3.a, 0);
+              _this3.context.arc(120 * _this3.a, 0, 100 * _this3.a, 0, Math.PI, false);
+              _this3.context.stroke();
+              _this3.context.draw();
+              _this3.i = 1;
             }
           }, 1000);
         }
@@ -473,17 +530,21 @@ var _default =
         this.total_time += this.begin_min * 60 + this.begin_sec - this.min * 60 - this.sec;
         this.zheng_or_dao_showing = false;
       }
+      var that = this;
+      uni.request({
+        url: 'https://blog.surfly.top/jihua/addtotaltime/', //仅为示例，并非真实接口地址。
+        data: {
+          openid: that.openid,
+          studytime: that.recordDate,
+          usetime: that.total_time },
+
+        method: 'POST' });
+
       if (this.zheng_or_dao_flag) {
         uni.showModal({
           title: '提示',
           content: '您总共学习了' + this.min + '分钟' + this.sec + '秒',
-          success: function success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定');
-            } else if (res.cancel) {
-              console.log('用户点击取消');
-            }
-          } });
+          showCancel: false });
 
         this.ScanAudio();
       }
@@ -529,14 +590,14 @@ var _default =
       this.context.stroke();
       this.context.draw();
     },
-    close_things: function close_things() {var _this3 = this;
+    close_things: function close_things() {var _this4 = this;
 
       setTimeout(function () {
-        _this3.show_of_setting_things = false;
-        _this3.time_of_index = 0;
-        _this3.show_or_not_show = true;
-        if (!_this3.zheng_or_dao_flag)
-        _this3.zheng_or_dao_showing = false;
+        _this4.show_of_setting_things = false;
+        _this4.time_of_index = 0;
+        _this4.show_or_not_show = true;
+        if (!_this4.zheng_or_dao_flag)
+        _this4.zheng_or_dao_showing = false;
       }, 701);
       this.content_style.pop();
       this.content_style.push('slide-bottom');
@@ -549,9 +610,10 @@ var _default =
 
       }
     },
-    gogogo: function gogogo() {var _this4 = this;
+    gogogo: function gogogo() {var _this5 = this;
       if (this.target != "" && this.target != "请输入专注目标") {
         this.need_to_do_list.push(this.target);
+        this.need_to_do_zhuangzhu_list.push(this.target);
         this.current_target = '待办事项:' + this.target;
       } else {
         if (this.index)
@@ -575,43 +637,46 @@ var _default =
           this.context.stroke();
           this.context.draw(true);
           this._timer = setInterval(function () {
-            if (_this4.min || _this4.sec) {//正常计时
-              if (!_this4.sec && _this4.min) {
-                _this4.min--;
-                _this4.sec = 60;
+            if (_this5.min || _this5.sec) {//正常计时
+              if (!_this5.sec && _this5.min) {
+                _this5.min--;
+                _this5.sec = 60;
               }
-              _this4.sec--;
-              _this4.context.setStrokeStyle("rgb(170,169,167)");
-              _this4.context.setLineWidth(3 * _this4.a);
-              _this4.context.moveTo(220 * _this4.a, 0);
-              _this4.context.arc(120 * _this4.a, 0, 100 * _this4.a, 0, 1.0 / _this4.dao_total_time * _this4.i * Math.PI, false); //正计时一小时的时候,弧将充满
-              _this4.context.stroke();
-              _this4.context.draw(true);
-              _this4.i++;
+              _this5.sec--;
+              _this5.context.setStrokeStyle("rgb(170,169,167)");
+              _this5.context.setLineWidth(3 * _this5.a);
+              _this5.context.moveTo(220 * _this5.a, 0);
+              _this5.context.arc(120 * _this5.a, 0, 100 * _this5.a, 0, 1.0 / _this5.dao_total_time * _this5.i * Math.PI, false); //正计时一小时的时候,弧将充满
+              _this5.context.stroke();
+              _this5.context.draw(true);
+              _this5.i++;
             } else {//计时结束
               console.log("计时结束");
               uni.showModal({
                 title: '提示',
                 content: '恭喜您！完成了相应的任务~',
-                success: function success(res) {
-                  if (res.confirm) {
-                    console.log('用户点击确定');
-                  } else if (res.cancel) {
-                    console.log('用户点击取消');
-                  }
-                } });
+                showCancel: false });
 
-              _this4.ScanAudio();
-              clearInterval(_this4._timer);
-              _this4.timer_flag = !_this4.timer_flag;
-              _this4.show_or_not_show = true;
-              _this4.time_of_index = 0;
-              if (_this4.zheng_or_dao_flag)
-              _this4.total_time += _this4.min * 60 + _this4.sec;else
+              _this5.ScanAudio();
+              clearInterval(_this5._timer);
+              _this5.timer_flag = !_this5.timer_flag;
+              _this5.show_or_not_show = true;
+              _this5.time_of_index = 0;
+              if (_this5.zheng_or_dao_flag)
+              _this5.total_time += _this5.min * 60 + _this5.sec;else
               {
-                _this4.total_time += _this4.begin_min * 60 + _this4.begin_sec - _this4.min * 60 - _this4.sec;
-                _this4.zheng_or_dao_showing = false;
+                _this5.total_time += _this5.begin_min * 60 + _this5.begin_sec - _this5.min * 60 - _this5.sec;
+                _this5.zheng_or_dao_showing = false;
               }
+              var that = _this5;
+              uni.request({
+                url: 'https://blog.surfly.top/jihua/addtotaltime/', //仅为示例，并非真实接口地址。
+                data: {
+                  openid: that.openid,
+                  studytime: that.recordDate,
+                  usetime: that.total_time },
+
+                method: 'POST' });
 
             }
           }, 1000);
@@ -626,27 +691,27 @@ var _default =
           this.context.stroke();
           this.context.draw();
           this._timer = setInterval(function () {
-            _this4.sec++;
-            if (_this4.sec == 60) {
-              _this4.sec = 0;
-              _this4.min++;
+            _this5.sec++;
+            if (_this5.sec == 60) {
+              _this5.sec = 0;
+              _this5.min++;
             }
-            _this4.context.setStrokeStyle("white");
-            _this4.context.setLineWidth(3 * _this4.a);
-            _this4.context.moveTo(220 * _this4.a, 0);
-            _this4.context.arc(120 * _this4.a, 0, 100 * _this4.a, 0, 1.0 / 3600 * _this4.i * Math.PI, false); //正计时一小时的时候,弧将充满
-            _this4.context.stroke();
-            _this4.context.draw(true);
-            _this4.i++;
-            if (_this4.i == 3601) {
-              console.log("您已经学习了一个小时了");
-              _this4.context.setStrokeStyle("rgb(170,169,167)");
-              _this4.context.setLineWidth(3 * _this4.a);
-              _this4.context.moveTo(220 * _this4.a, 0);
-              _this4.context.arc(120 * _this4.a, 0, 100 * _this4.a, 0, Math.PI, false);
-              _this4.context.stroke();
-              _this4.context.draw();
-              _this4.i = 1;
+            _this5.context.setStrokeStyle("white");
+            _this5.context.setLineWidth(3 * _this5.a);
+            _this5.context.moveTo(220 * _this5.a, 0);
+            _this5.context.arc(120 * _this5.a, 0, 100 * _this5.a, 0, 1.0 / 3600 * _this5.i * Math.PI, false); //正计时一小时的时候,弧将充满
+            _this5.context.stroke();
+            _this5.context.draw(true);
+            _this5.i++;
+            if (_this5.i == 3601) {
+
+              _this5.context.setStrokeStyle("rgb(170,169,167)");
+              _this5.context.setLineWidth(3 * _this5.a);
+              _this5.context.moveTo(220 * _this5.a, 0);
+              _this5.context.arc(120 * _this5.a, 0, 100 * _this5.a, 0, Math.PI, false);
+              _this5.context.stroke();
+              _this5.context.draw();
+              _this5.i = 1;
             }
           }, 1000);
         }
@@ -661,11 +726,6 @@ var _default =
       if (this.target == "")
       this.target = "请输入专注目标";
       this.style.push("white");
-    },
-    change_to_history: function change_to_history() {
-      uni.navigateTo({
-        url: "../history/history" });
-
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
@@ -697,5 +757,5 @@ __webpack_require__.r(__webpack_exports__);
   
 
 /***/ })
-],[[11,"common/runtime","common/vendor"]]]);
+],[[12,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/index/index.js.map

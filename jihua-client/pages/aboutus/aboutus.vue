@@ -81,16 +81,16 @@
 			
 		},
 		onReady() {
-			uni.setNavigationBarColor({
-				backgroundColor: this.style.backgroundColor,
-				frontColor:this.style.textStyle,
-				fail: (e) => {
-					console.log(e)
-				},
-				success: (e) => {
-					console.log(e)
-				}
-			})
+			// uni.setNavigationBarColor({
+			// 	// backgroundColor: this.style.backgroundColor,
+			// 	// frontColor:this.style.textStyle,
+			// 	fail: (e) => {
+			// 		console.log(e)
+			// 	},
+			// 	success: (e) => {
+			// 		console.log(e)
+			// 	}
+			// })
 		}
 	}
 </script>

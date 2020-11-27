@@ -4,7 +4,7 @@
 		<view class="top-container">
 
 			<view class="title">
-				新建代办
+				新建待办
 			</view>
 
 
@@ -82,10 +82,10 @@
 		<view class="buttom">
 
 			<view class="kill" @click="exit">
-				<img src="../../static/beiwang/退出.png" alt="" />
+				<img src="~@/static/beiwang/退出.png" alt="" />
 			</view>
 			<view class="save" @click="add">
-				<img src="../../static/beiwang/对.png" alt="" />
+				<img src="~@/static/beiwang/对.png" alt="" />
 			</view>
 		</view>
 	</view>
@@ -96,6 +96,7 @@
 
 <script>
 	import uniTag from "@/components/uni-tag/uni-tag.vue"
+	import bus from '../../common/bus.js'
 	export default {
 		components: {
 
@@ -103,6 +104,7 @@
 		},
 		data() {
 			return {
+				id: 0,
 				flag_hide: false,
 				time: 0,
 				isclick: true,
@@ -115,18 +117,9 @@
 				style4: [],
 				flag: '',
 				sty: 0,
-
 				flag: '',
 				detial: '',
-				demo: {
-					"thingtitle": '',
-					"sty": '',
-					"openid": '123',
-					"recordTime": '0130',
-					"recordDate": '2020-11-06',
-					"flag": '',
-					"detial": '',
-				},
+				openid: '',
 			}
 		},
 		onPageScroll() {
@@ -137,25 +130,23 @@
 		},
 		onLoad() {
 			const date = new Date();
-			this.recordTime = `${date.getHours()}-${date.getMinutes() + 1}`;
-			this.recordDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-
-
+			var Hours = date.getHours()
+			var Minutes = date.getMinutes()
+			var day = date.getDate()
+			var month = date.getMonth() + 1
+			this.recordTime = (Hours >= 10 ? Hours : '0' + Hours) + ':' + (Minutes >= 10 ? Minutes : '0' + Minutes)
+			this.recordDate = date.getFullYear() + '-' + (month >= 10 ? month : '0' + month) + '-' + (day >= 10 ? day : '0' +day)
+			
+		},
+		onHide() {
+			
+		},
+		mounted() {
+			this.openid = wx.getStorageSync('openid')
+			console.log(this.openid)
 		},
 		methods: {
-			//getaddnote_messages(){}
 			add() {
-
-				this.demo.thingtitle = this.thingtitle
-				this.demo.sty1 = this.sty1
-
-				this.demo.recordTime = this.recordTime,
-					//this.demo.recordDate = this.recordDate,
-					this.demo.sty = this.sty,
-
-					this.demo.flag = this.flag,
-					this.demo.detial = this.detial,
-					console.log(this.demo)
 				if (this.thingtitle == "") {
 					uni.showModal({
 						title: '提示',
@@ -191,7 +182,7 @@
 				if (this.flag == 0) {
 					uni.showModal({
 						title: '提示',
-						content: '代办是什么标签的呢？',
+						content: '待办是什么标签的呢？',
 						success: function(res) {
 							if (res.confirm) {
 
@@ -204,20 +195,42 @@
 					})
 					return
 				}
-                
+
+				const that = this
+
 				uni.showModal({
 					title: '提示',
-					content: '是否添加代办呢~',
+					content: '是否添加待办呢~',
+
+
+					// "thingtitle": '',
+					// "sty": '',
+					// "openid": '123',
+					// "recordTime": '0130',
+					// "recordDate": '20201106',
+					// "flag": '',
+					// "detial": '',
+                     
 					success: function(res) {
 						if (res.confirm) {
+							
 							uni.request({
-								url: 'http://127.0.0.1:8000/jihua/addtodo/', //仅为示例，并非真实接口地址。
+								url: 'https://blog.surfly.top/jihua/addtodo/', //仅为示例，并非真实接口地址。
+								data: {
+									openid:that.openid,
+									thingtitle: that.thingtitle,
+									sty: that.sty,
+									recordTime: that.recordTime,
+									recordDate: that.recordDate,
+									flag: that.flag,
+									detial: that.detial,
+								},
 								method: 'POST',
-								data: this.demo,
-								success: (res) => {
-									console.log(res.data);
-								}
 							})
+							success: (res) => {
+									bus.$emit("aMsg", res.data);
+									//console.log(res.data)
+								},
 							uni.navigateBack({
 								delta: 1
 							})
@@ -249,35 +262,35 @@
 			xiangxian1() {
 				if (this.style1.length != 0) return
 				this.sty = 1
-				this.style1.push("change")
-				this.style2.pop("change")
-				this.style3.pop("change")
-				this.style4.pop("change")
+				this.style1.push("change1")
+				this.style2.pop("change2")
+				this.style3.pop("change3")
+				this.style4.pop("change4")
 			},
 			xiangxian2() {
 				if (this.style2.length != 0) return
 				this.sty = 2
-				this.style2.push("change")
-				this.style1.pop("change")
-				this.style3.pop("change")
-				this.style4.pop("change")
+				this.style2.push("change2")
+				this.style1.pop("change1")
+				this.style3.pop("change3")
+				this.style4.pop("change4")
 			},
 			xiangxian3() {
 				if (this.style3.length != 0) return
-				this.style3.push("change")
+				this.style3.push("change3")
 				this.sty = 3
 
-				this.style2.pop("change")
-				this.style1.pop("change")
-				this.style4.pop("change")
+				this.style2.pop("change2")
+				this.style1.pop("change1")
+				this.style4.pop("change4")
 			},
 			xiangxian4() {
 				if (this.style4.length != 0) return
 				this.sty = 4
-				this.style4.push("change")
-				this.style2.pop("change")
-				this.style1.pop("change")
-				this.style3.pop("change")
+				this.style4.push("change4")
+				this.style2.pop("change2")
+				this.style1.pop("change1")
+				this.style3.pop("change3")
 			},
 			timer() {
 				if (this.time > 0) {
@@ -319,10 +332,30 @@
 </script>
 
 <style>
-	.change {
-		background-color: #000000;
+	.change1 {
+		background-color: rgb(211, 170, 102);
 		color: white;
+		border: 1rpx solid white !important;
 	}
+
+	.change2 {
+		background-color: rgb(206, 128, 121);
+		color: white;
+		border: 1rpx solid white !important;
+	}
+
+	.change3 {
+		background-color: rgb(167, 214, 244);
+		color: white;
+		border: 1rpx solid white !important;
+	}
+
+	.change4 {
+		background-color: rgb(116, 166, 145);
+		color: white;
+		border: 1rpx solid white !important;
+	}
+
 
 	.top-container {
 		position: flex;

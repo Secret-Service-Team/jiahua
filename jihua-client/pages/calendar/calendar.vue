@@ -7,7 +7,7 @@
 		<view class="daylist" v-show="display">
 			<view class="top">
 				<view class="left">
-					{{today.fulldate}}
+					{{today}}
 				</view>
 				<view class="right">
 					<view>
@@ -22,9 +22,9 @@
 			
 			
 			<view class="list">
-				<view class="record" v-for="(item,index) in detail" :key="index">
+				<view class="record" v-for="(item,index) in detail" :key="item.fid">
 					<view class="rl">
-						{{item.type}} : {{item.thing}}
+						{{ reflect[item.typeId] }}
 					</view>
 					<view class="rr">
 						{{item.cost.toFixed(2)}}
@@ -41,40 +41,58 @@
 </template>
 
 <script>
-	import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
+	import uniCalendar from '@/compoments/uni-calendar/uni-calendar.vue'
 	export default {
 		components: {
 			uniCalendar
 		},
+		mounted() {
+			this.today = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
+			this.getFlow(this.today)
+		},
 		data() {
 			return {
-				display: false,
+				display: true,
 				income: 0.00,
 				pay: 125.00,
 				today: {},
-				detail: [{
-						"type": "吃饭",
-						"thing": "沙茶面",
-						"cost": -30.00
-					},
+				detail: [
 					{
-						"type": "吃饭",
-						"thing": "沙茶面",
-						"cost": -30.00
-					},
-					{
-						"type": "吃饭",
-						"thing": "沙茶面",
-						"cost": -30.00
-					},
-				]
+						fid: "5fbe216897b05a3a70a43026",
+						typeId: "entertainment",
+						cost: 23
+					}
+				],
+				reflect: {
+					food:'食物',
+					entertainment: '娱乐',
+					traffic:'交通',
+					shopping:'购物',
+					study: '学习',
+					bonus:'津贴',
+					medicine:'医药',
+					clothes:'衣物',
+					daily:'日常',
+					donate:'捐助',
+					salary:'薪水',
+					tour:'旅行'
+				}
 			}
 		},
 		methods: {
 			change(e) {
-				this.display = true;
-				console.log(e);
-				this.today = e;
+				this.today = e.fulldate
+				this.getFlow(e.fulldate)
+			},
+			getFlow(date) {
+				this.$request('/bookkeeping/turnover/date', {
+					date,
+				}).then(res => {
+					console.log(res)
+					this.detail = res.flows
+					this.pay = res.output
+					this.income = res.income
+				})
 			}
 		}
 	}

@@ -1,23 +1,5 @@
 <template>
 	<view>
-		<view class="top">
-			<view class="left">
-				<view>
-					本周支出 : {{week.toFixed(2)}}
-				</view>
-				<view>
-					本月支出 : {{month.toFixed(2)}}
-				</view>
-			</view>
-			<view class="right">
-				<view>
-					本周平均每天支出 : {{weekavg.toFixed(2)}}
-				</view>
-				<view>
-					本月平均每天支出 : {{monthavg.toFixed(2)}}
-				</view>
-			</view>
-		</view>
 
 		<view class="table">
 			<view class="choose">
@@ -56,14 +38,14 @@
 			<view class="describe">
 				本月消费支出排行榜
 			</view>
-			<view class="no" v-for="(item,index) in rankno" :key='index' :style="{'width':(item.percent)*7+200+'rpx'}">
+			<view class="no" v-for="(item,index) in rankno" :key='index' :style="{'width':(item.percent)*5+200+'rpx'}">
 				<view class="no-index">{{index+1}}</view>
 
 				<view class="rankinit">
 					{{item.type}} {{item.num}}笔
 				</view>
 
-				<view class="per" :style="{'left':(item.percent)*7+250+'rpx'}">
+				<view class="per" :style="{'left':(item.percent)*5+250+'rpx'}">
 					{{item.percent}}%
 				</view>
 			</view>
@@ -79,6 +61,22 @@
 	export default {
 		data() {
 			return {
+				// i:0,
+				reflect: {
+					food:'食物',
+					entertainment: '娱乐',
+					traffic:'交通',
+					shopping:'购物',
+					study: '学习',
+					bonus:'津贴',
+					medicine:'医药',
+					clothes:'衣物',
+					daily:'日常',
+					donate:'捐助',
+					salary:'薪水',
+					tour:'旅行'
+				},
+				// temp:[],
 				zhuzhuangtu: 'block',
 				bingtu: 'none',
 				selecValue: '柱状图',
@@ -86,29 +84,13 @@
 				week: 150.00,
 				monthavg: 55.55,
 				weekavg: 66.66,
-				rankno: [{
-						"type": "餐饮",
-						"num": 18,
-						"percent": 42.2
-					},
-					{
-						"type": "生活用品",
-						"num": 6,
-						"percent": 22.99
-					},
-					{
-						"type": "网购",
-						"num": 3,
-						"percent": 18.11
-					},
-
+				rankno: [
 				],
 				cWidth: '',
 				cHeight: '',
 				pixelRatio: 1,
 				serverData: '',
-			}
-
+			};
 		},
 		onLoad() {
 			_self = this;
@@ -117,89 +99,85 @@
 			this.getServerData1();
 			this.getServerData2();
 		},
+		mounted() {
+			this.getPercent();
+		},
 		methods: {
+			
 			selectOne(options) {
-				this.selecValue = options.label
+				this.selecValue = options.label;
 				// console.log(this.selecValue)
 				if (this.selecValue == '柱状图') {
 					// console.log(this.selecValue)
-					this.zhuzhuangtu = 'block'
-					this.bingtu = 'none'
+					this.zhuzhuangtu = 'block';
+					this.bingtu = 'none';
 					// console.log(this.zhuzhuangtu)
 				} else if (this.selecValue == '饼图') {
 					// console.log(this.selecValue)
-					this.zhuzhuangtu = 'none'
-					this.bingtu = 'block'
+					this.zhuzhuangtu = 'none';
+					this.bingtu = 'block';
 					// console.log(this.zhuzhuangtu)
 				}
 			},
 			useOutClickSide() {
-				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions()
+				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions();
+			},
+			getPercent() {
+				const that = this;
+				this.$request('/bookkeeping/table/month/types', {'date': new Date().getTime()
+				}).then(res => {
+				 console.log(res.data);
+				 
+				// 将它处理成下方的百分比图
+				let total = 0;
+				for (let i = 0; i < res.data.length; i += 1) {
+					total += res.data[i].cost;
+					res.data[i].type = this.reflect[res.data[i].type];
+				}
+				for (let i = 0; i < res.data.length; i += 1) {
+					res.data[i].percent = `${(res.data[i].cost / total * 100).toFixed(2)}`;
+				}
+				this.rankno = res.data;
+				});
 			},
 			getServerData2() {
-				uni.request({
-					url: 'https://www.ucharts.cn/data.json',
-					data: {},
-					success: function(res) {
-						console.log(res.data.data)
-						let Pie = {
-							series: []
-						};
-						//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
-						Pie.series = [{
-							"name": "餐饮",
-							"data": 50,
-							"color":"rgba(0,0,0,0.8)"
-						}, {
-							"name": "娱乐",
-							"data": 30,
-							"color":"rgba(0,0,0,0.6)"
-						}, {
-							"name": "交通",
-							"data": 20,
-							"color":"rgba(0,0,0,0.3)"
-						}, {
-							"name": "购物",
-							"data": 18,
-							"color":"rgba(0,0,0,0.1)"
-						}];
-						_self.showPie("canvasPie", Pie);
-					},
-					fail: () => {
-						_self.tips = "网络错误，小程序端请检查合法域名";
-					},
+				// 饼图
+				const that = this;
+				this.$request('/bookkeeping/table/week/types', {'date': new Date().getTime()
+				}).then(res => {
+				 console.log(res.data);
+				 let Pie = {
+				  series: []
+				 };
+				for(let i=0;i<res.data.length;i++){
+					res.data[i].name = that.reflect[res.data[i].name];
+				}
+				
+				// 将它处理成下方的百分比图
+				
+				
+				Pie.series.push(...res.data);
+				 
+				 _self.showPie("canvasPie", Pie);
 				});
+				
+
 			},
 			getServerData1() {
-				uni.request({
-					// 不使用这个请求
-					url: 'https://www.ucharts.cn/data.json',
-					data: {},
-					success: function(res) {
-						console.log(res.data.data)
-						let Column = {
-							categories: [],
-							series: []
-						};
-						//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
-						Column.categories = ["11.1", "11.2", "11.3", "11.4", "11.5", "11.6"];
-						Column.series = [{
-							"name": "支出",
-							'color': 'black',
-							"data": [15, 20, 45, 37, 43, 34]
-						}, {
-							"name": "收入",
-							color: 'grey',
-							"data": [30, 40, 25, 14, 34, 18]
-						}];
 
-						_self.showColumn("canvasColumn", Column);
-					},
-					fail: () => {
-						_self.tips = "网络错误，小程序端请检查合法域名";
-					},
+				this.$request('/bookkeeping/table/week/total',{'date':new Date().getTime()}).then(res => {
+					// console.log(res.data)
+					let Column = {
+								categories: [],
+								series: []
+							};
+							Column.categories = res.data[0].date;
+							Column.series = [];
+							Column.series.push(res.data[1]);
+							Column.series.push(res.data[2]);
+							_self.showColumn("canvasColumn", Column);
 				});
-			},
+			}, 
 			showColumn(canvasId, chartData) {
 				canvaColumn = new uCharts({
 					$this: _self,
@@ -254,10 +232,8 @@
 					},
 				});
 			},
-
-
 		}
-	}
+	};
 </script>
 
 <style scoped>
@@ -267,7 +243,6 @@
 		height: 150rpx;
 		/* padding-top: 30rpx; */
 	}
-
 	.top .left {
 		border: solid rgba(128, 128, 128, 0.6) 5rpx;
 		border-radius: 15rpx;
@@ -277,10 +252,8 @@
 		padding-left: 5rpx;
 		padding-top: 28rpx;
 		/* padding: 0 auto; */
-
 		/* flex:column; */
 	}
-
 	.top .right {
 		border: solid rgba(128, 128, 128, 0.6) 5rpx;
 		border-radius: 15rpx;
@@ -289,9 +262,7 @@
 		box-sizing: border-box;
 		padding-left: 20rpx;
 		padding-top: 28rpx;
-
 	}
-
 	.table {
 		width: 700rpx;
 		height: 600rpx;
@@ -299,22 +270,19 @@
 		border-radius: 15rpx;
 		margin: 0 auto;
 		margin-top: 30rpx;
-
 	}
-
 	.choose {
 		padding-top: 20rpx;
 		padding-bottom: 10rpx;
 	}
-
 	.slecet {
 		padding-left: 5rpx;
 	}
-
 	.rank {
+		margin: 0 auto;
 		margin-top: 30rpx;
+		width: 80%;
 	}
-
 	.no {
 		display: flex;
 		justify-content: flex-start;
@@ -326,11 +294,9 @@
 		line-height: 50rpx;
 		/* box-sizing: border-box; */
 	}
-
 	.per {
 		position: absolute;
 	}
-
 	.no-index {
 		height: 35rpx;
 		width: 35rpx;
@@ -342,72 +308,58 @@
 		text-align: center;
 		line-height: 35rpx;
 	}
-
 	.rankinit {
 		margin-left: 25rpx;
 	}
-
 	.describe {
 		width: 700rpx;
 		margin: 0 auto;
 		font-size: 50rpx;
 		margin-bottom: 35rpx;
 	}
-
-
 	page {
 		background: #F2F2F2;
 		width: 750upx;
 		overflow-x: hidden;
 	}
-
 	.qiun-padding {
 		padding: 2%;
 		width: 96%;
 	}
-
 	.qiun-wrap {
 		display: flex;
 		flex-wrap: wrap;
 	}
-
 	.qiun-rows {
 		display: flex;
 		flex-direction: row !important;
 	}
-
 	.qiun-columns {
 		display: flex;
 		flex-direction: column !important;
 	}
-
 	.qiun-common-mt {
 		margin-top: 10upx;
 	}
-
 	.qiun-bg-white {
 		background: #FFFFFF;
 	}
-
 	.qiun-title-bar {
 		width: 96%;
 		padding: 10upx 2%;
 		flex-wrap: nowrap;
 	}
-
 	.qiun-title-dot-light {
 		border-left: 10upx solid grey;
 		padding-left: 10upx;
 		font-size: 32upx;
 		color: #000000
 	}
-
 	.qiun-charts {
 		width: 700upx;
 		height: 425upx;
 		background-color: #FFFFFF;
 	}
-
 	.charts {
 		width: 700upx;
 		height: 425upx;

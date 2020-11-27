@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1935,7 +1935,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 124:
+/***/ 105:
 /*!************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/th.png ***!
   \************************************************************************************/
@@ -1946,7 +1946,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIsAAACLCAIAAADe
 
 /***/ }),
 
-/***/ 125:
+/***/ 106:
 /*!*************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/lkq.png ***!
   \*************************************************************************************/
@@ -1957,7 +1957,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIoAAACKCAIAAAD6
 
 /***/ }),
 
-/***/ 126:
+/***/ 107:
 /*!*************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/xyj.png ***!
   \*************************************************************************************/
@@ -1968,7 +1968,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAIAAADe
 
 /***/ }),
 
-/***/ 127:
+/***/ 108:
 /*!*************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/zhy.png ***!
   \*************************************************************************************/
@@ -1979,7 +1979,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABM
 
 /***/ }),
 
-/***/ 128:
+/***/ 109:
 /*!*************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/zbl.png ***!
   \*************************************************************************************/
@@ -1990,7 +1990,51 @@ module.exports = "data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgH
 
 /***/ }),
 
-/***/ 129:
+/***/ 11:
+/*!**********************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/common/request.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}var baseUrl = 'https://blog.surfly.top/api';
+var request = function request()
+
+{var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'GET';var header = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return new Promise(function (resolve, reject) {
+
+    var token = "";
+    token = wx.getStorageSync('openid');
+
+    header = type == 'GET' ? { 'Token': token, 'X-Requested-With': 'XMLHttpRequest', "Accept": "application/json", "Content-Type": "application/json; charset=UTF-8" } : { 'Token': token, 'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+
+
+    uni.request({
+      method: type,
+      url: baseUrl + url,
+      data: data,
+      header: header,
+      dataType: 'json' }).
+    then(function (response) {
+      setTimeout(function () {
+        uni.hideLoading();
+      }, 200);var _response = _slicedToArray(
+      response, 2),error = _response[0],res = _response[1];
+      resolve(res.data);
+    }).catch(function (error) {var _error = _slicedToArray(
+      error, 2),err = _error[0],res = _error[1];
+      reject(err);
+    });
+  });
+};var _default =
+
+request;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 110:
 /*!*************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/wsh.png ***!
   \*************************************************************************************/
@@ -2001,7 +2045,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAIAAACz
 
 /***/ }),
 
-/***/ 130:
+/***/ 111:
 /*!*************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/sjj.png ***!
   \*************************************************************************************/
@@ -2012,7 +2056,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7CAIAAADb
 
 /***/ }),
 
-/***/ 131:
+/***/ 112:
 /*!*************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/cyh.png ***!
   \*************************************************************************************/
@@ -2023,7 +2067,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHUAAAB1CAIAAAD/
 
 /***/ }),
 
-/***/ 132:
+/***/ 113:
 /*!************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/cn.png ***!
   \************************************************************************************/
@@ -2034,7 +2078,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAACICAIAAACz
 
 /***/ }),
 
-/***/ 133:
+/***/ 114:
 /*!*************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/xjl.png ***!
   \*************************************************************************************/
@@ -2045,7 +2089,7 @@ module.exports = "data:image/png;base64,/9j/4AAQSkZJRgABAQEA3ADcAAD/2wBDAAMCAgMC
 
 /***/ }),
 
-/***/ 142:
+/***/ 123:
 /*!**************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/logo.png ***!
   \**************************************************************************************/
@@ -2056,7 +2100,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALgAAAC4CAYAAABQ
 
 /***/ }),
 
-/***/ 143:
+/***/ 124:
 /*!******************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/question.png ***!
   \******************************************************************************************/
@@ -2067,18 +2111,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAADOCAIAAABD
 
 /***/ }),
 
-/***/ 15:
-/*!************************************************************************!*\
-  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/lie.png ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAFAUlEQVR4nO3dX2hXdRiA8QcktImCazBIIogogrQbFRLDpLCIqJgIEtmNMlk3dWELqqFIFAT9gUACyYikwi6ygd2YYpC2GBPq0kiTRQRelKZGYVsXB0FiHtNzzvuew54PPPff9wsvv9+cOwckSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSbPSCmAH8BXwI3AemDaruV+AY8D7wADQQ8s9DHxH/sXZ7OwM8CIwj5bpAT4n/4LMpoFJYBkt0Y+fGta+/gQeJ9ki4Dj5l2E2U1PAOpLMBY5e5YBm2V0g6evWyHUc1iyjE8AcAvUC52oewqzJhgi0raEhzJpqkkATDQ1h1mRLCNCfNJxZ1bYSYFXScGZV20WAgaThzKo2SoDNScOZVW2MAINJw5lVbYIALoh1NRfErCQXxKwkF8SsJBfErCQXxKwkF8SsJBfErKSQBdmUNJxZ1b4lwBNJw5lVbT8BViYNZ1a13QToSxrOrGrDBDkWNJBZnd1DkB1BA5nV1U8E8qkm1rW2EMxPEetKPxD8XCwonqw4XvHgZk13AVhKkj7g5FUOaJbVFPAoyRbj092tff1FC57ufsl8YB/5l2I2DfwMLKeF1uKnieV1FngJuJGWWwG8gu8otGa79I7CDyn+j2Dr31EoSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSeqQHmANsBF4HthuVmMvA4PAY8CtdMh64AvyH0tps6vvgRFgAS21HBgj/6JsdncaeIaW2QD8Tf7lmF1qHzCPFhgm/zLMZmocWEiiJ2c4lFmbOkzCCzwBll3jQc2yeosER67zsGbRXQTuJNAjDQxh1mSfEuiThoYwa6qLFC+bbdwc4Pfg4czqaIAAS5OGM6vaGwR4KGk4s6p9TICNScOZVe0QAQaThjOr2gQBXBDrai6IWUkuiFlJLohZSS6IWUkuiFlJLohZSS6IWUkuiFlJIQvydNJwZlU7QgD/WMq62mcE8G/Rrau9S4D5FH+dlT2s2bW2hSAHggYyq7ObCTIUNJBZXX1DoBuAyQaGMGuq1QR7qqaDmzXdfpLs/p8HNMvqJLCIRKMzHMqsDf0G3EWyOcAH5F+G2eWdBG6nRZ4F/iD/Ysz2kvy16kr6KH5beZb8S7LZ10HgXjriQYp3xm03a7hNQC+SJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJNXpAYqn3r1H8X6Gw2Y19iXwEfAmHXqy4k3AO/hsXsvpILCSlnoBn+5u7Wgv0E9L9AOHyL8Us8s7Dawl2SLgOPmXYTZTU8A6kswFjl7lgGbZXQCWkWDkOg5rltEJilcFhukFztU8hFmTDRFoW0NDmDXVJIEmGhrCrMmWEKA/aTizqm0lwKqk4cyqtosAA0nDmVVtlACbk4Yzq9oYAQaThjOr2gQBXBDrai6IWUkuiFlJLohZSS6IWUkuiFlJLohZSS6IWUkhC+Jv0q2rjRNgfdJwZlU7QIDVScOZVW0PAW5LGs6saq8SZDJoILM6W0OQnUEDmdXVeQKfbLIkYCCzOnudYHtqOrhZ050BFhJsMfBrxYObRbSBJEspHu2YfQFmV+o1kt1P8RGWfRFm/20nLXEHcIr8CzGbBv4BnqNlFlD8IsavXJbZYeBuWmwxMAx8Tf5l2exoEngbuI8OugVYTvGzilldraL4ah/+z7eSJEmSJEmSJEmSJEmSpGvzL4/P5egX6Y7CAAAAAElFTkSuQmCC"
-
-/***/ }),
-
-/***/ 152:
+/***/ 133:
 /*!****************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/bwlogo.png ***!
   \****************************************************************************************/
@@ -2086,6 +2119,50 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ (function(module, exports) {
 
 module.exports = "/static/personcenter_icon/bwlogo.png";
+
+/***/ }),
+
+/***/ 142:
+/*!****************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/xiangxian/up.png ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAADw0lEQVR4nO3Yu20bQRSGUSpzogqcMGNkEDu3BRXjUKW4EFfgLlSDKnBqwJATC5ANPTjD3Z3XOcCfD0RdkPgOBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACYWErpPqV0X/sd0JxlWe5SSr9TSr+XZbmr/R5oRkR8iYifEfH0dz8j4kvtd0F15/P5c0Q8vjiO5z2ez+fPtd8H1ZxOp9uU0sMrx/EUEU8ppYfT6XRb+51Qw01E/HjrOF7sx+FwuKn9WNhVSunbBcfx/E3yrfZ7YTcppftLj+PFkci/jO855xYciPzL2F7JubmTfxnTOzk3d/IvY/ko5xb83JJ/GcalOTd38i/9y8m5Bd8k8i/9Ksm5BUci/9Kf0pxbcCDyL32J63Nu7uRf+rBizs2d/Evb1s65BT+35F+atVXOzZ38S3u2zLkF3yTyL+3YI+cWHIn8S3175dyCA5F/qSv2z7m5k3+po2LOzZ38y76Ox+Onmjm34OfWw/F4/FT778YcblJK32v/0xccyfeD/MvWWsq5BUci/7KdFnNuwZHIv6yv1ZxbcCDyL+uK9nNu7uRf1tFRzs2d/Mt1esu5uZN/uUaXObfgSORf8vWccwuORP7lciPk3IIjkX/52Cg5t+BA5F/eF+Pl3NzJv7xu4JybO/mXf42ec3Mn//LSFDm34EjkX+bKuQVHIv/ObMacW3Ak8u+MZs25BQci/84m5Nzcyb+zkHOLJ/+OTs69bvLv2OTcdY5E/h2RnLvqkci/I5FzNzkS+XcEcu5mByL/9i7k3K0n//ZKzt1t8m9v5Nx9J//2Rc6tcyTybw/k3KpHIv+2TM6tP/m3UXJuG5N/GxRybmuTf1sh5zY7+bc2Obftyb91ybkdTP6tRM7tZ/LvzpZl+Vr7Q7fsI5F/97Asy11E/Kr9gVv2gci/Wws5t/fJv1uRc4eZ/Ls2OXesyb/rknMHnPy7Ejl33Mm/V5Jzx9+yLF9r/591Sc6dZr/k30wh5842+fdScu60k38/IufOPfn3fXKuyb9vkXPtefLvf+Rc+3/y719yrr0x+TfkXHt/8+ZfOdcu3Hz5V861nM2Wf+Vcy940+VfOtdINn3/lXLt2w+ZfOddW2nj5N+RcW3fj5F851zZa//lXzrUt13v+lXNt83Wbf+Vc22vd5V851/ZeN/lXzrVKaz//hpxrdddu/pVzrZG1l3/lXGtpvedfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgNn9ARXrd83e3rJlAAAAAElFTkSuQmCC"
+
+/***/ }),
+
+/***/ 143:
+/*!*******************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/xiangxian/right.png ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAERUlEQVR4nO3Yu7EjNxRFUVjKQZkoIGWlgJSJcpBFGXrGmxkSbPbvXABrVR2/jYsqbrYGAAAAAAAAAAAAAAAAAAAA8/urtfZb+iOgqkdr7e/W2u/pD4GKHl/7p7X2R/hboJzHt/3bWvsz+zlQy+PJdAl8efZAdAl8efVAdAm0/gPRJSzv3QPRJSxt6wPRJSzpkweiS1jOpw9El7CUPQ9El7CMIw9ElzC9ow9ElzC1Mx6ILmFaZz0QXcKUzn4guoSpXPFAdAnTuOqB6BKmcOUD0SUM744HoksY1l0PRJcwpDsfiC5hOHc/EF3CUFIPRJcwhOQD0SWUl34guoTS0o/j+3QJ5aQfxc/TJZSSfhDPpksoI/0YXk2XUEL6IbybLiEq/QC2TJcQkz7+rdMlRKQP/5PpEm6XPvo90yXcJn3se6dLuEX60I9Ml3C59JEfnS7hUukDP2u6hEukD/vM6RJOlz7qs6dLOFX6oK+YLuE06WO+crqEw9JHfPV0CYekD/iO6RJ2Sx/vXdMl7JI+3LunS/hI+mAT0yVslj7W1HQJm6QPNTldwlvpI60wXcJL6eOsMl3CU+nDrDRdwi/SR1ltuoQfpA+y6nQJrbX8IVaeLiF+hNWnSxaXPsARpksWlj6+kaZLFpQ+utGmSxaTPrgRp0sWkj62UadLFpE+tNGnSyaXPrAZpksmlj6uWaZLJpU+rJmmSyaUPqoZp0smkj6mWadLJpE+pJmnSyaQPqLZp0sGlz6gVaZLBpU+nJWmSwaUPprVpksGkz6YFadLBpI+lpWnSwaQPpLVp0uKSx+I6ZLS0sdh/0+XFJU+DPNASksfhvmJVVr6OFafSC8ufSArz9+8A0gfyYrTGwNJH8tq0xuDSR/MStMbA0ofzSrTG4NKH87s0xuDSx/QzNMbE0gf0azTG5NIH9KM0xsTSR/TTNMbE0of1SzTG5NKH9YM0xsTSx/X6NMbk0sf2KjTG4tIH9qI0xsLSR/baNMbi0kf3EjTGwtKH90I0xsLSx9f9emNxaUPsPL0BvEjrDq9QWstf4jVpjf4QfogK01v8Iv0UVaZ3uCp9GFWmN7gpfRxJqc3eCt9pKnpDTZJH2pieoPN0sd69/QGH0kf7F3TG+ySPtw7pjfYLX28V09vcEj6gK+c3uCw9BFfMb3BadLHfPb0BqdKH/SZ0xucLn3UZ01vcIn0YR+d3uBS6QM/Mr3B5dJHvnd6g1ukD33P9Aa3SR/7J9Mb3C599FunN4hIH/6W6Q1i0sf/bnqDqPQDeDW9QQnph/BseoMy0o/h5+kNSkk/iO/TG5STfhSPpjcoLP049AalJR+H3qA8vQEdegM69AZ06A3o0BvQoTegQ29Ah96ADr0BHXoDOvQGdOgN6NAb0KE3oENvQIfegA69AR16Azr0BnToDejQG9ChN6BDb0CH3oAOvQEAAAAAAAAAAAAAAAAAAADc5j81yyKSgrh+AAAAAABJRU5ErkJggg=="
+
+/***/ }),
+
+/***/ 144:
+/*!********************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/xiangxian/circle.png ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+
+/***/ 145:
+/*!*****************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/xiangxian/add.png ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
 
 /***/ }),
 
@@ -2100,47 +2177,14 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
-/***/ 161:
-/*!****************************************************************************!*\
-  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/xiangxian/up.png ***!
-  \****************************************************************************/
+/***/ 160:
+/*!**************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/beiwang/叉号.png ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAADw0lEQVR4nO3Yu20bQRSGUSpzogqcMGNkEDu3BRXjUKW4EFfgLlSDKnBqwJATC5ANPTjD3Z3XOcCfD0RdkPgOBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACYWErpPqV0X/sd0JxlWe5SSr9TSr+XZbmr/R5oRkR8iYifEfH0dz8j4kvtd0F15/P5c0Q8vjiO5z2ez+fPtd8H1ZxOp9uU0sMrx/EUEU8ppYfT6XRb+51Qw01E/HjrOF7sx+FwuKn9WNhVSunbBcfx/E3yrfZ7YTcppftLj+PFkci/jO855xYciPzL2F7JubmTfxnTOzk3d/IvY/ko5xb83JJ/GcalOTd38i/9y8m5Bd8k8i/9Ksm5BUci/9Kf0pxbcCDyL32J63Nu7uRf+rBizs2d/Evb1s65BT+35F+atVXOzZ38S3u2zLkF3yTyL+3YI+cWHIn8S3175dyCA5F/qSv2z7m5k3+po2LOzZ38y76Ox+Onmjm34OfWw/F4/FT778YcblJK32v/0xccyfeD/MvWWsq5BUci/7KdFnNuwZHIv6yv1ZxbcCDyL+uK9nNu7uRf1tFRzs2d/Mt1esu5uZN/uUaXObfgSORf8vWccwuORP7lciPk3IIjkX/52Cg5t+BA5F/eF+Pl3NzJv7xu4JybO/mXf42ec3Mn//LSFDm34EjkX+bKuQVHIv/ObMacW3Ak8u+MZs25BQci/84m5Nzcyb+zkHOLJ/+OTs69bvLv2OTcdY5E/h2RnLvqkci/I5FzNzkS+XcEcu5mByL/9i7k3K0n//ZKzt1t8m9v5Nx9J//2Rc6tcyTybw/k3KpHIv+2TM6tP/m3UXJuG5N/GxRybmuTf1sh5zY7+bc2Obftyb91ybkdTP6tRM7tZ/LvzpZl+Vr7Q7fsI5F/97Asy11E/Kr9gVv2gci/Wws5t/fJv1uRc4eZ/Ls2OXesyb/rknMHnPy7Ejl33Mm/V5Jzx9+yLF9r/591Sc6dZr/k30wh5842+fdScu60k38/IufOPfn3fXKuyb9vkXPtefLvf+Rc+3/y719yrr0x+TfkXHt/8+ZfOdcu3Hz5V861nM2Wf+Vcy940+VfOtdINn3/lXLt2w+ZfOddW2nj5N+RcW3fj5F851zZa//lXzrUt13v+lXNt83Wbf+Vc22vd5V851/ZeN/lXzrVKaz//hpxrdddu/pVzrZG1l3/lXGtpvedfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgNn9ARXrd83e3rJlAAAAAElFTkSuQmCC"
-
-/***/ }),
-
-/***/ 162:
-/*!*******************************************************************************!*\
-  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/xiangxian/right.png ***!
-  \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAERUlEQVR4nO3Yu7EjNxRFUVjKQZkoIGWlgJSJcpBFGXrGmxkSbPbvXABrVR2/jYsqbrYGAAAAAAAAAAAAAAAAAAAA8/urtfZb+iOgqkdr7e/W2u/pD4GKHl/7p7X2R/hboJzHt/3bWvsz+zlQy+PJdAl8efZAdAl8efVAdAm0/gPRJSzv3QPRJSxt6wPRJSzpkweiS1jOpw9El7CUPQ9El7CMIw9ElzC9ow9ElzC1Mx6ILmFaZz0QXcKUzn4guoSpXPFAdAnTuOqB6BKmcOUD0SUM744HoksY1l0PRJcwpDsfiC5hOHc/EF3CUFIPRJcwhOQD0SWUl34guoTS0o/j+3QJ5aQfxc/TJZSSfhDPpksoI/0YXk2XUEL6IbybLiEq/QC2TJcQkz7+rdMlRKQP/5PpEm6XPvo90yXcJn3se6dLuEX60I9Ml3C59JEfnS7hUukDP2u6hEukD/vM6RJOlz7qs6dLOFX6oK+YLuE06WO+crqEw9JHfPV0CYekD/iO6RJ2Sx/vXdMl7JI+3LunS/hI+mAT0yVslj7W1HQJm6QPNTldwlvpI60wXcJL6eOsMl3CU+nDrDRdwi/SR1ltuoQfpA+y6nQJrbX8IVaeLiF+hNWnSxaXPsARpksWlj6+kaZLFpQ+utGmSxaTPrgRp0sWkj62UadLFpE+tNGnSyaXPrAZpksmlj6uWaZLJpU+rJmmSyaUPqoZp0smkj6mWadLJpE+pJmnSyaQPqLZp0sGlz6gVaZLBpU+nJWmSwaUPprVpksGkz6YFadLBpI+lpWnSwaQPpLVp0uKSx+I6ZLS0sdh/0+XFJU+DPNASksfhvmJVVr6OFafSC8ufSArz9+8A0gfyYrTGwNJH8tq0xuDSR/MStMbA0ofzSrTG4NKH87s0xuDSx/QzNMbE0gf0azTG5NIH9KM0xsTSR/TTNMbE0of1SzTG5NKH9YM0xsTSx/X6NMbk0sf2KjTG4tIH9qI0xsLSR/baNMbi0kf3EjTGwtKH90I0xsLSx9f9emNxaUPsPL0BvEjrDq9QWstf4jVpjf4QfogK01v8Iv0UVaZ3uCp9GFWmN7gpfRxJqc3eCt9pKnpDTZJH2pieoPN0sd69/QGH0kf7F3TG+ySPtw7pjfYLX28V09vcEj6gK+c3uCw9BFfMb3BadLHfPb0BqdKH/SZ0xucLn3UZ01vcIn0YR+d3uBS6QM/Mr3B5dJHvnd6g1ukD33P9Aa3SR/7J9Mb3C599FunN4hIH/6W6Q1i0sf/bnqDqPQDeDW9QQnph/BseoMy0o/h5+kNSkk/iO/TG5STfhSPpjcoLP049AalJR+H3qA8vQEdegM69AZ06A3o0BvQoTegQ29Ah96ADr0BHXoDOvQGdOgN6NAb0KE3oENvQIfegA69AR16Azr0BnToDejQG9ChN6BDb0CH3oAOvQEAAAAAAAAAAAAAAAAAAADc5j81yyKSgrh+AAAAAABJRU5ErkJggg=="
-
-/***/ }),
-
-/***/ 163:
-/*!********************************************************************************!*\
-  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/xiangxian/circle.png ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
-
-/***/ 164:
-/*!*****************************************************************************!*\
-  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/xiangxian/add.png ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
+module.exports = "data:image/png;base64,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"
 
 /***/ }),
 
@@ -2155,14 +2199,794 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
+/***/ 177:
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ 178);
+
+/***/ }),
+
+/***/ 178:
+/*!************************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(/*! ./runtime */ 179);
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+
+/***/ }),
+
 /***/ 179:
-/*!**************************************************************************!*\
-  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/beiwang/叉号.png ***!
-  \**************************************************************************/
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "data:image/png;base64,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"
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
+
 
 /***/ }),
 
@@ -7703,7 +8527,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7724,14 +8548,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7817,7 +8641,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"jihua-client","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8224,7 +9048,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 227:
+/***/ 215:
 /*!************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/components/uni-calendar/util.js ***!
   \************************************************************************************/
@@ -8232,7 +9056,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 228));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 216));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 Calendar = /*#__PURE__*/function () {
   function Calendar()
@@ -8587,7 +9411,7 @@ Calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 228:
+/***/ 216:
 /*!****************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/components/uni-calendar/calendar.js ***!
   \****************************************************************************************/
@@ -9144,794 +9968,923 @@ calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 256:
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
-  \**********************************************************/
+/***/ 224:
+/*!************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/compoments/uni-calendar/util.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 257);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 225));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
-/***/ }),
+Calendar = /*#__PURE__*/function () {
+  function Calendar()
 
-/***/ 257:
-/*!************************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
 
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
-// This method of obtaining a reference to the global object needs to be
-// kept identical to the way it is obtained in runtime.js
-var g = (function() {
-  return this || (typeof self === "object" && self);
-})() || Function("return this")();
 
-// Use `getOwnPropertyNames` because not all browsers support calling
-// `hasOwnProperty` on the global `self` object in a worker. See #183.
-var hadRuntime = g.regeneratorRuntime &&
-  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
 
-// Save the old regeneratorRuntime in case it needs to be restored later.
-var oldRuntime = hadRuntime && g.regeneratorRuntime;
-
-// Force reevalutation of runtime.js.
-g.regeneratorRuntime = undefined;
-
-module.exports = __webpack_require__(/*! ./runtime */ 258);
-
-if (hadRuntime) {
-  // Restore the original runtime.
-  g.regeneratorRuntime = oldRuntime;
-} else {
-  // Remove the global property added by runtime.js.
-  try {
-    delete g.regeneratorRuntime;
-  } catch(e) {
-    g.regeneratorRuntime = undefined;
+  {var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},date = _ref.date,selected = _ref.selected,startDate = _ref.startDate,endDate = _ref.endDate,range = _ref.range;_classCallCheck(this, Calendar);
+    // 当前日期
+    this.date = this.getDate(new Date()); // 当前初入日期
+    // 打点信息
+    this.selected = selected || [];
+    // 范围开始
+    this.startDate = startDate;
+    // 范围结束
+    this.endDate = endDate;
+    this.range = range;
+    // 多选状态
+    this.cleanMultipleStatus();
+    // 每周日期
+    this.weeks = {};
+    // this._getWeek(this.date.fullDate)
   }
-}
-
-
-/***/ }),
-
-/***/ 258:
-/*!*****************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-!(function(global) {
-  "use strict";
-
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-
-  var inModule = typeof module === "object";
-  var runtime = global.regeneratorRuntime;
-  if (runtime) {
-    if (inModule) {
-      // If regeneratorRuntime is defined globally and we're in a module,
-      // make the exports object identical to regeneratorRuntime.
-      module.exports = runtime;
-    }
-    // Don't bother evaluating the rest of this file if the runtime was
-    // already defined globally.
-    return;
-  }
-
-  // Define the runtime globally (as expected by generated code) as either
-  // module.exports (if we're in a module) or a new, empty object.
-  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
-
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
-
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
-
-    return generator;
-  }
-  runtime.wrap = wrap;
-
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
-
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
-
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
-
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
-        return this._invoke(method, arg);
-      };
-    });
-  }
-
-  runtime.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  runtime.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  runtime.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return Promise.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
-          result.value = unwrapped;
-          resolve(result);
-        }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
-          return invoke("throw", error, resolve, reject);
-        });
-      }
+  /**
+     * 设置日期
+     * @param {Object} date
+     */_createClass(Calendar, [{ key: "setDate", value: function setDate(
+    date) {
+      this.selectDate = this.getDate(date);
+      this._getWeek(this.selectDate.fullDate);
     }
 
-    var previousPromise;
+    /**
+       * 清理多选状态
+       */ }, { key: "cleanMultipleStatus", value: function cleanMultipleStatus()
+    {
+      this.multipleStatus = {
+        before: '',
+        after: '',
+        data: [] };
 
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new Promise(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
     }
 
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
+    /**
+       * 重置开始日期
+       */ }, { key: "resetSatrtDate", value: function resetSatrtDate(
+    startDate) {
+      // 范围开始
+      this.startDate = startDate;
 
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  runtime.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList)
-    );
-
-    return runtime.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        if (delegate.iterator.return) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
     }
 
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
+    /**
+       * 重置结束日期
+       */ }, { key: "resetEndDate", value: function resetEndDate(
+    endDate) {
+      // 范围结束
+      this.endDate = endDate;
     }
 
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
+    /**
+       * 获取任意时间
+       */ }, { key: "getDate", value: function getDate(
+    date) {var AddDayCount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;var str = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'day';
+      if (!date) {
+        date = new Date();
       }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  Gp[toStringTagSymbol] = "Generator";
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  runtime.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
+      if (typeof date !== 'object') {
+        date = date.replace(/-/g, '/');
       }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  runtime.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
+      var dd = new Date(date);
+      switch (str) {
+        case 'day':
+          dd.setDate(dd.getDate() + AddDayCount); // 获取AddDayCount天后的日期
           break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
+        case 'month':
+          if (dd.getDate() === 31) {
+            dd.setDate(dd.getDate() + AddDayCount);
+          } else {
+            dd.setMonth(dd.getMonth() + AddDayCount); // 获取AddDayCount天后的日期
           }
-          return thrown;
+          break;
+        case 'year':
+          dd.setFullYear(dd.getFullYear() + AddDayCount); // 获取AddDayCount天后的日期
+          break;}
+
+      var y = dd.getFullYear();
+      var m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1; // 获取当前月份的日期，不足10补0
+      var d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate(); // 获取当前几号，不足10补0
+      return {
+        fullDate: y + '-' + m + '-' + d,
+        year: y,
+        month: m,
+        date: d,
+        day: dd.getDay() };
+
+    }
+
+
+    /**
+       * 获取上月剩余天数
+       */ }, { key: "_getLastMonthDays", value: function _getLastMonthDays(
+    firstDay, full) {
+      var dateArr = [];
+      for (var i = firstDay; i > 0; i--) {
+        var beforeDate = new Date(full.year, full.month - 1, -i + 1).getDate();
+        dateArr.push({
+          date: beforeDate,
+          month: full.month - 1,
+          lunar: this.getlunar(full.year, full.month - 1, beforeDate),
+          disable: true });
+
+      }
+      return dateArr;
+    }
+    /**
+       * 获取本月天数
+       */ }, { key: "_currentMonthDys", value: function _currentMonthDys(
+    dateData, full) {var _this = this;
+      var dateArr = [];
+      var fullDate = this.date.fullDate;var _loop = function _loop(
+      i) {
+        var isinfo = false;
+        var nowDate = full.year + '-' + (full.month < 10 ?
+        full.month : full.month) + '-' + (i < 10 ?
+        '0' + i : i);
+        // 是否今天
+        var isDay = fullDate === nowDate;
+        // 获取打点信息
+        var info = _this.selected && _this.selected.find(function (item) {
+          if (_this.dateEqual(nowDate, item.date)) {
+            return item;
+          }
+        });
+
+        // 日期禁用
+        var disableBefore = true;
+        var disableAfter = true;
+        if (_this.startDate) {
+          var dateCompBefore = _this.dateCompare(_this.startDate, fullDate);
+          disableBefore = _this.dateCompare(dateCompBefore ? _this.startDate : fullDate, nowDate);
+        }
+
+        if (_this.endDate) {
+          var dateCompAfter = _this.dateCompare(fullDate, _this.endDate);
+          disableAfter = _this.dateCompare(nowDate, dateCompAfter ? _this.endDate : fullDate);
+        }
+        var multiples = _this.multipleStatus.data;
+        var checked = false;
+        var multiplesStatus = -1;
+        if (_this.range) {
+          if (multiples) {
+            multiplesStatus = multiples.findIndex(function (item) {
+              return _this.dateEqual(item, nowDate);
+            });
+          }
+          if (multiplesStatus !== -1) {
+            checked = true;
+          }
+        }
+        var data = {
+          fullDate: nowDate,
+          year: full.year,
+          date: i,
+          multiple: _this.range ? checked : false,
+          beforeMultiple: _this.dateEqual(_this.multipleStatus.before, nowDate),
+          afterMultiple: _this.dateEqual(_this.multipleStatus.after, nowDate),
+          month: full.month,
+          lunar: _this.getlunar(full.year, full.month, i),
+          disable: !disableBefore || !disableAfter,
+          isDay: isDay };
+
+        if (info) {
+          data.extraInfo = info;
+        }
+
+        dateArr.push(data);};for (var i = 1; i <= dateData; i++) {_loop(i);
+      }
+      return dateArr;
+    }
+    /**
+       * 获取下月天数
+       */ }, { key: "_getNextMonthDays", value: function _getNextMonthDays(
+    surplus, full) {
+      var dateArr = [];
+      for (var i = 1; i < surplus + 1; i++) {
+        dateArr.push({
+          date: i,
+          month: Number(full.month) + 1,
+          lunar: this.getlunar(full.year, Number(full.month) + 1, i),
+          disable: true });
+
+      }
+      return dateArr;
+    }
+
+    /**
+       * 获取当前日期详情
+       * @param {Object} date
+       */ }, { key: "getInfo", value: function getInfo(
+    date) {var _this2 = this;
+      if (!date) {
+        date = new Date();
+      }
+      var dateInfo = this.canlender.find(function (item) {return item.fullDate === _this2.getDate(date).fullDate;});
+      return dateInfo;
+    }
+
+    /**
+       * 比较时间大小
+       */ }, { key: "dateCompare", value: function dateCompare(
+    startDate, endDate) {
+      // 计算截止时间
+      startDate = new Date(startDate.replace('-', '/').replace('-', '/'));
+      // 计算详细项的截止时间
+      endDate = new Date(endDate.replace('-', '/').replace('-', '/'));
+      if (startDate <= endDate) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    /**
+       * 比较时间是否相等
+       */ }, { key: "dateEqual", value: function dateEqual(
+    before, after) {
+      // 计算截止时间
+      before = new Date(before.replace('-', '/').replace('-', '/'));
+      // 计算详细项的截止时间
+      after = new Date(after.replace('-', '/').replace('-', '/'));
+      if (before.getTime() - after.getTime() === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+
+    /**
+       * 获取日期范围内所有日期
+       * @param {Object} begin
+       * @param {Object} end
+       */ }, { key: "geDateAll", value: function geDateAll(
+    begin, end) {
+      var arr = [];
+      var ab = begin.split('-');
+      var ae = end.split('-');
+      var db = new Date();
+      db.setFullYear(ab[0], ab[1] - 1, ab[2]);
+      var de = new Date();
+      de.setFullYear(ae[0], ae[1] - 1, ae[2]);
+      var unixDb = db.getTime() - 24 * 60 * 60 * 1000;
+      var unixDe = de.getTime() - 24 * 60 * 60 * 1000;
+      for (var k = unixDb; k <= unixDe;) {
+        k = k + 24 * 60 * 60 * 1000;
+        arr.push(this.getDate(new Date(parseInt(k))).fullDate);
+      }
+      return arr;
+    }
+    /**
+       * 计算阴历日期显示
+       */ }, { key: "getlunar", value: function getlunar(
+    year, month, date) {
+      return _calendar.default.solar2lunar(year, month, date);
+    }
+    /**
+       * 设置打点
+       */ }, { key: "setSelectInfo", value: function setSelectInfo(
+    data, value) {
+      this.selected = value;
+      this._getWeek(data);
+    }
+
+    /**
+       *  获取多选状态
+       */ }, { key: "setMultiple", value: function setMultiple(
+    fullDate) {var _this$multipleStatus =
+
+
+
+      this.multipleStatus,before = _this$multipleStatus.before,after = _this$multipleStatus.after;
+
+      if (!this.range) return;
+      if (before && after) {
+        this.multipleStatus.before = '';
+        this.multipleStatus.after = '';
+        this.multipleStatus.data = [];
+      } else {
+        if (!before) {
+          this.multipleStatus.before = fullDate;
+        } else {
+          this.multipleStatus.after = fullDate;
+          if (this.dateCompare(this.multipleStatus.before, this.multipleStatus.after)) {
+            this.multipleStatus.data = this.geDateAll(this.multipleStatus.before, this.multipleStatus.after);
+          } else {
+            this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus.before);
+          }
         }
       }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
+      this._getWeek(fullDate);
     }
-  };
-})(
-  // In sloppy mode, unbound `this` refers to the global object, fallback to
-  // Function constructor if we're in global strict mode. That is sadly a form
-  // of indirect eval which violates Content Security Policy.
-  (function() {
-    return this || (typeof self === "object" && self);
-  })() || Function("return this")()
-);
 
+    /**
+       * 获取每周数据
+       * @param {Object} dateData
+       */ }, { key: "_getWeek", value: function _getWeek(
+    dateData) {var _this$getDate =
+
+
+
+
+
+
+      this.getDate(dateData),fullDate = _this$getDate.fullDate,year = _this$getDate.year,month = _this$getDate.month,date = _this$getDate.date,day = _this$getDate.day;
+      var firstDay = new Date(year, month - 1, 1).getDay();
+      var currentDay = new Date(year, month, 0).getDate();
+      var dates = {
+        lastMonthDays: this._getLastMonthDays(firstDay, this.getDate(dateData)), // 上个月末尾几天
+        currentMonthDys: this._currentMonthDys(currentDay, this.getDate(dateData)), // 本月天数
+        nextMonthDays: [], // 下个月开始几天
+        weeks: [] };
+
+      var canlender = [];
+      var surplus = 42 - (dates.lastMonthDays.length + dates.currentMonthDys.length);
+      dates.nextMonthDays = this._getNextMonthDays(surplus, this.getDate(dateData));
+      canlender = canlender.concat(dates.lastMonthDays, dates.currentMonthDys, dates.nextMonthDays);
+      var weeks = {};
+      // 拼接数组  上个月开始几天 + 本月天数+ 下个月开始几天
+      for (var i = 0; i < canlender.length; i++) {
+        if (i % 7 === 0) {
+          weeks[parseInt(i / 7)] = new Array(7);
+        }
+        weeks[parseInt(i / 7)][i % 7] = canlender[i];
+      }
+      this.canlender = canlender;
+      this.weeks = weeks;
+    }
+
+    //静态方法
+    // static init(date) {
+    // 	if (!this.instance) {
+    // 		this.instance = new Calendar(date);
+    // 	}
+    // 	return this.instance;
+    // }
+  }]);return Calendar;}();var _default =
+
+
+Calendar;exports.default = _default;
+
+/***/ }),
+
+/***/ 225:
+/*!****************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/compoments/uni-calendar/calendar.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                     * @1900-2100区间内的公历、农历互转
+                                                                                                     * @charset UTF-8
+                                                                                                     * @github  https://github.com/jjonline/calendar.js
+                                                                                                     * @Author  Jea杨(JJonline@JJonline.Cn)
+                                                                                                     * @Time    2014-7-21
+                                                                                                     * @Time    2016-8-13 Fixed 2033hex、Attribution Annals
+                                                                                                     * @Time    2016-9-25 Fixed lunar LeapMonth Param Bug
+                                                                                                     * @Time    2017-7-24 Fixed use getTerm Func Param Error.use solar year,NOT lunar year
+                                                                                                     * @Version 1.0.3
+                                                                                                     * @公历转农历：calendar.solar2lunar(1987,11,01); //[you can ignore params of prefix 0]
+                                                                                                     * @农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
+                                                                                                     */
+/* eslint-disable */
+var calendar = {
+
+  /**
+                     * 农历1900-2100的润大小信息表
+                     * @Array Of Property
+                     * @return Hex
+                     */
+  lunarInfo: [0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2, // 1900-1909
+  0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977, // 1910-1919
+  0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40, 0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970, // 1920-1929
+  0x06566, 0x0d4a0, 0x0ea50, 0x06e95, 0x05ad0, 0x02b60, 0x186e3, 0x092e0, 0x1c8d7, 0x0c950, // 1930-1939
+  0x0d4a0, 0x1d8a6, 0x0b550, 0x056a0, 0x1a5b4, 0x025d0, 0x092d0, 0x0d2b2, 0x0a950, 0x0b557, // 1940-1949
+  0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5b0, 0x14573, 0x052b0, 0x0a9a8, 0x0e950, 0x06aa0, // 1950-1959
+  0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570, 0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0, // 1960-1969
+  0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540, 0x0b6a0, 0x195a6, // 1970-1979
+  0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570, // 1980-1989
+  0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58, 0x05ac0, 0x0ab60, 0x096d5, 0x092e0, // 1990-1999
+  0x0c960, 0x0d954, 0x0d4a0, 0x0da50, 0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5, // 2000-2009
+  0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930, // 2010-2019
+  0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530, // 2020-2029
+  0x05aa0, 0x076a3, 0x096d0, 0x04afb, 0x04ad0, 0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45, // 2030-2039
+  0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0, // 2040-2049
+  /** Add By JJonline@JJonline.Cn**/
+  0x14b63, 0x09370, 0x049f8, 0x04970, 0x064b0, 0x168a6, 0x0ea50, 0x06b20, 0x1a6c4, 0x0aae0, // 2050-2059
+  0x0a2e0, 0x0d2e3, 0x0c960, 0x0d557, 0x0d4a0, 0x0da50, 0x05d55, 0x056a0, 0x0a6d0, 0x055d4, // 2060-2069
+  0x052d0, 0x0a9b8, 0x0a950, 0x0b4a0, 0x0b6a6, 0x0ad50, 0x055a0, 0x0aba4, 0x0a5b0, 0x052b0, // 2070-2079
+  0x0b273, 0x06930, 0x07337, 0x06aa0, 0x0ad50, 0x14b55, 0x04b60, 0x0a570, 0x054e4, 0x0d160, // 2080-2089
+  0x0e968, 0x0d520, 0x0daa0, 0x16aa6, 0x056d0, 0x04ae0, 0x0a9d4, 0x0a2d0, 0x0d150, 0x0f252, // 2090-2099
+  0x0d520], // 2100
+
+  /**
+      * 公历每个月份的天数普通表
+      * @Array Of Property
+      * @return Number
+      */
+  solarMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+
+  /**
+                                                                    * 天干地支之天干速查表
+                                                                    * @Array Of Property trans["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
+                                                                    * @return Cn string
+                                                                    */
+  Gan: ["\u7532", "\u4E59", "\u4E19", "\u4E01", "\u620A", "\u5DF1", "\u5E9A", "\u8F9B", "\u58EC", "\u7678"],
+
+  /**
+                                                                                                                 * 天干地支之地支速查表
+                                                                                                                 * @Array Of Property
+                                                                                                                 * @trans["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
+                                                                                                                 * @return Cn string
+                                                                                                                 */
+  Zhi: ["\u5B50", "\u4E11", "\u5BC5", "\u536F", "\u8FB0", "\u5DF3", "\u5348", "\u672A", "\u7533", "\u9149", "\u620C", "\u4EA5"],
+
+  /**
+                                                                                                                                     * 天干地支之地支速查表<=>生肖
+                                                                                                                                     * @Array Of Property
+                                                                                                                                     * @trans["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
+                                                                                                                                     * @return Cn string
+                                                                                                                                     */
+  Animals: ["\u9F20", "\u725B", "\u864E", "\u5154", "\u9F99", "\u86C7", "\u9A6C", "\u7F8A", "\u7334", "\u9E21", "\u72D7", "\u732A"],
+
+  /**
+                                                                                                                                         * 24节气速查表
+                                                                                                                                         * @Array Of Property
+                                                                                                                                         * @trans["小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至"]
+                                                                                                                                         * @return Cn string
+                                                                                                                                         */
+  solarTerm: ["\u5C0F\u5BD2", "\u5927\u5BD2", "\u7ACB\u6625", "\u96E8\u6C34", "\u60CA\u86F0", "\u6625\u5206", "\u6E05\u660E", "\u8C37\u96E8", "\u7ACB\u590F", "\u5C0F\u6EE1", "\u8292\u79CD", "\u590F\u81F3", "\u5C0F\u6691", "\u5927\u6691", "\u7ACB\u79CB", "\u5904\u6691", "\u767D\u9732", "\u79CB\u5206", "\u5BD2\u9732", "\u971C\u964D", "\u7ACB\u51AC", "\u5C0F\u96EA", "\u5927\u96EA", "\u51AC\u81F3"],
+
+  /**
+                                                                                                                                                                                                                                                                                                                                                                                                                   * 1900-2100各年的24节气日期速查表
+                                                                                                                                                                                                                                                                                                                                                                                                                   * @Array Of Property
+                                                                                                                                                                                                                                                                                                                                                                                                                   * @return 0x string For splice
+                                                                                                                                                                                                                                                                                                                                                                                                                   */
+  sTermInfo: ['9778397bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e', '97bcf97c3598082c95f8c965cc920f',
+  '97bd0b06bdb0722c965ce1cfcc920f', 'b027097bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e',
+  '97bcf97c359801ec95f8c965cc920f', '97bd0b06bdb0722c965ce1cfcc920f', 'b027097bd097c36b0b6fc9274c91aa',
+  '97b6b97bd19801ec9210c965cc920e', '97bcf97c359801ec95f8c965cc920f', '97bd0b06bdb0722c965ce1cfcc920f',
+  'b027097bd097c36b0b6fc9274c91aa', '9778397bd19801ec9210c965cc920e', '97b6b97bd19801ec95f8c965cc920f',
+  '97bd09801d98082c95f8e1cfcc920f', '97bd097bd097c36b0b6fc9210c8dc2', '9778397bd197c36c9210c9274c91aa',
+  '97b6b97bd19801ec95f8c965cc920e', '97bd09801d98082c95f8e1cfcc920f', '97bd097bd097c36b0b6fc9210c8dc2',
+  '9778397bd097c36c9210c9274c91aa', '97b6b97bd19801ec95f8c965cc920e', '97bcf97c3598082c95f8e1cfcc920f',
+  '97bd097bd097c36b0b6fc9210c8dc2', '9778397bd097c36c9210c9274c91aa', '97b6b97bd19801ec9210c965cc920e',
+  '97bcf97c3598082c95f8c965cc920f', '97bd097bd097c35b0b6fc920fb0722', '9778397bd097c36b0b6fc9274c91aa',
+  '97b6b97bd19801ec9210c965cc920e', '97bcf97c3598082c95f8c965cc920f', '97bd097bd097c35b0b6fc920fb0722',
+  '9778397bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e', '97bcf97c359801ec95f8c965cc920f',
+  '97bd097bd097c35b0b6fc920fb0722', '9778397bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e',
+  '97bcf97c359801ec95f8c965cc920f', '97bd097bd097c35b0b6fc920fb0722', '9778397bd097c36b0b6fc9274c91aa',
+  '97b6b97bd19801ec9210c965cc920e', '97bcf97c359801ec95f8c965cc920f', '97bd097bd07f595b0b6fc920fb0722',
+  '9778397bd097c36b0b6fc9210c8dc2', '9778397bd19801ec9210c9274c920e', '97b6b97bd19801ec95f8c965cc920f',
+  '97bd07f5307f595b0b0bc920fb0722', '7f0e397bd097c36b0b6fc9210c8dc2', '9778397bd097c36c9210c9274c920e',
+  '97b6b97bd19801ec95f8c965cc920f', '97bd07f5307f595b0b0bc920fb0722', '7f0e397bd097c36b0b6fc9210c8dc2',
+  '9778397bd097c36c9210c9274c91aa', '97b6b97bd19801ec9210c965cc920e', '97bd07f1487f595b0b0bc920fb0722',
+  '7f0e397bd097c36b0b6fc9210c8dc2', '9778397bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e',
+  '97bcf7f1487f595b0b0bb0b6fb0722', '7f0e397bd097c35b0b6fc920fb0722', '9778397bd097c36b0b6fc9274c91aa',
+  '97b6b97bd19801ec9210c965cc920e', '97bcf7f1487f595b0b0bb0b6fb0722', '7f0e397bd097c35b0b6fc920fb0722',
+  '9778397bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e', '97bcf7f1487f531b0b0bb0b6fb0722',
+  '7f0e397bd097c35b0b6fc920fb0722', '9778397bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e',
+  '97bcf7f1487f531b0b0bb0b6fb0722', '7f0e397bd07f595b0b6fc920fb0722', '9778397bd097c36b0b6fc9274c91aa',
+  '97b6b97bd19801ec9210c9274c920e', '97bcf7f0e47f531b0b0bb0b6fb0722', '7f0e397bd07f595b0b0bc920fb0722',
+  '9778397bd097c36b0b6fc9210c91aa', '97b6b97bd197c36c9210c9274c920e', '97bcf7f0e47f531b0b0bb0b6fb0722',
+  '7f0e397bd07f595b0b0bc920fb0722', '9778397bd097c36b0b6fc9210c8dc2', '9778397bd097c36c9210c9274c920e',
+  '97b6b7f0e47f531b0723b0b6fb0722', '7f0e37f5307f595b0b0bc920fb0722', '7f0e397bd097c36b0b6fc9210c8dc2',
+  '9778397bd097c36b0b70c9274c91aa', '97b6b7f0e47f531b0723b0b6fb0721', '7f0e37f1487f595b0b0bb0b6fb0722',
+  '7f0e397bd097c35b0b6fc9210c8dc2', '9778397bd097c36b0b6fc9274c91aa', '97b6b7f0e47f531b0723b0b6fb0721',
+  '7f0e27f1487f595b0b0bb0b6fb0722', '7f0e397bd097c35b0b6fc920fb0722', '9778397bd097c36b0b6fc9274c91aa',
+  '97b6b7f0e47f531b0723b0b6fb0721', '7f0e27f1487f531b0b0bb0b6fb0722', '7f0e397bd097c35b0b6fc920fb0722',
+  '9778397bd097c36b0b6fc9274c91aa', '97b6b7f0e47f531b0723b0b6fb0721', '7f0e27f1487f531b0b0bb0b6fb0722',
+  '7f0e397bd097c35b0b6fc920fb0722', '9778397bd097c36b0b6fc9274c91aa', '97b6b7f0e47f531b0723b0b6fb0721',
+  '7f0e27f1487f531b0b0bb0b6fb0722', '7f0e397bd07f595b0b0bc920fb0722', '9778397bd097c36b0b6fc9274c91aa',
+  '97b6b7f0e47f531b0723b0787b0721', '7f0e27f0e47f531b0b0bb0b6fb0722', '7f0e397bd07f595b0b0bc920fb0722',
+  '9778397bd097c36b0b6fc9210c91aa', '97b6b7f0e47f149b0723b0787b0721', '7f0e27f0e47f531b0723b0b6fb0722',
+  '7f0e397bd07f595b0b0bc920fb0722', '9778397bd097c36b0b6fc9210c8dc2', '977837f0e37f149b0723b0787b0721',
+  '7f07e7f0e47f531b0723b0b6fb0722', '7f0e37f5307f595b0b0bc920fb0722', '7f0e397bd097c35b0b6fc9210c8dc2',
+  '977837f0e37f14998082b0787b0721', '7f07e7f0e47f531b0723b0b6fb0721', '7f0e37f1487f595b0b0bb0b6fb0722',
+  '7f0e397bd097c35b0b6fc9210c8dc2', '977837f0e37f14998082b0787b06bd', '7f07e7f0e47f531b0723b0b6fb0721',
+  '7f0e27f1487f531b0b0bb0b6fb0722', '7f0e397bd097c35b0b6fc920fb0722', '977837f0e37f14998082b0787b06bd',
+  '7f07e7f0e47f531b0723b0b6fb0721', '7f0e27f1487f531b0b0bb0b6fb0722', '7f0e397bd097c35b0b6fc920fb0722',
+  '977837f0e37f14998082b0787b06bd', '7f07e7f0e47f531b0723b0b6fb0721', '7f0e27f1487f531b0b0bb0b6fb0722',
+  '7f0e397bd07f595b0b0bc920fb0722', '977837f0e37f14998082b0787b06bd', '7f07e7f0e47f531b0723b0b6fb0721',
+  '7f0e27f1487f531b0b0bb0b6fb0722', '7f0e397bd07f595b0b0bc920fb0722', '977837f0e37f14998082b0787b06bd',
+  '7f07e7f0e47f149b0723b0787b0721', '7f0e27f0e47f531b0b0bb0b6fb0722', '7f0e397bd07f595b0b0bc920fb0722',
+  '977837f0e37f14998082b0723b06bd', '7f07e7f0e37f149b0723b0787b0721', '7f0e27f0e47f531b0723b0b6fb0722',
+  '7f0e397bd07f595b0b0bc920fb0722', '977837f0e37f14898082b0723b02d5', '7ec967f0e37f14998082b0787b0721',
+  '7f07e7f0e47f531b0723b0b6fb0722', '7f0e37f1487f595b0b0bb0b6fb0722', '7f0e37f0e37f14898082b0723b02d5',
+  '7ec967f0e37f14998082b0787b0721', '7f07e7f0e47f531b0723b0b6fb0722', '7f0e37f1487f531b0b0bb0b6fb0722',
+  '7f0e37f0e37f14898082b0723b02d5', '7ec967f0e37f14998082b0787b06bd', '7f07e7f0e47f531b0723b0b6fb0721',
+  '7f0e37f1487f531b0b0bb0b6fb0722', '7f0e37f0e37f14898082b072297c35', '7ec967f0e37f14998082b0787b06bd',
+  '7f07e7f0e47f531b0723b0b6fb0721', '7f0e27f1487f531b0b0bb0b6fb0722', '7f0e37f0e37f14898082b072297c35',
+  '7ec967f0e37f14998082b0787b06bd', '7f07e7f0e47f531b0723b0b6fb0721', '7f0e27f1487f531b0b0bb0b6fb0722',
+  '7f0e37f0e366aa89801eb072297c35', '7ec967f0e37f14998082b0787b06bd', '7f07e7f0e47f149b0723b0787b0721',
+  '7f0e27f1487f531b0b0bb0b6fb0722', '7f0e37f0e366aa89801eb072297c35', '7ec967f0e37f14998082b0723b06bd',
+  '7f07e7f0e47f149b0723b0787b0721', '7f0e27f0e47f531b0723b0b6fb0722', '7f0e37f0e366aa89801eb072297c35',
+  '7ec967f0e37f14998082b0723b06bd', '7f07e7f0e37f14998083b0787b0721', '7f0e27f0e47f531b0723b0b6fb0722',
+  '7f0e37f0e366aa89801eb072297c35', '7ec967f0e37f14898082b0723b02d5', '7f07e7f0e37f14998082b0787b0721',
+  '7f07e7f0e47f531b0723b0b6fb0722', '7f0e36665b66aa89801e9808297c35', '665f67f0e37f14898082b0723b02d5',
+  '7ec967f0e37f14998082b0787b0721', '7f07e7f0e47f531b0723b0b6fb0722', '7f0e36665b66a449801e9808297c35',
+  '665f67f0e37f14898082b0723b02d5', '7ec967f0e37f14998082b0787b06bd', '7f07e7f0e47f531b0723b0b6fb0721',
+  '7f0e36665b66a449801e9808297c35', '665f67f0e37f14898082b072297c35', '7ec967f0e37f14998082b0787b06bd',
+  '7f07e7f0e47f531b0723b0b6fb0721', '7f0e26665b66a449801e9808297c35', '665f67f0e37f1489801eb072297c35',
+  '7ec967f0e37f14998082b0787b06bd', '7f07e7f0e47f531b0723b0b6fb0721', '7f0e27f1487f531b0b0bb0b6fb0722'],
+
+  /**
+                                                                                                             * 数字转中文速查表
+                                                                                                             * @Array Of Property
+                                                                                                             * @trans ['日','一','二','三','四','五','六','七','八','九','十']
+                                                                                                             * @return Cn string
+                                                                                                             */
+  nStr1: ["\u65E5", "\u4E00", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D", "\u4E03", "\u516B", "\u4E5D", "\u5341"],
+
+  /**
+                                                                                                                             * 日期转农历称呼速查表
+                                                                                                                             * @Array Of Property
+                                                                                                                             * @trans ['初','十','廿','卅']
+                                                                                                                             * @return Cn string
+                                                                                                                             */
+  nStr2: ["\u521D", "\u5341", "\u5EFF", "\u5345"],
+
+  /**
+                                                       * 月份转农历称呼速查表
+                                                       * @Array Of Property
+                                                       * @trans ['正','一','二','三','四','五','六','七','八','九','十','冬','腊']
+                                                       * @return Cn string
+                                                       */
+  nStr3: ["\u6B63", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D", "\u4E03", "\u516B", "\u4E5D", "\u5341", "\u51AC", "\u814A"],
+
+  /**
+                                                                                                                                       * 返回农历y年一整年的总天数
+                                                                                                                                       * @param lunar Year
+                                                                                                                                       * @return Number
+                                                                                                                                       * @eg:var count = calendar.lYearDays(1987) ;//count=387
+                                                                                                                                       */
+  lYearDays: function lYearDays(y) {
+    var i;var sum = 348;
+    for (i = 0x8000; i > 0x8; i >>= 1) {sum += this.lunarInfo[y - 1900] & i ? 1 : 0;}
+    return sum + this.leapDays(y);
+  },
+
+  /**
+         * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
+         * @param lunar Year
+         * @return Number (0-12)
+         * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
+         */
+  leapMonth: function leapMonth(y) {// 闰字编码 \u95f0
+    return this.lunarInfo[y - 1900] & 0xf;
+  },
+
+  /**
+         * 返回农历y年闰月的天数 若该年没有闰月则返回0
+         * @param lunar Year
+         * @return Number (0、29、30)
+         * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
+         */
+  leapDays: function leapDays(y) {
+    if (this.leapMonth(y)) {
+      return this.lunarInfo[y - 1900] & 0x10000 ? 30 : 29;
+    }
+    return 0;
+  },
+
+  /**
+         * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
+         * @param lunar Year
+         * @return Number (-1、29、30)
+         * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
+         */
+  monthDays: function monthDays(y, m) {
+    if (m > 12 || m < 1) {return -1;} // 月份参数从1至12，参数错误返回-1
+    return this.lunarInfo[y - 1900] & 0x10000 >> m ? 30 : 29;
+  },
+
+  /**
+         * 返回公历(!)y年m月的天数
+         * @param solar Year
+         * @return Number (-1、28、29、30、31)
+         * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
+         */
+  solarDays: function solarDays(y, m) {
+    if (m > 12 || m < 1) {return -1;} // 若参数错误 返回-1
+    var ms = m - 1;
+    if (ms == 1) {// 2月份的闰平规律测算后确认返回28或29
+      return y % 4 == 0 && y % 100 != 0 || y % 400 == 0 ? 29 : 28;
+    } else {
+      return this.solarMonth[ms];
+    }
+  },
+
+  /**
+        * 农历年份转换为干支纪年
+        * @param  lYear 农历年的年份数
+        * @return Cn string
+        */
+  toGanZhiYear: function toGanZhiYear(lYear) {
+    var ganKey = (lYear - 3) % 10;
+    var zhiKey = (lYear - 3) % 12;
+    if (ganKey == 0) ganKey = 10; // 如果余数为0则为最后一个天干
+    if (zhiKey == 0) zhiKey = 12; // 如果余数为0则为最后一个地支
+    return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1];
+  },
+
+  /**
+        * 公历月、日判断所属星座
+        * @param  cMonth [description]
+        * @param  cDay [description]
+        * @return Cn string
+        */
+  toAstro: function toAstro(cMonth, cDay) {
+    var s = "\u9B54\u7FAF\u6C34\u74F6\u53CC\u9C7C\u767D\u7F8A\u91D1\u725B\u53CC\u5B50\u5DE8\u87F9\u72EE\u5B50\u5904\u5973\u5929\u79E4\u5929\u874E\u5C04\u624B\u9B54\u7FAF";
+    var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
+    return s.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "\u5EA7"; // 座
+  },
+
+  /**
+         * 传入offset偏移量返回干支
+         * @param offset 相对甲子的偏移量
+         * @return Cn string
+         */
+  toGanZhi: function toGanZhi(offset) {
+    return this.Gan[offset % 10] + this.Zhi[offset % 12];
+  },
+
+  /**
+         * 传入公历(!)y年获得该年第n个节气的公历日期
+         * @param y公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起
+         * @return day Number
+         * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
+         */
+  getTerm: function getTerm(y, n) {
+    if (y < 1900 || y > 2100) {return -1;}
+    if (n < 1 || n > 24) {return -1;}
+    var _table = this.sTermInfo[y - 1900];
+    var _info = [
+    parseInt('0x' + _table.substr(0, 5)).toString(),
+    parseInt('0x' + _table.substr(5, 5)).toString(),
+    parseInt('0x' + _table.substr(10, 5)).toString(),
+    parseInt('0x' + _table.substr(15, 5)).toString(),
+    parseInt('0x' + _table.substr(20, 5)).toString(),
+    parseInt('0x' + _table.substr(25, 5)).toString()];
+
+    var _calday = [
+    _info[0].substr(0, 1),
+    _info[0].substr(1, 2),
+    _info[0].substr(3, 1),
+    _info[0].substr(4, 2),
+
+    _info[1].substr(0, 1),
+    _info[1].substr(1, 2),
+    _info[1].substr(3, 1),
+    _info[1].substr(4, 2),
+
+    _info[2].substr(0, 1),
+    _info[2].substr(1, 2),
+    _info[2].substr(3, 1),
+    _info[2].substr(4, 2),
+
+    _info[3].substr(0, 1),
+    _info[3].substr(1, 2),
+    _info[3].substr(3, 1),
+    _info[3].substr(4, 2),
+
+    _info[4].substr(0, 1),
+    _info[4].substr(1, 2),
+    _info[4].substr(3, 1),
+    _info[4].substr(4, 2),
+
+    _info[5].substr(0, 1),
+    _info[5].substr(1, 2),
+    _info[5].substr(3, 1),
+    _info[5].substr(4, 2)];
+
+    return parseInt(_calday[n - 1]);
+  },
+
+  /**
+         * 传入农历数字月份返回汉语通俗表示法
+         * @param lunar month
+         * @return Cn string
+         * @eg:var cnMonth = calendar.toChinaMonth(12) ;//cnMonth='腊月'
+         */
+  toChinaMonth: function toChinaMonth(m) {// 月 => \u6708
+    if (m > 12 || m < 1) {return -1;} // 若参数错误 返回-1
+    var s = this.nStr3[m - 1];
+    s += "\u6708"; // 加上月字
+    return s;
+  },
+
+  /**
+         * 传入农历日期数字返回汉字表示法
+         * @param lunar day
+         * @return Cn string
+         * @eg:var cnDay = calendar.toChinaDay(21) ;//cnMonth='廿一'
+         */
+  toChinaDay: function toChinaDay(d) {// 日 => \u65e5
+    var s;
+    switch (d) {
+      case 10:
+        s = "\u521D\u5341";break;
+      case 20:
+        s = "\u4E8C\u5341";break;
+        break;
+      case 30:
+        s = "\u4E09\u5341";break;
+        break;
+      default:
+        s = this.nStr2[Math.floor(d / 10)];
+        s += this.nStr1[d % 10];}
+
+    return s;
+  },
+
+  /**
+         * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
+         * @param y year
+         * @return Cn string
+         * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
+         */
+  getAnimal: function getAnimal(y) {
+    return this.Animals[(y - 4) % 12];
+  },
+
+  /**
+         * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
+         * @param y  solar year
+         * @param m  solar month
+         * @param d  solar day
+         * @return JSON object
+         * @eg:console.log(calendar.solar2lunar(1987,11,01));
+         */
+  solar2lunar: function solar2lunar(y, m, d) {// 参数区间1900.1.31~2100.12.31
+    // 年份限定、上限
+    if (y < 1900 || y > 2100) {
+      return -1; // undefined转换为数字变为NaN
+    }
+    // 公历传参最下限
+    if (y == 1900 && m == 1 && d < 31) {
+      return -1;
+    }
+    // 未传参  获得当天
+    if (!y) {
+      var objDate = new Date();
+    } else {
+      var objDate = new Date(y, parseInt(m) - 1, d);
+    }
+    var i;var leap = 0;var temp = 0;
+    // 修正ymd参数
+    var y = objDate.getFullYear();
+    var m = objDate.getMonth() + 1;
+    var d = objDate.getDate();
+    var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 86400000;
+    for (i = 1900; i < 2101 && offset > 0; i++) {
+      temp = this.lYearDays(i);
+      offset -= temp;
+    }
+    if (offset < 0) {
+      offset += temp;i--;
+    }
+
+    // 是否今天
+    var isTodayObj = new Date();
+    var isToday = false;
+    if (isTodayObj.getFullYear() == y && isTodayObj.getMonth() + 1 == m && isTodayObj.getDate() == d) {
+      isToday = true;
+    }
+    // 星期几
+    var nWeek = objDate.getDay();
+    var cWeek = this.nStr1[nWeek];
+    // 数字表示周几顺应天朝周一开始的惯例
+    if (nWeek == 0) {
+      nWeek = 7;
+    }
+    // 农历年
+    var year = i;
+    var leap = this.leapMonth(i); // 闰哪个月
+    var isLeap = false;
+
+    // 效验闰月
+    for (i = 1; i < 13 && offset > 0; i++) {
+      // 闰月
+      if (leap > 0 && i == leap + 1 && isLeap == false) {
+        --i;
+        isLeap = true;temp = this.leapDays(year); // 计算农历闰月天数
+      } else {
+        temp = this.monthDays(year, i); // 计算农历普通月天数
+      }
+      // 解除闰月
+      if (isLeap == true && i == leap + 1) {isLeap = false;}
+      offset -= temp;
+    }
+    // 闰月导致数组下标重叠取反
+    if (offset == 0 && leap > 0 && i == leap + 1) {
+      if (isLeap) {
+        isLeap = false;
+      } else {
+        isLeap = true;--i;
+      }
+    }
+    if (offset < 0) {
+      offset += temp;--i;
+    }
+    // 农历月
+    var month = i;
+    // 农历日
+    var day = offset + 1;
+    // 天干地支处理
+    var sm = m - 1;
+    var gzY = this.toGanZhiYear(year);
+
+    // 当月的两个节气
+    // bugfix-2017-7-24 11:03:38 use lunar Year Param `y` Not `year`
+    var firstNode = this.getTerm(y, m * 2 - 1); // 返回当月「节」为几日开始
+    var secondNode = this.getTerm(y, m * 2); // 返回当月「节」为几日开始
+
+    // 依据12节气修正干支月
+    var gzM = this.toGanZhi((y - 1900) * 12 + m + 11);
+    if (d >= firstNode) {
+      gzM = this.toGanZhi((y - 1900) * 12 + m + 12);
+    }
+
+    // 传入的日期的节气与否
+    var isTerm = false;
+    var Term = null;
+    if (firstNode == d) {
+      isTerm = true;
+      Term = this.solarTerm[m * 2 - 2];
+    }
+    if (secondNode == d) {
+      isTerm = true;
+      Term = this.solarTerm[m * 2 - 1];
+    }
+    // 日柱 当月一日与 1900/1/1 相差天数
+    var dayCyclical = Date.UTC(y, sm, 1, 0, 0, 0, 0) / 86400000 + 25567 + 10;
+    var gzD = this.toGanZhi(dayCyclical + d - 1);
+    // 该日期所属的星座
+    var astro = this.toAstro(m, d);
+
+    return { 'lYear': year, 'lMonth': month, 'lDay': day, 'Animal': this.getAnimal(year), 'IMonthCn': (isLeap ? "\u95F0" : '') + this.toChinaMonth(month), 'IDayCn': this.toChinaDay(day), 'cYear': y, 'cMonth': m, 'cDay': d, 'gzYear': gzY, 'gzMonth': gzM, 'gzDay': gzD, 'isToday': isToday, 'isLeap': isLeap, 'nWeek': nWeek, 'ncWeek': "\u661F\u671F" + cWeek, 'isTerm': isTerm, 'Term': Term, 'astro': astro };
+  },
+
+  /**
+         * 传入农历年月日以及传入的月份是否闰月获得详细的公历、农历object信息 <=>JSON
+         * @param y  lunar year
+         * @param m  lunar month
+         * @param d  lunar day
+         * @param isLeapMonth  lunar month is leap or not.[如果是农历闰月第四个参数赋值true即可]
+         * @return JSON object
+         * @eg:console.log(calendar.lunar2solar(1987,9,10));
+         */
+  lunar2solar: function lunar2solar(y, m, d, isLeapMonth) {// 参数区间1900.1.31~2100.12.1
+    var isLeapMonth = !!isLeapMonth;
+    var leapOffset = 0;
+    var leapMonth = this.leapMonth(y);
+    var leapDay = this.leapDays(y);
+    if (isLeapMonth && leapMonth != m) {return -1;} // 传参要求计算该闰月公历 但该年得出的闰月与传参的月份并不同
+    if (y == 2100 && m == 12 && d > 1 || y == 1900 && m == 1 && d < 31) {return -1;} // 超出了最大极限值
+    var day = this.monthDays(y, m);
+    var _day = day;
+    // bugFix 2016-9-25
+    // if month is leap, _day use leapDays method
+    if (isLeapMonth) {
+      _day = this.leapDays(y, m);
+    }
+    if (y < 1900 || y > 2100 || d > _day) {return -1;} // 参数合法性效验
+
+    // 计算农历的时间差
+    var offset = 0;
+    for (var i = 1900; i < y; i++) {
+      offset += this.lYearDays(i);
+    }
+    var leap = 0;var isAdd = false;
+    for (var i = 1; i < m; i++) {
+      leap = this.leapMonth(y);
+      if (!isAdd) {// 处理闰月
+        if (leap <= i && leap > 0) {
+          offset += this.leapDays(y);isAdd = true;
+        }
+      }
+      offset += this.monthDays(y, i);
+    }
+    // 转换闰月农历 需补充该年闰月的前一个月的时差
+    if (isLeapMonth) {offset += day;}
+    // 1900年农历正月一日的公历时间为1900年1月30日0时0分0秒(该时间也是本农历的最开始起始点)
+    var stmap = Date.UTC(1900, 1, 30, 0, 0, 0);
+    var calObj = new Date((offset + d - 31) * 86400000 + stmap);
+    var cY = calObj.getUTCFullYear();
+    var cM = calObj.getUTCMonth() + 1;
+    var cD = calObj.getUTCDate();
+
+    return this.solar2lunar(cY, cM, cD);
+  } };var _default =
+
+
+calendar;exports.default = _default;
 
 /***/ }),
 
@@ -9988,7 +10941,21 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 37:
+/***/ 31:
+/*!******************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/common/bus.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var bus = new _vue.default();var _default =
+bus;exports.default = _default;
+
+/***/ }),
+
+/***/ 38:
 /*!**************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/beiwang/日历.png ***!
   \**************************************************************************/
@@ -9999,7 +10966,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /*!**************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/beiwang/添加.png ***!
   \**************************************************************************/
@@ -10021,7 +10988,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
-/***/ 47:
+/***/ 48:
 /*!*****************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/calender.png ***!
   \*****************************************************************************/
@@ -10032,7 +10999,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /*!**************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/table.png ***!
   \**************************************************************************/
@@ -10043,7 +11010,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
-/***/ 49:
+/***/ 50:
 /*!****************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/icon/presell.png ***!
   \****************************************************************************/
@@ -10051,6 +11018,17 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,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"
+
+/***/ }),
+
+/***/ 59:
+/*!*****************************************************************************************!*\
+  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/aboutus.png ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
 
 /***/ }),
 
@@ -10066,17 +11044,6 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 61:
-/*!*****************************************************************************************!*\
-  !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/aboutus.png ***!
-  \*****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
-
-/***/ 62:
 /*!**************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/help.png ***!
   \**************************************************************************************/
@@ -10087,7 +11054,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
-/***/ 63:
+/***/ 62:
 /*!***********************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/privacypolicy.png ***!
   \***********************************************************************************************/
@@ -10098,7 +11065,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
-/***/ 64:
+/***/ 63:
 /*!********************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/static/personcenter_icon/clearcache.png ***!
   \********************************************************************************************/
@@ -10109,7 +11076,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 
 /***/ }),
 
-/***/ 75:
+/***/ 74:
 /*!*****************************************************************************************!*\
   !*** C:/Users/fighting/Desktop/jihua/jihua-client/js_sdk/u-charts/u-charts/u-charts.js ***!
   \*****************************************************************************************/

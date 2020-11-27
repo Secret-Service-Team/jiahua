@@ -1,78 +1,126 @@
 <template>
 	<view>
-	
-			<view class="top-container">
-				<view class="topleft">
-					<view class="to bcalendar" @click="jumptobcalender() ">
-						<img src="../../static/beiwang/日历.png" alt="" />
-					</view>
-					
-				</view>
-				
-				<view class="topright" @click="goto_xiangxian"> 四象限 </view>
-				
-			</view>
-			<view class="middle">
-							
-				<time-line ref="timeline" location="center" ></time-line>
-			
-			
-			
-			
-							
-			
-			</view>
-			<view class="down">
-							
-				<view class="add" @click="jumptoadd()  ">
-					
-						<img src="../../static/beiwang/添加.png" alt="" />
-					
-				</view>
-			
-			
-			
-			
-							
-			
-			</view>
-		</view>
 
-	
+		<view class="top-container">
+			<view class="topleft">
+				<view class="to bcalendar" @click="jumptobcalender() ">
+					<img src="../../static/beiwang/日历.png" alt="" />
+				</view>
+
+			</view>
+
+			<view class="topright" @click="goto_xiangxian"> 四象限 </view>
+
+		</view>
+		<view class="middle">
+
+			<time-line ref="timeline" location="center"></time-line>
+
+
+
+
+
+
+		</view>
+		<view class="down">
+
+			<view class="add" @click="jumptoadd()  ">
+
+				<img src="../../static/beiwang/添加.png" alt="" />
+
+			</view>
+
+
+
+
+
+
+		</view>
+	</view>
+
+
 
 </template>
 
 <script>
+	import bus from '../../common/bus.js'
 	import timeLine from '../../components/xuan-timeLine/xuan-timeLine.vue'
 	export default {
-		components:{
-					timeLine
-				},
+		components: {
+			timeLine
+		},
 		data() {
 			return {
 				flag_hide: false,
-				time:0,
-				isclick:true,
+				time: 0,
+				isclick: true,
+				recordDate: '',
+				openid:''
 			}
 		},
 		onPageScroll() {
-					if(this.isclick){
-						this.timer();
-						this.$refs.timeline.getScroll();
-					}
-				},
+			if (this.isclick) {
+				this.timer();
+				this.$refs.timeline.getScroll();
+			}
+		},
+		onShow() {
+			this.gengxinbeiwangshixiang()
+
+		},
+		onLoad() {
+			const date = new Date();
+			var day = date.getDate()
+			var month = date.getMonth() + 1
+			this.recordDate = date.getFullYear() + '-' + (month >= 10 ? month : '0' + month) + '-' + (day >= 10 ? day : '0' +
+				day)
+		},
+		mounted() {
+			this.openid = wx.getStorageSync('openid')
+		},
 		methods: {
-			timer(){
-							if(this.time>0){
-								this.isclick=false;
-								this.time--;
-								setTimeout(this.timer,1)
-							}
-							else{
-								this.isclick=true;
-								this.time=10
-							}
-						},
+			onPullDownRefresh() {
+				console.log('refresh');
+				setTimeout(function() {
+					uni.stopPullDownRefresh();
+				}, 1000);
+				uni.request({
+					url: 'https://blog.surfly.top/jihua/findtodo/', //仅为示例，并非真实接口地址。
+					data: {
+						openid: this.openid,
+						starttime: this.recordDate
+					},
+					method: 'POST',
+					success: (res) => {
+						bus.$emit("aMsg", res.data);
+						//console.log(res.data)
+					}
+				});
+			},
+			gengxinbeiwangshixiang() {
+				uni.request({
+					url: 'https://blog.surfly.top/jihua/findtodo/', //仅为示例，并非真实接口地址。
+					data: {
+						openid: this.openid,
+						starttime: this.recordDate
+					},
+					method: 'POST',
+					success: (res) => {
+						bus.$emit("aMsg", res.data);
+						//console.log(res.data)
+					}
+				});
+			},
+			timer() {
+				if (this.time > 0) {
+					this.isclick = false;
+					this.time--;
+					setTimeout(this.timer, 1)
+				} else {
+					this.isclick = true;
+					this.time = 10
+				}
+			},
 			hide() {
 				this.flag_hide = !this.flag_hide
 			},
@@ -81,9 +129,9 @@
 					url: "../bcalendar/bcalendar"
 				});
 			},
-			goto_xiangxian(){
+			goto_xiangxian() {
 				uni.navigateTo({
-					url:"../xiangxian/xiangxian"
+					url: "../xiangxian/xiangxian"
 				})
 			},
 			jumptoadd() {
@@ -97,8 +145,6 @@
 </script>
 
 <style>
-	
-
 	.top-container {
 		position: fixed;
 		top: 0;
@@ -108,7 +154,7 @@
 		height: 10%;
 		display: flex;
 		margin-top: 0rpx;
-		
+
 		/* flex:1 1 0; */
 		justify-content: space-between;
 		z-index: 100;
@@ -133,15 +179,17 @@
 		height: 70rpx;
 		margin-top: 19rpx;
 		margin-left: 33rpx;
-		
+
 	}
+
 	.topmiddle img {
 		width: 100rpx;
 		height: 100rpx;
 		margin-top: 100rpx;
 		margin-left: 20rpx;
-		
+
 	}
+
 	.topleft {
 		/* flex-flow: space-between; */
 		margin-top: 8rpx;
@@ -155,27 +203,29 @@
 
 	}
 
-	.middle{
+	.middle {
 		padding: 100rpx 0;
 		width: 100%;
 		height: 10%;
 		margin-top: 8rpx;
 	}
+
 	.down {
-		
+
 		width: 100%;
 		height: 100rpx;
 		position: fixed;
 		left: 0;
 		bottom: 0;
-		
+
 		background-color: #FFF;
-		
+
 		/* flex:1 1 0; */
 		justify-content: space-between;
 		z-index: 100;
 	}
-	.add img{
+
+	.add img {
 		width: 70rpx;
 		height: 70rpx;
 		bottom: 0;
@@ -183,7 +233,7 @@
 		margin-bottom: 0rpx;
 	}
 
-	
+
 
 	.intotal {
 		margin-top: 30rpx;

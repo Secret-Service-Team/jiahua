@@ -2,6 +2,7 @@
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "uni-calendar": "/components/uni-calendar/uni-calendar"
+    "uni-calendar": "/components/uni-calendar/uni-calendar",
+    "time-line": "/components/xuan-timeLine/xuan-timeLine"
   }
 }
